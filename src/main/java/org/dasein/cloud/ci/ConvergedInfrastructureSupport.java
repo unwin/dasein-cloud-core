@@ -155,8 +155,14 @@ public interface ConvergedInfrastructureSupport extends AccessControlledService 
      */
     public void removeTags(@Nonnull String[] ciIds, @Nonnull Tag... tags) throws CloudException, InternalException;
 
-
+    /**
+     * @return true if this cloud has http load balancer support
+     */
     public boolean hasConvergedHttpLoadBalancerSupport();
 
+    /**
+     * Provides access to meta-data about converged infrastructure capabilities in this cloud.
+     * @return a description of the features supported by converged infrastructure for this cloud
+     */
     public @Nullable ConvergedInfrastructureCapabilities getCapabilities();
 }
