@@ -30,42 +30,42 @@ public class ConvergedHttpLoadBalancer implements Taggable {
     private List<BackendServiceBackend> backendServiceBackends = new ArrayList<BackendServiceBackend>();
 
     /**
-     * return a list of backend service backends, these should be the instance pools behind the backend services.
+     * @return a list of backend service backends, these should be the instance pools behind the backend services.
      */
     public List<BackendServiceBackend> getBackendServiceBackends() {
         return backendServiceBackends;
     }
 
     /**
-     * return a list of healthchecks in use by this http load balancer.
+     * @return a list of healthchecks in use by this http load balancer.
      */
     public List<HealthCheck> getHealthChecks() {
         return healthChecks;
     }
 
     /**
-     * return a list of backend services in use by this http load balancer.
+     * @return a list of backend services in use by this http load balancer.
      */
     public List<BackendService> getBackendServices() {
         return backendServices;
     }
 
     /**
-     * return a list of forwarding rules in use by this http load balancer.
+     * @return a list of forwarding rules in use by this http load balancer.
      */
     public List<ForwardingRule> getForwardingRules() {
         return forwardingRules;
     }
 
     /**
-     * Return a list of target proxies in use by this http load balancer.
+     * @return a list of target proxies in use by this http load balancer.
      * target proxies bind a http/https port with a urlMap
      */
     public List<TargetHttpProxy> getTargetHttpProxies() {
         return targetHttpProxies;
     }
     /**
-     * Return a list of url sets in use by this http load balancer.
+     * @return a list of url sets in use by this http load balancer.
      * Url sets govern which backend service will service the request
      * based on the url path or hostname being requested from
      */
@@ -495,7 +495,7 @@ public class ConvergedHttpLoadBalancer implements Taggable {
      * @param name the name for the backend service backend
      * @param description the description for the backend service backend
      * @param balancingMode cpu utilization or requests per second
-     * @param capacityScaler 
+     * @param capacityScaler This percentage reduces the number of new requests that are sent to the backend. Set this value to 0% to prevent new connections.
      * @param group the name of the backend group
      * @param maxRate the target requests per second for the instance group average. When this rate is exceeded, requests are directed to another backend
      * @param maxRatePerInstance he target requests per second for individual instances. When this rate is exceeded, requests are directed to another backend
