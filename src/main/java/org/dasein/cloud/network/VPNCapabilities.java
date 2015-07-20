@@ -49,4 +49,12 @@ public interface VPNCapabilities extends Capabilities{
      * @throws InternalException an error occurred within the Dasein Cloud implementation identifying this requirement
      */
     public @Nonnull Iterable<VPNProtocol> listSupportedVPNProtocols() throws CloudException, InternalException;
+
+    /**
+     * Indicates whether a VPN is tied to a specific VLAN
+     * @return the requirement level for VPN VLAN
+     * @throws CloudException an error occurred in the cloud identifying this requirement
+     * @throws InternalException an error occurred within the Dasein Cloud implementation identifying this requirement
+     */
+    public @Nonnull Requirement getVPNVLANConstraint() throws CloudException, InternalException;
 }

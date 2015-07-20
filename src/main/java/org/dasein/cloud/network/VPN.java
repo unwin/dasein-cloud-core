@@ -34,8 +34,9 @@ public class VPN implements Taggable {
     private String             providerRegionId;
     private String[]           providerVlanIds;
     private String             providerVpnId;
+    private String             providerVpnIP;
     private Map<String,String> tags;
-    
+
     public VPN() { }
 
     public VPNState getCurrentState() {
@@ -112,5 +113,13 @@ public class VPN implements Taggable {
 
     public String toString() {
         return providerVpnId;
+    }
+
+    public String getProviderVpnIP() {
+        return providerVpnIP;
+    }
+
+    public void setProviderVpnIP(String providerVpnIP) {
+        this.providerVpnIP = providerVpnIP;
     }
 }
