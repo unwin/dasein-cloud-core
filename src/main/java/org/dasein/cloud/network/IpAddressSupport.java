@@ -379,16 +379,6 @@ public interface IpAddressSupport extends AccessControlledService {
      * @throws CloudException an error occurred with the cloud while provisioning the new address
      */
     public @Nonnull String request(@Nonnull IPVersion version) throws InternalException, CloudException;
-    
-    /**
-     * Requests an IP address of the specified version for the flat (non-VLAN) network space.
-     * @param version the IP version of the address to be requested
-     * @param regionId for the IP to be located in
-     * @return the unique ID of the newly provisioned static IP address
-     * @throws InternalException a local error occurred while preparing the request
-     * @throws CloudException an error occurred with the cloud while provisioning the new address
-     */
-    public @Nonnull String request(@Nonnull IPVersion version, @Nonnull String regionId) throws InternalException, CloudException;
 
     /**
      * Requests a public IP address that may be used with a VLAN. This version may be used only when
