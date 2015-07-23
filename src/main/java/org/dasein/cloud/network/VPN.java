@@ -31,7 +31,6 @@ public class VPN implements Taggable {
     private String             description;
     private String             name;
     private VPNProtocol        protocol;
-    private String             providerRegionId;
     private String[]           providerVlanIds;
     private String             providerVpnId;
     private String             providerVpnIP;
@@ -69,14 +68,6 @@ public class VPN implements Taggable {
 
     public void setProtocol(VPNProtocol protocol) {
         this.protocol = protocol;
-    }
-
-    public String getProviderRegionId() {
-        return providerRegionId;
-    }
-
-    public void setProviderRegionId(String providerRegionId) {
-        this.providerRegionId = providerRegionId;
     }
 
     public String getProviderVpnId() {

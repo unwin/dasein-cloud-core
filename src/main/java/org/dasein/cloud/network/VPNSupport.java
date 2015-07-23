@@ -72,6 +72,8 @@ public interface VPNSupport extends AccessControlledService {
     
     public @Nullable VPNGateway getGateway(@Nonnull String gatewayId) throws CloudException, InternalException;
     
+    public @Nullable VPNGateway getVPNGateway(@Nonnull String gatewayId) throws CloudException, InternalException;
+    
     public @Nullable VPN getVPN(@Nonnull String providerVpnId) throws CloudException, InternalException;
 
     @Deprecated
