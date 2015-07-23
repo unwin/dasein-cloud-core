@@ -34,7 +34,7 @@
 
     <inceptionYear>2009</inceptionYear>
 
-    <url>http://github.com/greese/dasein-cloud-core</url>
+    <url>http://github.com/dasein-cloud/dasein-cloud-core</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -53,9 +53,9 @@
     </organization>
 
     <scm>
-        <connection>scm:git:git://github.com/greese/dasein-cloud-core.git</connection>
-        <developerConnection>scm:git:git@github.com:greese/dasein-cloud-core.git</developerConnection>
-        <url>http://github.com/greese/dasein-cloud-core</url>
+        <connection>scm:git:git://github.com/dasein-cloud/dasein-cloud-core.git</connection>
+        <developerConnection>scm:git:git@github.com:dasein-cloud/dasein-cloud-core.git</developerConnection>
+        <url>http://github.com/dasein-cloud/dasein-cloud-core</url>
     </scm>
 
     <parent>
