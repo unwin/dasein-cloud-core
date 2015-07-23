@@ -151,8 +151,8 @@ public interface ImageCapabilities extends Capabilities{
     public boolean supportsImageCopy() throws CloudException, InternalException;
 
     /**
-     * Indicates whether you can remove/delete an image from the cloud.
-     * @return true if the clouds supports image deletion
+     * Indicates whether the cloud supports removal/deletion of images
+     * @return true if image removal/deletion is supported
      * @throws CloudException    an error occurred with the cloud provider when checking this capability
      * @throws InternalException an error occurred within the Dasein cloud implementation while check this capability
      */
