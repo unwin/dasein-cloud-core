@@ -164,5 +164,5 @@ public interface ConvergedInfrastructureSupport extends AccessControlledService 
      * Provides access to meta-data about converged infrastructure capabilities in this cloud.
      * @return a description of the features supported by converged infrastructure for this cloud
      */
-    public @Nullable ConvergedInfrastructureCapabilities getCapabilities();
+    public @Nonnull ConvergedInfrastructureCapabilities getCapabilities();
 }

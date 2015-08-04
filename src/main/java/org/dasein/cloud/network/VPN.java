@@ -33,7 +33,7 @@ public class VPN implements Taggable {
     private VPNProtocol        protocol;
     private String[]           providerVlanIds;
     private String             providerVpnId;
-    private String             providerVpnIP;
+    private String             providerVpnIp;
     private Map<String,String> tags;
 
     public VPN() { }
@@ -106,11 +106,11 @@ public class VPN implements Taggable {
         return providerVpnId;
     }
 
-    public String getProviderVpnIP() {
-        return providerVpnIP;
+    public String getProviderVpnIp() {
+        return providerVpnIp;
     }
 
-    public void setProviderVpnIP(String providerVpnIP) {
-        this.providerVpnIP = providerVpnIP;
+    public void setProviderVpnIP(String providerVpnIp) {
+        this.providerVpnIp = providerVpnIp;
     }
 }
