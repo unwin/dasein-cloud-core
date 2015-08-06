@@ -25,6 +25,7 @@ import org.dasein.cloud.InternalException;
 import org.dasein.cloud.Requirement;
 import org.dasein.cloud.ResourceStatus;
 import org.dasein.cloud.identity.ServiceAction;
+import org.dasein.cloud.network.VPNConnection;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -50,7 +51,22 @@ public interface VPNSupport extends AccessControlledService {
     
     public void connectToGateway(@Nonnull String providerVpnId, @Nonnull String toGatewayId) throws CloudException, InternalException;
     
+    /* connectToVPNGateway
+     * @param vpnName the name of the vpn to create gateway off of
+     * @param endpoint is the ip address of the peer vpn
+     * @param name the name of the gateway being created
+     * @param description optional description 
+     * @param protocol the protocol of the vpn connection
+     * @param sharedSecret of the vpn connection
+     * @param cidrs one or more IP addresses in CIDR notation
+     * @return the created VPN gateway
+     */
+    public VPNGateway connectToVPNGateway(String vpnName, String endpoint, String name, String description, VPNProtocol protocol, String sharedSecret, String cidr) throws CloudException, InternalException;
+    
+    @Deprecated
     public @Nonnull VPN createVPN(@Nullable String inProviderDataCenterId, @Nonnull String name, @Nonnull String description, @Nonnull VPNProtocol protocol) throws CloudException, InternalException;
+    
+    public @Nonnull VPN createVPN(@Nonnull VpnLaunchOptions vpnLaunchOptions) throws CloudException, InternalException;
     
     public @Nonnull VPNGateway createVPNGateway(@Nonnull String endpoint, @Nonnull String name, @Nonnull String description, @Nonnull VPNProtocol protocol, @Nonnull String bgpAsn) throws CloudException, InternalException;
     
@@ -65,6 +81,8 @@ public interface VPNSupport extends AccessControlledService {
     public @Nonnull VPNCapabilities getCapabilities()throws CloudException, InternalException;
     
     public @Nullable VPNGateway getGateway(@Nonnull String gatewayId) throws CloudException, InternalException;
+    
+    public @Nullable VPNGateway getVPNGateway(@Nonnull String gatewayId) throws CloudException, InternalException;
     
     public @Nullable VPN getVPN(@Nonnull String providerVpnId) throws CloudException, InternalException;
 

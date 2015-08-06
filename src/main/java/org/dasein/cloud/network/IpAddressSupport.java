@@ -379,7 +379,7 @@ public interface IpAddressSupport extends AccessControlledService {
      * @throws CloudException an error occurred with the cloud while provisioning the new address
      */
     public @Nonnull String request(@Nonnull IPVersion version) throws InternalException, CloudException;
-    
+
     /**
      * Requests a public IP address that may be used with a VLAN. This version may be used only when
      * {@link #identifyVlanForVlanIPRequirement()} is not {@link Requirement#REQUIRED}.

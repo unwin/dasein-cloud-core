@@ -35,18 +35,34 @@ import javax.annotation.Nonnull;
  */
 public interface VPNCapabilities extends Capabilities{
     /**
-     * Indicates whether a VPN is tied to a specific Data Center
-     * @return the requirement level for VPN Data Centers
-     * @throws CloudException an error occurred in the cloud identifying this requirement
-     * @throws InternalException an error occurred within the Dasein Cloud implementation identifying this requirement
-     */
-    public @Nonnull Requirement getVPNDataCenterConstraint() throws CloudException, InternalException;
-
-    /**
      * Lists the protocols supported for VPNs in the cloud
      * @return list of Protocol types
      * @throws CloudException an error occurred in the cloud identifying this requirement
      * @throws InternalException an error occurred within the Dasein Cloud implementation identifying this requirement
      */
     public @Nonnull Iterable<VPNProtocol> listSupportedVPNProtocols() throws CloudException, InternalException;
+
+    /**
+     * Indicates whether a VPN is tied to a specific VLAN
+     * @return the requirement level for VPN VLAN
+     * @throws CloudException an error occurred in the cloud identifying this requirement
+     * @throws InternalException an error occurred within the Dasein Cloud implementation identifying this requirement
+     */
+    public @Nonnull Requirement getVPNVLANConstraint() throws CloudException, InternalException;
+
+    /**
+     * Indicates whether a VPN supports Gateway methods
+     * @return true if Gateway methods are supported
+     * @throws CloudException an error occurred in the cloud identifying this requirement
+     * @throws InternalException an error occurred within the Dasein Cloud implementation identifying this requirement
+     */
+    boolean supportsGateway() throws CloudException, InternalException;
+
+    /**
+     * Indicates whether a VPN supports VPNGateway methods
+     * @return true if VPNGateway methods are supported
+     * @throws CloudException an error occurred in the cloud identifying this requirement
+     * @throws InternalException an error occurred within the Dasein Cloud implementation identifying this requirement
+     */
+    boolean supportsVPNGateway() throws CloudException, InternalException;
 }

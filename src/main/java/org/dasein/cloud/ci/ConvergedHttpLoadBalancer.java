@@ -18,54 +18,50 @@ public class ConvergedHttpLoadBalancer implements Taggable {
     private String creationTimestamp;
     private String defaultBackendService;
     private List<UrlSet> urlSets = new ArrayList<UrlSet>();
-
     private List<TargetHttpProxy> targetHttpProxies = new ArrayList<TargetHttpProxy>();
-
     private List<ForwardingRule> forwardingRules = new ArrayList<ForwardingRule>();
-
     private List<BackendService> backendServices = new ArrayList<BackendService>();
-
     private List<HealthCheck> healthChecks = new ArrayList<HealthCheck>();
-
     private List<BackendServiceBackend> backendServiceBackends = new ArrayList<BackendServiceBackend>();
 
     /**
-     * return a list of backend service backends, these should be the instance pools behind the backend services.
+     * @return a list of backend service backends, these should be the instance pools behind the backend services.
      */
     public List<BackendServiceBackend> getBackendServiceBackends() {
         return backendServiceBackends;
     }
 
     /**
-     * return a list of healthchecks in use by this http load balancer.
+     * @return a list of healthchecks in use by this http load balancer.
      */
     public List<HealthCheck> getHealthChecks() {
         return healthChecks;
     }
 
     /**
-     * return a list of backend services in use by this http load balancer.
+     * @return a list of backend services in use by this http load balancer.
      */
     public List<BackendService> getBackendServices() {
         return backendServices;
     }
 
     /**
-     * return a list of forwarding rules in use by this http load balancer.
+     * @return a list of forwarding rules in use by this http load balancer.
      */
     public List<ForwardingRule> getForwardingRules() {
         return forwardingRules;
     }
 
     /**
-     * Return a list of target proxies in use by this http load balancer.
      * target proxies bind a http/https port with a urlMap
+     * @return a list of target proxies in use by this http load balancer.
      */
     public List<TargetHttpProxy> getTargetHttpProxies() {
         return targetHttpProxies;
     }
+
     /**
-     * Return a list of url sets in use by this http load balancer.
+     * @return a list of url sets in use by this http load balancer.
      * Url sets govern which backend service will service the request
      * based on the url path or hostname being requested from
      */
@@ -116,6 +112,9 @@ public class ConvergedHttpLoadBalancer implements Taggable {
         private String hostMatchPatterns;
         private Map<String, String> pathMap;
 
+        /**
+         * Constructor for converged http load balancer UrlSet
+         */
         UrlSet(String name, String description, String hostMatchPatterns, Map<String, String> pathMap) {
             this.name = name;
             this.description = description;
@@ -123,19 +122,34 @@ public class ConvergedHttpLoadBalancer implements Taggable {
             this.pathMap = pathMap;
         }
 
+        /**
+         * Get converged http loadbalancer urlSet name
+         * @return name
+         */
         public String getName() {
             return name;
         }
 
+        /**
+         * Get converged http loadbalancer URL set description
+         * @return description of the URL set
+         */
         public String getDescription() {
             return description;
         }
 
+        /**
+         * Get converged http loadbalancer URL set host match pattern
+         * @return host match pattern of the URL set
+         */
         public String getHostMatchPatterns() {
             return hostMatchPatterns;
         }
 
-
+        /**
+         * Get converged http loadbalancer URL set path map
+         * @return path map of the URL set
+         */
         public Map<String, String> getPathMap() {
             return pathMap;
         }
@@ -167,22 +181,42 @@ public class ConvergedHttpLoadBalancer implements Taggable {
             this.selfLink = selfLink;
         }
 
+        /**
+         * Get converged http loadbalancer targetHttpProxy name
+         * @return name of the targetHttpProxy
+         */
         public String getName() {
             return name;
         }
 
+        /**
+         * Get converged http loadbalancer target Http proxy description
+         * @return description of the target Http proxy
+         */
         public String getDescription() {
             return description;
         }
 
+        /**
+         * Get converged http loadbalancer target Http proxy creation time stamp
+         * @return creationTimestamp of the target Http proxy
+         */
         public String getCreationTimestamp() {
             return creationTimestamp;
         }
 
+        /**
+         * Get converged http loadbalancer target Http proxy self link
+         * @return self link of the target Http proxy
+         */
         public String getSelfLink() {
             return selfLink;
         }
 
+        /**
+         * Set converged http loadbalancer target Http proxy self link
+         * @param selfLink of the target Http proxy
+         */
         public void setTargetProxySelfUrl(String selfLink) {
             this.selfLink = selfLink;
         }
@@ -235,38 +269,74 @@ public class ConvergedHttpLoadBalancer implements Taggable {
             this.target = target;
         }
 
+        /**
+         * Get converged http loadbalancer forwardingRule name
+         * @return name of the forwardingRule
+         */
         public String getName() {
             return name;
         }
 
+        /**
+         * Get converged http loadbalancer forwarding rule description
+         * @return description of the forwarding rule
+         */
         public String getDescription() {
             return description;
         }
 
+        /**
+         * Get converged http loadbalancer forwarding rule creation time stamp
+         * @return getCreationTimestamp of the forwarding rule
+         */
         public String getCreationTimestamp() {
             return creationTimestamp;
         }
 
+        /**
+         * Get converged http loadbalancer forwarding rule self link
+         * @return selfLink of the forwarding rule
+         */
         public String getSelfLink() {
             return selfLink;
         }
 
+        /**
+         * Set converged http loadbalancer forwarding rule self link
+         * @param selfLink of the forwarding rule
+         */
         public void setGlobalForwardingRuleSelfUrl(String selfLink) {
             this.selfLink = selfLink;
         }
 
+        /**
+         * Get converged http loadbalancer forwarding rule IP address
+         * @return ipAddress of the forwarding rule
+         */
         public String getIpAddress() {
             return ipAddress;
         }
 
+        /**
+         * Get converged http loadbalancer forwarding rule IP protocol
+         * @return ipAddress of the forwarding rule
+         */
         public String getIpProtocol() {
             return ipProtocol;
         }
 
+        /**
+         * Get converged http loadbalancer forwarding rule port range
+         * @return portRange of the forwarding rule
+         */
         public String getPortRange() {
             return portRange;
         }
 
+        /**
+         * Get converged http loadbalancer forwarding rule target
+         * @return target of the forwarding rule
+         */
         public String getTarget() {
             return target;
         }
@@ -331,50 +401,93 @@ public class ConvergedHttpLoadBalancer implements Taggable {
             this.timeoutSec = timeoutSec;
         }
 
+        /**
+         * Get converged http loadbalancer backendService name
+         * @return name of the backend service
+         */
         public String getName() {
             return name;
         }
 
+        /**
+         * Get converged http loadbalancer backend service description
+         * @return description of the backend service
+         */
         public String getDescription() {
             return description;
         }
 
+        /**
+         * Get converged http loadbalancer backend service creation time stamp
+         * @return creationTimestamp of the backend service
+         */
         public String getCreationTimestamp() {
             return creationTimestamp;
         }
 
+        /**
+         * Get converged http loadbalancer backend service port
+         * @return port of the backend service
+         */
         public Integer getPort() {
             return port;
         }
 
+        /**
+         * Get converged http loadbalancer backend service port name
+         * @return portName of the backend service
+         */
         public String getPortName() {
             return portName;
         }
 
+        /**
+         * Get converged http loadbalancer backend service protocol
+         * @return protocol of the backend service
+         */
         public String getProtocol() {
             return protocol;
         }
 
+        /**
+         * Get converged http loadbalancer backend service health checks
+         * @return healthChecks of the backend service
+         */
         public String[] getHealthChecks() {
             return healthChecks;
         }
 
+        /**
+         * Get converged http loadbalancer backend service backend service backends
+         * @return backendServiceBackends of the backend service
+         */
         public String[] getBackendServiceBackends() {
             return backendServiceBackends;
         }
 
+        /**
+         * Set converged http loadbalancer backend service service url
+         * @param serviceUrl of the backend service
+         */
         public void setServiceUrl(String serviceUrl) {
             selfLink = serviceUrl;
         }
 
+        /**
+         * Get converged http loadbalancer backend service self link
+         * @return selfLink of the backend service
+         */
         public String getSelfLink() {
             return selfLink;
         }
 
+        /**
+         * Get converged http loadbalancer backend service timeout in seconds
+         * @return timeoutSec of the backend service
+         */
         public Integer getTimeoutSec() {
             return timeoutSec;
         }
-
     }
 
     /**
@@ -447,55 +560,86 @@ public class ConvergedHttpLoadBalancer implements Taggable {
             this.maxUtilization = maxUtilization;
         }
 
+        /**
+         * Get converged http loadbalancer backendServiceBackend name
+         * @return name of the backend service backend
+         */
         public String getName() {
             return name;
         }
 
+        /**
+         * Get converged http loadbalancer backend service backend description
+         * @return description of the backend service backend
+         */
         public String getDescription() {
             return description;
         }
 
+        /**
+         * Get converged http loadbalancer backend service backend creation timestamp
+         * @return creationTimestamp of the backend service backend
+         */
         public String getCreationTimestamp() {
             return creationTimestamp;
         }
 
+        /**
+         * Get converged http loadbalancer backend service backend balancing mode
+         * @return balancingMode of the backend service backend
+         */
         public String getBalancingMode() {
             return balancingMode;
         }
 
+        /**
+         * Get converged http loadbalancer backend service backend capacity scalar
+         * @return capacityScaler of the backend service backend
+         */
         public Float getCapacityScaler() {
             return capacityScaler;
         }
 
+        /**
+         * Get converged http loadbalancer backend service backend group
+         * @return group of the backend service backend
+         */
         public String getGroup() {
             return group;
         }
 
+        /**
+         * Get converged http loadbalancer backend service backend max rate
+         * @return maxRate of the backend service backend
+         */
         public Integer getMaxRate() {
             return maxRate;
         }
 
+        /**
+         * Get converged http loadbalancer backend service backend max rate per instance
+         * @return maxRatePerInstance of the backend service backend
+         */
         public Float getMaxRatePerInstance() {
             return maxRatePerInstance;
         }
 
+        /**
+         * Get converged http loadbalancer backend service backend max utilization
+         * @return maxUtilization of the backend service backend
+         */
         public Float getMaxUtilization() {
             return maxUtilization;
         }
-
-        public String getSelfLink() {
-            System.out.println("getSelfLink not implemented for BackendServiceBackend");
-            return null;
-        }
     }
-    
+
     /**
      * Factory method for attaching backend service backend to a backend of a converged http load balancer.
      * This version is used when cataloging existing http load balancers.
      * @param name the name for the backend service backend
      * @param description the description for the backend service backend
      * @param balancingMode cpu utilization or requests per second
-     * @param capacityScaler 
+     * @param capacityScaler This percentage reduces the number of new requests that are sent to the backend. Set this value to 0% to prevent new connections.
      * @param group the name of the backend group
      * @param maxRate the target requests per second for the instance group average. When this rate is exceeded, requests are directed to another backend
      * @param maxRatePerInstance he target requests per second for individual instances. When this rate is exceeded, requests are directed to another backend
@@ -534,10 +678,18 @@ public class ConvergedHttpLoadBalancer implements Taggable {
             this.selfLink = selfLink;
         }
 
+        /**
+         * Get converged http loadbalancer health check name
+         * @return name of the health check
+         */
         public String getName() {
             return name;
         }
 
+        /**
+         * Get converged http loadbalancer health check description
+         * @return description of the health check
+         */
         public String getDescription() {
             return description;
         }
@@ -616,7 +768,7 @@ public class ConvergedHttpLoadBalancer implements Taggable {
      * @param timeoutSec how many seconds to wait before considering no response a timeout
      * @param healthyThreshold the number of consecutive successes required to declare a vm instance healthy
      * @param unhealthyThreshold the number of consecutive failures required to declare a vm instance unhealthy
-     * @return this
+     * @return this the ConvergedHttpLoadBalancer object
      */
     public ConvergedHttpLoadBalancer withHealthCheck(String name, String description, String host, Integer port, String requestPath, Integer checkIntervalSec, Integer timeoutSec, Integer healthyThreshold, Integer unhealthyThreshold) {
         healthChecks.add(new HealthCheck(name, description, null, host, port, requestPath, checkIntervalSec, timeoutSec, healthyThreshold, unhealthyThreshold, null));
@@ -634,22 +786,42 @@ public class ConvergedHttpLoadBalancer implements Taggable {
         return this;
     }
 
+    /**
+     * Get converged http load balancer description
+     * @return description
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Get converged http load balancer url map self link
+     * @param selfLink the selfLink for the urlMap 
+     */
     public void setUrlMapSelfUrl(String selfLink) {
         this.selfLink = selfLink;
     }
 
+    /**
+     * Get converged http load balancer url map self link
+     * @return selfLink
+     */
     public String getSelfLink() {
         return selfLink;
     }
 
+    /**
+     * Get converged http load balancer url map creation timestamp
+     * @return creationTimestamp
+     */
     public String getCreationTimestamp() {
         return creationTimestamp;
     }
 
+    /**
+     * Get converged http load balancer url map default backend service
+     * @return defaultBackendService
+     */
     public String getDefaultBackendService() {
         return defaultBackendService;
     }
@@ -665,24 +837,19 @@ public class ConvergedHttpLoadBalancer implements Taggable {
         // TODO Auto-generated method stub
     }
 
-    public Object getCurrentState() {
-        System.out.println("getCurrentState not implemented");
-        return "getCurrentState not implemented";
-    }
-
+    /**
+     * Get converged http load balancer name
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
-    public String getbackendServiceBackendSelfUrl(@Nonnull String name) {
-        for (BackendServiceBackend backendServiceBackend : backendServiceBackends) {
-            if (backendServiceBackend.getName().equals(name)) {
-                return backendServiceBackend.getSelfLink();
-            }
-        }
-        return null;
-    }
-
+    /**
+     * Get converged http load balancer's backend service self link
+     * @param name the name of the backend service to get the self link for
+     * @return backendServiceSelfLink
+     */
     public String getBackendServiceSelfUrl(@Nonnull String name) {
         for (BackendService backendService : backendServices) {
             if (backendService.getName().equals(name)) {
@@ -692,6 +859,11 @@ public class ConvergedHttpLoadBalancer implements Taggable {
         return null;
     }
 
+    /**
+     * Get converged http load balancer's target Proxy self link
+     * @param name the name of the target proxy to get the self link for
+     * @return targetHttpProxySelfLink
+     */
     public String getTargetProxySelfUrl(@Nonnull String name) {
         for (TargetHttpProxy targetHttpProxy : targetHttpProxies) {
             if (targetHttpProxy.getName().equals(name)) {
@@ -701,6 +873,11 @@ public class ConvergedHttpLoadBalancer implements Taggable {
         return null;
     }
 
+    /**
+     * Get converged http load balancer's healthcheck self link
+     * @param healthCheckName the name of the health check to get the self link for
+     * @return healthCheckSelfLink
+     */
     public String getHealthCheckSelfUrl(String healthCheckName) {
         for (HealthCheck healthCheck : healthChecks) {
             if (healthCheck.getName().equals(healthCheckName)) {
