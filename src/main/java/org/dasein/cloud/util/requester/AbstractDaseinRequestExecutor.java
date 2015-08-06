@@ -41,13 +41,22 @@ public abstract class AbstractDaseinRequestExecutor<T> {
         }
     }
 
+    protected T execute(CloseableHttpClient httpClient, HttpUriRequest httpUriRequest) throws CloudException {
+        try {
+            return httpClient.execute(httpUriRequest, this.responseHandler);
+        } catch (Exception e) {
+            throw translateException(e);
+        }
+    }
+
     protected CloudException translateException(Exception exception) {
         if(exception instanceof  CloudResponseException) {
             CloudResponseException e = (CloudResponseException) exception;
             return new CloudException(e.getErrorType(), e.getHttpCode(), e.getProviderCode(), e.getMessage());
         } else {
             return new CloudException(exception.getMessage());
-        }		         }
+        }
+    }
 
     protected HttpClientBuilder setProxyIfRequired(HttpClientBuilder httpClientBuilder)
     {
