@@ -19,6 +19,7 @@
 
 package org.dasein.cloud.util.requester.fluent;
 
+import com.sun.istack.internal.NotNull;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.dasein.cloud.CloudException;
@@ -54,7 +55,16 @@ public class DaseinRequest implements CompositeRequester {
      * @param httpClientBuilder HTTP client builder
      * @param httpUriRequestBuilder HTTP URI request builder
     **/
-    public DaseinRequest(CloudProvider provider, HttpClientBuilder httpClientBuilder, HttpUriRequest httpUriRequestBuilder){
+    public DaseinRequest(@NotNull CloudProvider provider, @NotNull HttpClientBuilder httpClientBuilder, @NotNull HttpUriRequest httpUriRequestBuilder){
+        if(provider == null)
+            throw new IllegalArgumentException("Parameter provider cannot be null.");
+
+        if(httpClientBuilder == null)
+            throw new IllegalArgumentException("Parameter httpClientBuilder cannot be null.");
+
+        if(httpUriRequestBuilder == null)
+            throw new IllegalArgumentException("Parameter httpUriRequestBuilder cannot be null");
+
         this.provider = provider;
         this.httpClientBuilder = httpClientBuilder;
         this.httpUriRequestBuilder = httpUriRequestBuilder;
@@ -72,7 +82,10 @@ public class DaseinRequest implements CompositeRequester {
      * @return an instance of the classType type representing the response XML
     **/
     @Override
-    public <T> Requester<T> withXmlProcessor(Class<T> classType) {
+    public <T> Requester<T> withXmlProcessor(@NotNull Class<T> classType) {
+        if(classType == null)
+            throw new IllegalArgumentException("Parameter classType cannot be null");
+
         return new DaseinRequestExecutor<T>(this.provider, this.httpClientBuilder, this.httpUriRequestBuilder,
                 new DaseinResponseHandler<T>(new XmlStreamToObjectProcessor(), classType));
     }
@@ -98,7 +111,13 @@ public class DaseinRequest implements CompositeRequester {
      * @return an instance of the V type which should be a Dasien Core type.
      **/
     @Override
-    public <T, V> Requester<V> withXmlProcessor(DriverToCoreMapper<T, V> mapper, Class<T> classType) {
+    public <T, V> Requester<V> withXmlProcessor(@NotNull DriverToCoreMapper<T, V> mapper, @NotNull Class<T> classType) {
+        if(mapper == null)
+            throw new IllegalArgumentException("Parameter mapper cannot be null");
+
+        if(classType == null)
+            throw new IllegalArgumentException("Parameter classType cannot be null");
+
         return new DaseinRequestExecutor<V>(this.provider, this.httpClientBuilder, this.httpUriRequestBuilder,
                 new DaseinResponseHandlerWithMapper<T, V>(new XmlStreamToObjectProcessor(), mapper, classType));
     }
@@ -115,7 +134,10 @@ public class DaseinRequest implements CompositeRequester {
      * @return an instance of the classType type representing the response JSON
      **/
     @Override
-    public <T> Requester<T> withJsonProcessor(Class<T> classType) {
+    public <T> Requester<T> withJsonProcessor(@NotNull Class<T> classType) {
+        if(classType == null)
+            throw new IllegalArgumentException("Parameter classType cannot be null");
+
         return new DaseinRequestExecutor<T>(this.provider, this.httpClientBuilder, this.httpUriRequestBuilder,
                 new DaseinResponseHandler<T>(new JsonStreamToObjectProcessor(), classType));
     }
@@ -141,7 +163,13 @@ public class DaseinRequest implements CompositeRequester {
      * @return an instance of the V type which should be a Dasien Core type.
      **/
     @Override
-    public <T, V> Requester<V> withJsonProcessor(DriverToCoreMapper<T, V> mapper, Class<T> classType) {
+    public <T, V> Requester<V> withJsonProcessor(@NotNull DriverToCoreMapper<T, V> mapper, @NotNull Class<T> classType) {
+        if(mapper == null)
+            throw new IllegalArgumentException("Parameter mapper cannot be null");
+
+        if(classType == null)
+            throw new IllegalArgumentException("Parameter classType cannot be null");
+
         return new DaseinRequestExecutor<V>(this.provider, this.httpClientBuilder, this.httpUriRequestBuilder,
                 new DaseinResponseHandlerWithMapper<T, V>(new JsonStreamToObjectProcessor(), mapper, classType));
     }
