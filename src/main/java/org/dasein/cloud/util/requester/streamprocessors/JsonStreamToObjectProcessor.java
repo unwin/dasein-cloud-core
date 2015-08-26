@@ -19,12 +19,9 @@
 
 package org.dasein.cloud.util.requester.streamprocessors;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.dasein.cloud.util.requester.streamprocessors.StreamProcessor;
 
 import javax.annotation.Nullable;
-import java.io.IOException;
 import java.io.InputStream;
 
  /**
