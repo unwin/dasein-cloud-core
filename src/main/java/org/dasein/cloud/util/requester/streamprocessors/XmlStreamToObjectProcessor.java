@@ -19,8 +19,6 @@
 
 package org.dasein.cloud.util.requester.streamprocessors;
 
-import org.dasein.cloud.util.requester.streamprocessors.StreamProcessor;
-
 import javax.annotation.Nullable;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;

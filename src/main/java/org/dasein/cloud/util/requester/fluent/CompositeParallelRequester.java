@@ -2,7 +2,6 @@ package org.dasein.cloud.util.requester.fluent;
 
 import org.dasein.cloud.CloudException;
 import org.dasein.cloud.util.requester.DaseinParallelRequestExecutor;
-import org.dasein.cloud.util.requester.DaseinRequestExecutor;
 import org.dasein.cloud.util.requester.DriverToCoreMapper;
 import org.json.JSONObject;
 import org.w3c.dom.Document;

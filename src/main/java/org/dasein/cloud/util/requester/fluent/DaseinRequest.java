@@ -19,7 +19,6 @@
 
 package org.dasein.cloud.util.requester.fluent;
 
-import com.sun.istack.internal.NotNull;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.dasein.cloud.CloudException;
@@ -28,6 +27,8 @@ import org.dasein.cloud.util.requester.*;
 import org.dasein.cloud.util.requester.streamprocessors.*;
 import org.json.JSONObject;
 import org.w3c.dom.Document;
+
+import javax.annotation.Nonnull;
 
 /**
  * DaseinRequest class is a wrapper for Apache HTTP client. It unifies Dasein's REST calls to the clouds APIs.
@@ -55,7 +56,7 @@ public class DaseinRequest implements CompositeRequester {
      * @param httpClientBuilder HTTP client builder
      * @param httpUriRequestBuilder HTTP URI request builder
     **/
-    public DaseinRequest(@NotNull CloudProvider provider, @NotNull HttpClientBuilder httpClientBuilder, @NotNull HttpUriRequest httpUriRequestBuilder){
+    public DaseinRequest(@Nonnull CloudProvider provider, @Nonnull HttpClientBuilder httpClientBuilder, @Nonnull HttpUriRequest httpUriRequestBuilder){
         if(provider == null)
             throw new IllegalArgumentException("Parameter provider cannot be null.");
 
@@ -82,7 +83,7 @@ public class DaseinRequest implements CompositeRequester {
      * @return an instance of the classType type representing the response XML
     **/
     @Override
-    public <T> Requester<T> withXmlProcessor(@NotNull Class<T> classType) {
+    public <T> Requester<T> withXmlProcessor(@Nonnull Class<T> classType) {
         if(classType == null)
             throw new IllegalArgumentException("Parameter classType cannot be null");
 
@@ -111,7 +112,7 @@ public class DaseinRequest implements CompositeRequester {
      * @return an instance of the V type which should be a Dasien Core type.
      **/
     @Override
-    public <T, V> Requester<V> withXmlProcessor(@NotNull DriverToCoreMapper<T, V> mapper, @NotNull Class<T> classType) {
+    public <T, V> Requester<V> withXmlProcessor(@Nonnull DriverToCoreMapper<T, V> mapper, @Nonnull Class<T> classType) {
         if(mapper == null)
             throw new IllegalArgumentException("Parameter mapper cannot be null");
 
@@ -134,7 +135,7 @@ public class DaseinRequest implements CompositeRequester {
      * @return an instance of the classType type representing the response JSON
      **/
     @Override
-    public <T> Requester<T> withJsonProcessor(@NotNull Class<T> classType) {
+    public <T> Requester<T> withJsonProcessor(@Nonnull Class<T> classType) {
         if(classType == null)
             throw new IllegalArgumentException("Parameter classType cannot be null");
 
@@ -163,7 +164,7 @@ public class DaseinRequest implements CompositeRequester {
      * @return an instance of the V type which should be a Dasien Core type.
      **/
     @Override
-    public <T, V> Requester<V> withJsonProcessor(@NotNull DriverToCoreMapper<T, V> mapper, @NotNull Class<T> classType) {
+    public <T, V> Requester<V> withJsonProcessor(@Nonnull DriverToCoreMapper<T, V> mapper, @Nonnull Class<T> classType) {
         if(mapper == null)
             throw new IllegalArgumentException("Parameter mapper cannot be null");
 

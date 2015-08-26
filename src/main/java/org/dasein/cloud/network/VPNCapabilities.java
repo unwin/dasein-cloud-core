@@ -19,12 +19,10 @@
 
 package org.dasein.cloud.network;
 
-import org.dasein.cloud.Capabilities;
-import org.dasein.cloud.CloudException;
-import org.dasein.cloud.InternalException;
-import org.dasein.cloud.Requirement;
+import org.dasein.cloud.*;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * Describes the capabilities of a region within a cloud for a specific account.
@@ -33,14 +31,14 @@ import javax.annotation.Nonnull;
  * @version 2014.03 initial version
  * @since 2014.03
  */
-public interface VPNCapabilities extends Capabilities{
+public interface VPNCapabilities extends Capabilities {
     /**
      * Lists the protocols supported for VPNs in the cloud
      * @return list of Protocol types
      * @throws CloudException an error occurred in the cloud identifying this requirement
      * @throws InternalException an error occurred within the Dasein Cloud implementation identifying this requirement
      */
-    public @Nonnull Iterable<VPNProtocol> listSupportedVPNProtocols() throws CloudException, InternalException;
+    @Nonnull Iterable<VPNProtocol> listSupportedVPNProtocols() throws CloudException, InternalException;
 
     /**
      * Indicates whether a VPN is tied to a specific VLAN
@@ -48,7 +46,7 @@ public interface VPNCapabilities extends Capabilities{
      * @throws CloudException an error occurred in the cloud identifying this requirement
      * @throws InternalException an error occurred within the Dasein Cloud implementation identifying this requirement
      */
-    public @Nonnull Requirement getVPNVLANConstraint() throws CloudException, InternalException;
+    @Nonnull Requirement getVPNVLANConstraint() throws CloudException, InternalException;
 
     /**
      * Indicates whether a VPN supports Gateway methods
@@ -65,4 +63,11 @@ public interface VPNCapabilities extends Capabilities{
      * @throws InternalException an error occurred within the Dasein Cloud implementation identifying this requirement
      */
     boolean supportsVPNGateway() throws CloudException, InternalException;
+
+    /**
+     * Returns the visible scope of a VPN or null if not applicable for the specific cloud
+     * @return the visible scope of a VPN
+     */
+    @Nullable VisibleScope getVpnVisibleScope();
+
 }

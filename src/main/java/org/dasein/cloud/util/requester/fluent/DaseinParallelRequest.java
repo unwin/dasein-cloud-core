@@ -1,6 +1,5 @@
 package org.dasein.cloud.util.requester.fluent;
 
-import com.sun.istack.internal.NotNull;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.dasein.cloud.CloudException;
@@ -10,6 +9,7 @@ import org.dasein.cloud.util.requester.streamprocessors.*;
 import org.json.JSONObject;
 import org.w3c.dom.Document;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +40,7 @@ public class DaseinParallelRequest implements CompositeParallelRequester {
      * @param httpClientBuilder HTTP client builder
      * @param httpUriRequests a list of HTTP URI requests
      **/
-    public DaseinParallelRequest(@NotNull CloudProvider provider, @NotNull HttpClientBuilder httpClientBuilder, @NotNull ArrayList<HttpUriRequest> httpUriRequests){
+    public DaseinParallelRequest(@Nonnull CloudProvider provider, @Nonnull HttpClientBuilder httpClientBuilder, @Nonnull ArrayList<HttpUriRequest> httpUriRequests){
         if(provider == null)
             throw new IllegalArgumentException("Parameter provider cannot be null.");
 
@@ -67,7 +67,7 @@ public class DaseinParallelRequest implements CompositeParallelRequester {
      * @return a list of instances of the classType type representing the responses XML
      **/
     @Override
-    public <T> ParallelRequester<T> withXmlProcessor(@NotNull Class<T> classType) {
+    public <T> ParallelRequester<T> withXmlProcessor(@Nonnull Class<T> classType) {
         if(classType == null)
             throw new IllegalArgumentException("Parameter classType cannot be null");
 
@@ -96,7 +96,7 @@ public class DaseinParallelRequest implements CompositeParallelRequester {
      * @return an instance of the V type which should be a Dasien Core type.
      **/
     @Override
-    public <T, V> ParallelRequester<V> withXmlProcessor(@NotNull DriverToCoreMapper<T, V> mapper, @NotNull Class<T> classType) {
+    public <T, V> ParallelRequester<V> withXmlProcessor(@Nonnull DriverToCoreMapper<T, V> mapper, @Nonnull Class<T> classType) {
         if(mapper == null)
             throw new IllegalArgumentException("Parameter mapper cannot be null");
 
@@ -119,7 +119,7 @@ public class DaseinParallelRequest implements CompositeParallelRequester {
      * @return a list of instances of the classType type representing the responses JSON
      **/
     @Override
-    public <T> ParallelRequester<T> withJsonProcessor(@NotNull Class<T> classType) {
+    public <T> ParallelRequester<T> withJsonProcessor(@Nonnull Class<T> classType) {
         if(classType == null)
             throw new IllegalArgumentException("Parameter classType cannot be null");
 
@@ -148,7 +148,7 @@ public class DaseinParallelRequest implements CompositeParallelRequester {
      * @return an instance of the V type which should be a Dasien Core type.
      **/
     @Override
-    public <T, V> ParallelRequester<V> withJsonProcessor(@NotNull DriverToCoreMapper<T, V> mapper, @NotNull Class<T> classType) {
+    public <T, V> ParallelRequester<V> withJsonProcessor(@Nonnull DriverToCoreMapper<T, V> mapper, @Nonnull Class<T> classType) {
         if(mapper == null)
             throw new IllegalArgumentException("Parameter mapper cannot be null");
 
