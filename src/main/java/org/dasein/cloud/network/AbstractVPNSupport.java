@@ -31,11 +31,12 @@ public abstract class AbstractVPNSupport<T extends CloudProvider> extends Abstra
     }
 
     @Deprecated
-    public @Nonnull VPN createVPN(@Nullable String inProviderDataCenterId, @Nonnull String name, @Nonnull String description, @Nonnull VPNProtocol protocol) throws CloudException, InternalException {
-        throw new OperationNotSupportedException("createVPN is not currently implemented in " + getProvider().getCloudName());
+    public final @Nonnull VPN createVPN(@Nullable String inProviderDataCenterId, @Nonnull String name, @Nonnull String description, @Nonnull VPNProtocol protocol) throws CloudException, InternalException {
+        VpnCreateOptions vpnLaunchOptions = VpnCreateOptions.getInstance(name, description, protocol);
+        return createVPN(vpnLaunchOptions);
     }
 
-    public @Nonnull VPN createVPN(@Nonnull VpnLaunchOptions vpnLaunchOptions) throws CloudException, InternalException {
+    public @Nonnull VPN createVPN(@Nonnull VpnCreateOptions vpnLaunchOptions) throws CloudException, InternalException {
         throw new OperationNotSupportedException("createVPN is not currently implemented in " + getProvider().getCloudName());
     }
 

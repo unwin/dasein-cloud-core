@@ -66,7 +66,7 @@ public interface VPNSupport extends AccessControlledService {
     @Deprecated
     public @Nonnull VPN createVPN(@Nullable String inProviderDataCenterId, @Nonnull String name, @Nonnull String description, @Nonnull VPNProtocol protocol) throws CloudException, InternalException;
     
-    public @Nonnull VPN createVPN(@Nonnull VpnLaunchOptions vpnLaunchOptions) throws CloudException, InternalException;
+    public @Nonnull VPN createVPN(@Nonnull VpnCreateOptions vpnLaunchOptions) throws CloudException, InternalException;
     
     public @Nonnull VPNGateway createVPNGateway(@Nonnull String endpoint, @Nonnull String name, @Nonnull String description, @Nonnull VPNProtocol protocol, @Nonnull String bgpAsn) throws CloudException, InternalException;
     
@@ -81,8 +81,6 @@ public interface VPNSupport extends AccessControlledService {
     public @Nonnull VPNCapabilities getCapabilities()throws CloudException, InternalException;
     
     public @Nullable VPNGateway getGateway(@Nonnull String gatewayId) throws CloudException, InternalException;
-    
-    public @Nullable VPNGateway getVPNGateway(@Nonnull String gatewayId) throws CloudException, InternalException;
     
     public @Nullable VPN getVPN(@Nonnull String providerVpnId) throws CloudException, InternalException;
 
