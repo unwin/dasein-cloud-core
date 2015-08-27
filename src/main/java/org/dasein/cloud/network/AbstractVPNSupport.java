@@ -12,7 +12,7 @@ import org.dasein.cloud.Requirement;
 import org.dasein.cloud.ResourceStatus;
 
 
-public abstract class AbstractVPNSupport<T extends CloudProvider> extends AbstractProviderService<T> implements VPNSupport {
+public abstract class AbstractVPNSupport<T extends CloudProvider> extends AbstractProviderService<T> implements VpnSupport {
 
     protected AbstractVPNSupport(T provider) {
         super(provider);
@@ -27,17 +27,17 @@ public abstract class AbstractVPNSupport<T extends CloudProvider> extends Abstra
     }
 
     @Deprecated
-    public final @Nonnull VPN createVPN(@Nullable String inProviderDataCenterId, @Nonnull String name, @Nonnull String description, @Nonnull VPNProtocol protocol) throws CloudException, InternalException {
-        return createVPN(VPNCreateOptions.getInstance(name, description, protocol));
+    public final @Nonnull Vpn createVPN(@Nullable String inProviderDataCenterId, @Nonnull String name, @Nonnull String description, @Nonnull VpnProtocol protocol) throws CloudException, InternalException {
+        return createVPN(VpnCreateOptions.getInstance(name, description, protocol));
     }
 
-    public @Nonnull VPN createVPN(@Nonnull VPNCreateOptions vpnLaunchOptions) throws CloudException, InternalException {
+    public @Nonnull Vpn createVPN(@Nonnull VpnCreateOptions vpnLaunchOptions) throws CloudException, InternalException {
         throw new OperationNotSupportedException("createVPN is not currently implemented in " + getProvider().getCloudName());
     }
 
     @Deprecated
-    public final @Nonnull VPNGateway createVPNGateway(@Nonnull String endpoint, @Nonnull String name, @Nonnull String description, @Nonnull VPNProtocol protocol, @Nonnull String bgpAsn) throws CloudException, InternalException {
-        return createVPNGateway(VPNGatewayCreateOptions.getInstance(name, description, protocol, endpoint).withBgpAsn(bgpAsn));
+    public final @Nonnull VpnGateway createVPNGateway(@Nonnull String endpoint, @Nonnull String name, @Nonnull String description, @Nonnull VpnProtocol protocol, @Nonnull String bgpAsn) throws CloudException, InternalException {
+        return createVPNGateway(VpnGatewayCreateOptions.getInstance(name, description, protocol, endpoint).withBgpAsn(bgpAsn));
     }
 
     public void deleteVPN(@Nonnull String providerVpnId) throws CloudException, InternalException {
@@ -56,15 +56,15 @@ public abstract class AbstractVPNSupport<T extends CloudProvider> extends Abstra
         throw new OperationNotSupportedException("disconnectFromGateway is not currently implemented in " + getProvider().getCloudName());
     }
 
-    public @Nullable VPNGateway getGateway(@Nonnull String gatewayId) throws CloudException, InternalException {
+    public @Nullable VpnGateway getGateway(@Nonnull String gatewayId) throws CloudException, InternalException {
         throw new OperationNotSupportedException("getGateway is not currently implemented in " + getProvider().getCloudName());
     }
 
-    public @Nullable VPNGateway getVPNGateway(@Nonnull String gatewayId) throws CloudException, InternalException {
+    public @Nullable VpnGateway getVPNGateway(@Nonnull String gatewayId) throws CloudException, InternalException {
         throw new OperationNotSupportedException("getVPNGateway is not currently implemented in " + getProvider().getCloudName());
     }
 
-    public @Nullable VPN getVPN(@Nonnull String providerVpnId) throws CloudException, InternalException {
+    public @Nullable Vpn getVPN(@Nonnull String providerVpnId) throws CloudException, InternalException {
         throw new OperationNotSupportedException("getVPN is not currently implemented in " + getProvider().getCloudName());
     }
 
@@ -73,7 +73,7 @@ public abstract class AbstractVPNSupport<T extends CloudProvider> extends Abstra
         throw new OperationNotSupportedException("getVPNDataCenterConstraint is not currently implemented in " + getProvider().getCloudName());
     }
 
-    public @Nonnull Iterable<VPNConnection> listGatewayConnections(@Nonnull String toGatewayId) throws CloudException, InternalException {
+    public @Nonnull Iterable<VpnConnection> listGatewayConnections(@Nonnull String toGatewayId) throws CloudException, InternalException {
         throw new OperationNotSupportedException("listGatewayConnections is not currently implemented in " + getProvider().getCloudName());
     }
 
@@ -81,15 +81,15 @@ public abstract class AbstractVPNSupport<T extends CloudProvider> extends Abstra
         throw new OperationNotSupportedException("listGatewayStatus is not currently implemented in " + getProvider().getCloudName());
     }
 
-    public @Nonnull Iterable<VPNGateway> listGateways() throws CloudException, InternalException {
+    public @Nonnull Iterable<VpnGateway> listGateways() throws CloudException, InternalException {
         throw new OperationNotSupportedException("listGateways is not currently implemented in " + getProvider().getCloudName());
     }
 
-    public @Nonnull Iterable<VPNGateway> listGatewaysWithBgpAsn(@Nonnull String bgpAsn) throws CloudException, InternalException {
+    public @Nonnull Iterable<VpnGateway> listGatewaysWithBgpAsn(@Nonnull String bgpAsn) throws CloudException, InternalException {
         throw new OperationNotSupportedException("listGatewaysWithBgpAsn is not currently implemented in " + getProvider().getCloudName());
     }
 
-    public @Nonnull Iterable<VPNConnection> listVPNConnections(@Nonnull String toVpnId) throws CloudException, InternalException {
+    public @Nonnull Iterable<VpnConnection> listVPNConnections(@Nonnull String toVpnId) throws CloudException, InternalException {
         throw new OperationNotSupportedException("listVPNConnections is not currently implemented in " + getProvider().getCloudName());
     }
 
@@ -97,12 +97,12 @@ public abstract class AbstractVPNSupport<T extends CloudProvider> extends Abstra
         throw new OperationNotSupportedException("listVPNStatus is not currently implemented in " + getProvider().getCloudName());
     }
 
-    public @Nonnull Iterable<VPN> listVPNs() throws CloudException, InternalException {
+    public @Nonnull Iterable<Vpn> listVPNs() throws CloudException, InternalException {
         throw new OperationNotSupportedException("listVPNs is not currently implemented in " + getProvider().getCloudName());
     }
 
     @Deprecated
-    public @Nonnull Iterable<VPNProtocol> listSupportedVPNProtocols() throws CloudException, InternalException {
+    public @Nonnull Iterable<VpnProtocol> listSupportedVPNProtocols() throws CloudException, InternalException {
         throw new OperationNotSupportedException("listSupportedVPNProtocols is not currently implemented in " + getProvider().getCloudName());
     }
 }

@@ -31,14 +31,14 @@ import javax.annotation.Nullable;
  * @version 2014.03 initial version
  * @since 2014.03
  */
-public interface VPNCapabilities extends Capabilities {
+public interface VpnCapabilities extends Capabilities {
     /**
      * Lists the protocols supported for VPNs in the cloud
      * @return list of Protocol types
      * @throws CloudException an error occurred in the cloud identifying this requirement
      * @throws InternalException an error occurred within the Dasein Cloud implementation identifying this requirement
      */
-    @Nonnull Iterable<VPNProtocol> listSupportedVPNProtocols() throws CloudException, InternalException;
+    @Nonnull Iterable<VpnProtocol> listSupportedVPNProtocols() throws CloudException, InternalException;
 
     /**
      * Indicates whether a VPN is tied to a specific VLAN

@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 import javax.annotation.Nonnull;
 
-public class VPNGatewayCreateOptions {
+public class VpnGatewayCreateOptions {
 
     private String name = null;
     private String description = null;
-    private VPNProtocol protocol = null;
+    private VpnProtocol protocol = null;
     private String endpoint = null;
 
     private String bgpAsn = null;
@@ -18,40 +18,40 @@ public class VPNGatewayCreateOptions {
     private String vlanName = null;
     private String vpnName = null;
 
-    private VPNGatewayCreateOptions() { }
+    private VpnGatewayCreateOptions() { }
 
-    private VPNGatewayCreateOptions(@Nonnull String name, @Nonnull String description, @Nonnull VPNProtocol protocol, @Nonnull String endpoint) {
+    private VpnGatewayCreateOptions(@Nonnull String name, @Nonnull String description, @Nonnull VpnProtocol protocol, @Nonnull String endpoint) {
         this.name = name;
         this.description = description;
         this.protocol = protocol;
         this.endpoint = endpoint;
     }
 
-    static public @Nonnull VPNGatewayCreateOptions getInstance(@Nonnull String name, @Nonnull String description, @Nonnull VPNProtocol protocol, @Nonnull String endpoint) {
-        return new VPNGatewayCreateOptions(name, description, protocol, endpoint);
+    static public @Nonnull VpnGatewayCreateOptions getInstance(@Nonnull String name, @Nonnull String description, @Nonnull VpnProtocol protocol, @Nonnull String endpoint) {
+        return new VpnGatewayCreateOptions(name, description, protocol, endpoint);
     }
 
-    public @Nonnull VPNGatewayCreateOptions withCidr(@Nonnull String cidr) {
+    public @Nonnull VpnGatewayCreateOptions withCidr(@Nonnull String cidr) {
         this.cidr = cidr;
         return this;
     }
 
-    public @Nonnull VPNGatewayCreateOptions withSharedSecret(@Nonnull String sharedSecret) {
+    public @Nonnull VpnGatewayCreateOptions withSharedSecret(@Nonnull String sharedSecret) {
         this.sharedSecret = sharedSecret;
         return this;
     }
 
-    public @Nonnull VPNGatewayCreateOptions withBgpAsn(@Nonnull String bgpAsn) {
+    public @Nonnull VpnGatewayCreateOptions withBgpAsn(@Nonnull String bgpAsn) {
         this.bgpAsn = bgpAsn;
         return this;
     }
 
-    public @Nonnull VPNGatewayCreateOptions withVlanName(@Nonnull String vlanName) {
+    public @Nonnull VpnGatewayCreateOptions withVlanName(@Nonnull String vlanName) {
         this.vlanName = vlanName;
         return this;
     }
 
-    public @Nonnull VPNGatewayCreateOptions withVpnName(@Nonnull String vpnName) {
+    public @Nonnull VpnGatewayCreateOptions withVpnName(@Nonnull String vpnName) {
         this.vpnName = vpnName;
         return this;
     }
@@ -64,7 +64,7 @@ public class VPNGatewayCreateOptions {
         return description;
     }
 
-    public VPNProtocol getProtocol() {
+    public VpnProtocol getProtocol() {
         return protocol;
     }
 

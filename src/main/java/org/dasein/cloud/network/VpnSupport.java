@@ -25,13 +25,13 @@ import org.dasein.cloud.InternalException;
 import org.dasein.cloud.Requirement;
 import org.dasein.cloud.ResourceStatus;
 import org.dasein.cloud.identity.ServiceAction;
-import org.dasein.cloud.network.VPNConnection;
+import org.dasein.cloud.network.VpnConnection;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 @SuppressWarnings("UnusedDeclaration")
-public interface VPNSupport extends AccessControlledService {
+public interface VpnSupport extends AccessControlledService {
     static final ServiceAction ANY                = new ServiceAction("VPN:ANY");
 
     static final ServiceAction ATTACH             = new ServiceAction("VPN:ATTACH");
@@ -64,14 +64,14 @@ public interface VPNSupport extends AccessControlledService {
     //VPNGateway connectToVPNGateway(String vpnName, String vlanName, String endpoint, String name, String description, VPNProtocol protocol, String sharedSecret, String cidr);
 
     @Deprecated
-    @Nonnull VPN createVPN(@Nullable String inProviderDataCenterId, @Nonnull String name, @Nonnull String description, @Nonnull VPNProtocol protocol) throws CloudException, InternalException;
+    @Nonnull Vpn createVPN(@Nullable String inProviderDataCenterId, @Nonnull String name, @Nonnull String description, @Nonnull VpnProtocol protocol) throws CloudException, InternalException;
 
-    @Nonnull VPN createVPN(@Nonnull VPNCreateOptions vpnLaunchOptions) throws CloudException, InternalException;
+    @Nonnull Vpn createVPN(@Nonnull VpnCreateOptions vpnLaunchOptions) throws CloudException, InternalException;
 
     @Deprecated
-    @Nonnull VPNGateway createVPNGateway(@Nonnull String endpoint, @Nonnull String name, @Nonnull String description, @Nonnull VPNProtocol protocol, @Nonnull String bgpAsn) throws CloudException, InternalException;
+    @Nonnull VpnGateway createVPNGateway(@Nonnull String endpoint, @Nonnull String name, @Nonnull String description, @Nonnull VpnProtocol protocol, @Nonnull String bgpAsn) throws CloudException, InternalException;
 
-    @Nonnull VPNGateway createVPNGateway(@Nonnull VPNGatewayCreateOptions vpnGatewayCreateOptions) throws CloudException, InternalException;
+    @Nonnull VpnGateway createVPNGateway(@Nonnull VpnGatewayCreateOptions vpnGatewayCreateOptions) throws CloudException, InternalException;
 
     void deleteVPN(@Nonnull String providerVpnId) throws CloudException, InternalException;
 
@@ -81,31 +81,31 @@ public interface VPNSupport extends AccessControlledService {
 
     void disconnectFromGateway(@Nonnull String providerVpnId, @Nonnull String fromGatewayId) throws CloudException, InternalException;
 
-    @Nonnull VPNCapabilities getCapabilities()throws CloudException, InternalException;
+    @Nonnull VpnCapabilities getCapabilities()throws CloudException, InternalException;
 
-    @Nullable VPNGateway getGateway(@Nonnull String gatewayId) throws CloudException, InternalException;
+    @Nullable VpnGateway getGateway(@Nonnull String gatewayId) throws CloudException, InternalException;
 
-    @Nullable VPN getVPN(@Nonnull String providerVpnId) throws CloudException, InternalException;
+    @Nullable Vpn getVPN(@Nonnull String providerVpnId) throws CloudException, InternalException;
 
     @Deprecated
     Requirement getVPNDataCenterConstraint() throws CloudException, InternalException;
 
-    @Nonnull Iterable<VPNConnection> listGatewayConnections(@Nonnull String toGatewayId) throws CloudException, InternalException;
+    @Nonnull Iterable<VpnConnection> listGatewayConnections(@Nonnull String toGatewayId) throws CloudException, InternalException;
 
     @Nonnull Iterable<ResourceStatus> listGatewayStatus() throws CloudException, InternalException;
 
-    @Nonnull Iterable<VPNGateway> listGateways() throws CloudException, InternalException;
+    @Nonnull Iterable<VpnGateway> listGateways() throws CloudException, InternalException;
 
-    @Nonnull Iterable<VPNGateway> listGatewaysWithBgpAsn(@Nonnull String bgpAsn) throws CloudException, InternalException;
+    @Nonnull Iterable<VpnGateway> listGatewaysWithBgpAsn(@Nonnull String bgpAsn) throws CloudException, InternalException;
 
-    @Nonnull Iterable<VPNConnection> listVPNConnections(@Nonnull String toVpnId) throws CloudException, InternalException;
+    @Nonnull Iterable<VpnConnection> listVPNConnections(@Nonnull String toVpnId) throws CloudException, InternalException;
 
     @Nonnull Iterable<ResourceStatus> listVPNStatus() throws CloudException, InternalException;
 
-    @Nonnull Iterable<VPN> listVPNs() throws CloudException, InternalException;
+    @Nonnull Iterable<Vpn> listVPNs() throws CloudException, InternalException;
 
     @Deprecated
-    @Nonnull Iterable<VPNProtocol> listSupportedVPNProtocols() throws CloudException, InternalException;
+    @Nonnull Iterable<VpnProtocol> listSupportedVPNProtocols() throws CloudException, InternalException;
 
     boolean isSubscribed() throws CloudException, InternalException;
 }
