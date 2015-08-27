@@ -38,15 +38,7 @@ public interface VpnCapabilities extends Capabilities {
      * @throws CloudException an error occurred in the cloud identifying this requirement
      * @throws InternalException an error occurred within the Dasein Cloud implementation identifying this requirement
      */
-    @Nonnull Iterable<VpnProtocol> listSupportedVPNProtocols() throws CloudException, InternalException;
-
-    /**
-     * Indicates whether a VPN is tied to a specific VLAN
-     * @return the requirement level for VPN VLAN
-     * @throws CloudException an error occurred in the cloud identifying this requirement
-     * @throws InternalException an error occurred within the Dasein Cloud implementation identifying this requirement
-     */
-    @Nonnull Requirement getVPNVLANConstraint() throws CloudException, InternalException;
+    @Nonnull Iterable<VpnProtocol> listSupportedVpnProtocols() throws CloudException, InternalException;
 
     /**
      * Returns the visible scope of a VPN or null if not applicable for the specific cloud
@@ -54,4 +46,75 @@ public interface VpnCapabilities extends Capabilities {
      */
     @Nullable VisibleScope getVpnVisibleScope();
 
+    /**
+     * Indicates whether a VPN requires/supports Labels to be set
+     * @return the requirement level for VPN Labels
+     * @throws CloudException an error occurred in the cloud identifying this requirement
+     * @throws InternalException an error occurred within the Dasein Cloud implementation identifying this requirement
+     */
+    Requirement identifyLabelsRequirement() throws CloudException, InternalException;
+
+    /**
+     * Indicates whether a VPN is tied to a specific VLAN
+     * @return the requirement level for VPN VLAN
+     * @throws CloudException an error occurred in the cloud identifying this requirement
+     * @throws InternalException an error occurred within the Dasein Cloud implementation identifying this requirement
+     */
+    Requirement identifyVlanIdRequirement() throws CloudException, InternalException;
+
+    /**
+     * Indicates whether a VPN requires a dataCenter be specified
+     * @return the requirement level for VPN dataCenter
+     * @throws CloudException an error occurred in the cloud identifying this requirement
+     * @throws InternalException an error occurred within the Dasein Cloud implementation identifying this requirement
+     */
+    Requirement identifyDataCenterIdRequirement() throws CloudException, InternalException;
+
+    /**
+     * Indicates whether a VPN requires a CIDR be specified
+     * @return the requirement level for VPN CIDR
+     * @throws CloudException an error occurred in the cloud identifying this requirement
+     * @throws InternalException an error occurred within the Dasein Cloud implementation identifying this requirement
+     */
+    Requirement identifyGatewayCidrRequirement() throws CloudException, InternalException;
+
+    /**
+     * Indicates whether a VPN requires a shared secret be specified
+     * @return the requirement level for VPN sharedSecret
+     * @throws CloudException an error occurred in the cloud identifying this requirement
+     * @throws InternalException an error occurred within the Dasein Cloud implementation identifying this requirement
+     */
+    Requirement identifyGatewaySharedSecretRequirement() throws CloudException, InternalException;
+
+    /**
+     * Indicates whether a VPN requires a BgpAsn be specified
+     * @return the requirement level for VPN BgpAsn
+     * @throws CloudException an error occurred in the cloud identifying this requirement
+     * @throws InternalException an error occurred within the Dasein Cloud implementation identifying this requirement
+     */
+    Requirement identifyGatewayBgpAsnRequirement() throws CloudException, InternalException;
+
+    /**
+     * Indicates whether a VPN Gateway requires a VLAN be specified
+     * @return the requirement level for VPN Gateway VLAN
+     * @throws CloudException an error occurred in the cloud identifying this requirement
+     * @throws InternalException an error occurred within the Dasein Cloud implementation identifying this requirement
+     */
+    Requirement identifyGatewayVlanNameRequirement() throws CloudException, InternalException;
+
+    /**
+     * Indicates whether a VPN Gateway requires a VpnName be specified
+     * @return the requirement level for VPN Gateway VpnName
+     * @throws CloudException an error occurred in the cloud identifying this requirement
+     * @throws InternalException an error occurred within the Dasein Cloud implementation identifying this requirement
+     */
+    Requirement identifyGatewayVpnNameRequirement() throws CloudException, InternalException;
+
+    /**
+     * Indicates whether a VPN Gateway auto-connects on creation
+     * @return true if the Gateway auto-connects, false if connect is required.
+     * @throws CloudException an error occurred in the cloud identifying this requirement
+     * @throws InternalException an error occurred within the Dasein Cloud implementation identifying this requirement
+     */
+    boolean supportsAutoConnect() throws CloudException, InternalException;
 }
