@@ -31,7 +31,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 @SuppressWarnings("UnusedDeclaration")
-interface VPNSupport extends AccessControlledService {
+public interface VPNSupport extends AccessControlledService {
     static final ServiceAction ANY                = new ServiceAction("VPN:ANY");
 
     static final ServiceAction ATTACH             = new ServiceAction("VPN:ATTACH");
@@ -61,14 +61,17 @@ interface VPNSupport extends AccessControlledService {
      * @param cidrs one or more IP addresses in CIDR notation
      * @return the created VPN gateway
      */
-    VPNGateway connectToVPNGateway(String vpnName, String endpoint, String name, String description, VPNProtocol protocol, String sharedSecret, String cidr) throws CloudException, InternalException;
+    //VPNGateway connectToVPNGateway(String vpnName, String vlanName, String endpoint, String name, String description, VPNProtocol protocol, String sharedSecret, String cidr);
 
     @Deprecated
     @Nonnull VPN createVPN(@Nullable String inProviderDataCenterId, @Nonnull String name, @Nonnull String description, @Nonnull VPNProtocol protocol) throws CloudException, InternalException;
 
     @Nonnull VPN createVPN(@Nonnull VpnCreateOptions vpnLaunchOptions) throws CloudException, InternalException;
 
+    @Deprecated
     @Nonnull VPNGateway createVPNGateway(@Nonnull String endpoint, @Nonnull String name, @Nonnull String description, @Nonnull VPNProtocol protocol, @Nonnull String bgpAsn) throws CloudException, InternalException;
+
+    @Nonnull VPNGateway createVPNGateway(@Nonnull VPNGatewayCreateOptions vpnGatewayCreateOptions) throws CloudException, InternalException;
 
     void deleteVPN(@Nonnull String providerVpnId) throws CloudException, InternalException;
 

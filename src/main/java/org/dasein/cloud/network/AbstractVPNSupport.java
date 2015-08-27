@@ -26,10 +26,6 @@ public abstract class AbstractVPNSupport<T extends CloudProvider> extends Abstra
         throw new OperationNotSupportedException("connectToGateway is not currently implemented in " + getProvider().getCloudName());
     }
 
-    public VPNGateway connectToVPNGateway(String vpnName, String endpoint, String name, String description, VPNProtocol protocol, String sharedSecret, String cidr) throws CloudException, InternalException {
-        throw new OperationNotSupportedException("connectToVPNGateway is not currently implemented in " + getProvider().getCloudName());
-    }
-
     @Deprecated
     public final @Nonnull VPN createVPN(@Nullable String inProviderDataCenterId, @Nonnull String name, @Nonnull String description, @Nonnull VPNProtocol protocol) throws CloudException, InternalException {
         return createVPN(VpnCreateOptions.getInstance(name, description, protocol));
@@ -39,8 +35,9 @@ public abstract class AbstractVPNSupport<T extends CloudProvider> extends Abstra
         throw new OperationNotSupportedException("createVPN is not currently implemented in " + getProvider().getCloudName());
     }
 
-    public @Nonnull VPNGateway createVPNGateway(@Nonnull String endpoint, @Nonnull String name, @Nonnull String description, @Nonnull VPNProtocol protocol, @Nonnull String bgpAsn) throws CloudException, InternalException {
-        throw new OperationNotSupportedException("createVPNGateway is not currently implemented in " + getProvider().getCloudName());
+    @Deprecated
+    public final @Nonnull VPNGateway createVPNGateway(@Nonnull String endpoint, @Nonnull String name, @Nonnull String description, @Nonnull VPNProtocol protocol, @Nonnull String bgpAsn) throws CloudException, InternalException {
+        return createVPNGateway(VPNGatewayCreateOptions.getInstance(name, description, protocol, endpoint).withBgpAsn(bgpAsn));
     }
 
     public void deleteVPN(@Nonnull String providerVpnId) throws CloudException, InternalException {
