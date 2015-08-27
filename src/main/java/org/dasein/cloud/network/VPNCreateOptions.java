@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import javax.annotation.Nonnull;
 
-public class VpnCreateOptions {
+public class VPNCreateOptions {
 
     private String providerVlanId = null;
     private String providerDataCenterId = null;
@@ -13,16 +13,16 @@ public class VpnCreateOptions {
     private String description = null;
     private VPNProtocol protocol = null;
 
-    private VpnCreateOptions() { }
+    private VPNCreateOptions() { }
 
-    private VpnCreateOptions(@Nonnull String name, @Nonnull String description, @Nonnull VPNProtocol protocol) {
+    private VPNCreateOptions(@Nonnull String name, @Nonnull String description, @Nonnull VPNProtocol protocol) {
         this.name = name;
         this.description = description;
         this.protocol = protocol;
     }
 
-    static public @Nonnull VpnCreateOptions getInstance(@Nonnull String name, @Nonnull String description, @Nonnull VPNProtocol protocol) {
-        return new VpnCreateOptions(name, description, protocol);
+    static public @Nonnull VPNCreateOptions getInstance(@Nonnull String name, @Nonnull String description, @Nonnull VPNProtocol protocol) {
+        return new VPNCreateOptions(name, description, protocol);
     }
 
     /**
@@ -30,19 +30,19 @@ public class VpnCreateOptions {
      * @param labels one or more labels to be added to new VPN
      * @return this
      */
-    public @Nonnull VpnCreateOptions withLabels(String... labels) {
+    public @Nonnull VPNCreateOptions withLabels(String... labels) {
         if (labels != null) {
             this.labels  = Arrays.copyOf(labels, labels.length);
         }
         return this;
     }
 
-    public @Nonnull VpnCreateOptions withProviderVlanId(@Nonnull String providerVlanId) {
+    public @Nonnull VPNCreateOptions withProviderVlanId(@Nonnull String providerVlanId) {
         this. providerVlanId = providerVlanId;
         return this;
     }
 
-    public @Nonnull VpnCreateOptions withProviderDataCenterId(@Nonnull String providerDataCenterId) {
+    public @Nonnull VPNCreateOptions withProviderDataCenterId(@Nonnull String providerDataCenterId) {
         this.providerDataCenterId = providerDataCenterId;
         return this;
     }
