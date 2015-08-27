@@ -6,12 +6,12 @@ import javax.annotation.Nonnull;
 
 public class VpnCreateOptions {
 
-    private String providerVlanId = null;
-    private String providerDataCenterId = null;
-    private String[] labels = new String[0];
-    private String name = null;
-    private String description = null;
-    private VpnProtocol protocol = null;
+    private String providerVlanId;
+    private String providerDataCenterId;
+    private String[] labels;
+    private String name;
+    private String description;
+    private VpnProtocol protocol;
 
     private VpnCreateOptions() { }
 
@@ -56,6 +56,9 @@ public class VpnCreateOptions {
     }
 
     public String[] getLabels() {
+        if (null == labels) {
+            return new String[0];
+        }
         return labels;
     }
 
