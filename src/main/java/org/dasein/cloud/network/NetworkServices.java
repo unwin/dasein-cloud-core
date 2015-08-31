@@ -34,7 +34,7 @@ public interface NetworkServices {
 
     public @Nullable VLANSupport getVlanSupport();
     
-    public @Nullable VPNSupport getVpnSupport();
+    public @Nullable VpnSupport getVpnSupport();
     
     public boolean hasDnsSupport();
     

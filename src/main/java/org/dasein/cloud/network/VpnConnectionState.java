@@ -19,6 +19,13 @@
 
 package org.dasein.cloud.network;
 
-public enum VPNProtocol {
-    IPSEC1, OPEN_VPN, IKE_V1, IKE_V2;
+/**
+ * Represents the current state of a connection between a cloud VPN and a physical VPN gateway.
+ * <p>Created by George Reese: 6/26/12 2:48 PM</p>
+ * @author George Reese (george.reese@imaginary.com)
+ * @since 2012-07
+ * @version 2012-07 initial version
+ */
+public enum VpnConnectionState {
+    PENDING, AVAILABLE, DELETING, DELETED
 }
