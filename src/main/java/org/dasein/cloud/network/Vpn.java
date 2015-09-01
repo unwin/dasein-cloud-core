@@ -22,27 +22,29 @@ package org.dasein.cloud.network;
 import org.dasein.cloud.Taggable;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
 @SuppressWarnings("UnusedDeclaration")
-public class VPN implements Taggable {
-    private VPNState           currentState;
+public class Vpn implements Taggable {
+    private VpnState           currentState;
     private String             description;
     private String             name;
-    private VPNProtocol        protocol;
-    private String             providerRegionId;
+    private VpnProtocol        protocol;
     private String[]           providerVlanIds;
     private String             providerVpnId;
+    private String             providerVpnIp;
+    private String             providerRegionId;
     private Map<String,String> tags;
-    
-    public VPN() { }
 
-    public VPNState getCurrentState() {
+    public Vpn() { }
+
+    public VpnState getCurrentState() {
         return currentState;
     }
 
-    public void setCurrentState(VPNState currentState) {
+    public void setCurrentState(VpnState currentState) {
         this.currentState = currentState;
     }
 
@@ -62,20 +64,12 @@ public class VPN implements Taggable {
         this.name = name;
     }
 
-    public VPNProtocol getProtocol() {
+    public VpnProtocol getProtocol() {
         return protocol;
     }
 
-    public void setProtocol(VPNProtocol protocol) {
+    public void setProtocol(VpnProtocol protocol) {
         this.protocol = protocol;
-    }
-
-    public String getProviderRegionId() {
-        return providerRegionId;
-    }
-
-    public void setProviderRegionId(String providerRegionId) {
-        this.providerRegionId = providerRegionId;
     }
 
     public String getProviderVpnId() {
@@ -112,5 +106,21 @@ public class VPN implements Taggable {
 
     public String toString() {
         return providerVpnId;
+    }
+
+    public String getProviderVpnIp() {
+        return providerVpnIp;
+    }
+
+    public @Nullable String getProviderRegionId() {
+        return providerRegionId;
+    }
+
+    public void setProviderRegionId(@Nullable String providerRegionId) {
+        this.providerRegionId = providerRegionId;
+    }
+
+    public void setProviderVpnIP(String providerVpnIp) {
+        this.providerVpnIp = providerVpnIp;
     }
 }

@@ -60,7 +60,7 @@ public abstract class AbstractNetworkServices<T extends CloudProvider> extends A
     }
     
     @Override
-    public @Nullable VPNSupport getVpnSupport() {
+    public @Nullable VpnSupport getVpnSupport() {
         return null;
     }
     

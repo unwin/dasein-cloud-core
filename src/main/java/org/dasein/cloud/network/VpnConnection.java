@@ -27,15 +27,15 @@ package org.dasein.cloud.network;
  * @version 2012-07 initial version
  */
 @SuppressWarnings("UnusedDeclaration")
-public class VPNConnection {
+public class VpnConnection {
     private String      configurationXml;
-    private VPNConnectionState currentState;
-    private VPNProtocol protocol;
+    private VpnConnectionState currentState;
+    private VpnProtocol protocol;
     private String      providerGatewayId;
     private String      providerVpnId;
     private String      providerVpnConnectionId;
 
-    public VPNConnection() { }
+    public VpnConnection() { }
     
     public String getConfigurationXml() {
         return configurationXml;
@@ -45,19 +45,19 @@ public class VPNConnection {
         this.configurationXml = configurationXml;
     }
 
-    public VPNConnectionState getCurrentState() {
+    public VpnConnectionState getCurrentState() {
         return currentState;
     }
 
-    public void setCurrentState(VPNConnectionState currentState) {
+    public void setCurrentState(VpnConnectionState currentState) {
         this.currentState = currentState;
     }
 
-    public VPNProtocol getProtocol() {
+    public VpnProtocol getProtocol() {
         return protocol;
     }
 
-    public void setProtocol(VPNProtocol protocol) {
+    public void setProtocol(VpnProtocol protocol) {
         this.protocol = protocol;
     }
 

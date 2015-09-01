@@ -21,7 +21,6 @@ package org.dasein.cloud.util.requester.entities;
 
 import org.apache.http.entity.AbstractHttpEntity;
 import org.dasein.cloud.util.requester.streamprocessors.StreamProcessor;
-import org.dasein.cloud.util.requester.streamprocessors.XmlStreamToObjectProcessor;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

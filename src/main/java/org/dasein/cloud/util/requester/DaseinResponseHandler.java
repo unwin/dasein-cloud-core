@@ -25,7 +25,6 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.util.EntityUtils;
 import org.dasein.cloud.CloudErrorType;
-import org.dasein.cloud.CloudException;
 import org.dasein.cloud.util.requester.streamprocessors.StreamProcessor;
 
 import java.io.IOException;

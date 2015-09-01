@@ -19,6 +19,6 @@
 
 package org.dasein.cloud.network;
 
-public enum VPNProtocol {
-    IPSEC1, OPEN_VPN;
+public enum VpnProtocol {
+    IPSEC1, OPEN_VPN, IKE_V1, IKE_V2;
 }

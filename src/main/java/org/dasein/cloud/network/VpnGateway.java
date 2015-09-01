@@ -27,19 +27,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 @SuppressWarnings("UnusedDeclaration")
-public class VPNGateway implements Taggable {
+public class VpnGateway implements Taggable {
     private String      bgpAsn;
-    private VPNGatewayState currentState;
+    private VpnGatewayState currentState;
     private String      description;
     private String      endpoint;
     private String      name;
-    private VPNProtocol protocol;
+    private VpnProtocol protocol;
     private String      providerOwnerId;
     private String      providerRegionId;
     private String      providerVpnGatewayId;
     private Map<String,String> tags;
     
-    public VPNGateway() { }
+    public VpnGateway() { }
 
     public String getBgpAsn() {
         return bgpAsn;
@@ -73,11 +73,11 @@ public class VPNGateway implements Taggable {
         this.name = name;
     }
 
-    public VPNProtocol getProtocol() {
+    public VpnProtocol getProtocol() {
         return protocol;
     }
 
-    public void setProtocol(VPNProtocol protocol) {
+    public void setProtocol(VpnProtocol protocol) {
         this.protocol = protocol;
     }
 
@@ -124,11 +124,11 @@ public class VPNGateway implements Taggable {
         return (endpoint + " [" + providerOwnerId + "/" + providerVpnGatewayId + "]");
     }
 
-    public VPNGatewayState getCurrentState() {
+    public VpnGatewayState getCurrentState() {
         return currentState;
     }
 
-    public void setCurrentState(VPNGatewayState currentState) {
+    public void setCurrentState(VpnGatewayState currentState) {
         this.currentState = currentState;
     }
 }

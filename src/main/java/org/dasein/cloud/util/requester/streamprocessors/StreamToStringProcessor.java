@@ -20,10 +20,11 @@
 package org.dasein.cloud.util.requester.streamprocessors;
 
 import org.apache.commons.io.IOUtils;
-import org.dasein.cloud.util.requester.streamprocessors.StreamProcessor;
 
 import javax.annotation.Nullable;
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringWriter;
 
  /**
  * @author Vlad Munthiu
