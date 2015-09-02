@@ -136,8 +136,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.0.2</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -154,10 +154,16 @@
                         <configuration>
                             <encoding>utf-8</encoding>
                             <quiet>true</quiet>
-                            <links>
-                                <link>http://docs.oracle.com/javaee/6/api/</link>
-                                <link>http://www.dasein.org/api/dasein-utils/</link>
-                            </links>
+                            <javaApiLinks>
+                                <property>
+                                    <name>api_1.8</name>
+                                    <value>http://download.java.net/jdk8/docs/api/</value>
+                                </property>
+                                <property>
+                                    <name>dasein-utils</name>
+                                    <value>http://www.dasein.org/api/dasein-utils/</value>
+                                </property>
+                            </javaApiLinks>
                             <stylesheetfile>dasein-javadoc.css</stylesheetfile>
                             <footer />
                         </configuration>
