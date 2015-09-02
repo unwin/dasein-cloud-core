@@ -19,10 +19,12 @@ import java.util.List;
  *
  * <pre>
  * <code>
- *     ArrayList<HttpUriRequest> requestList = new ArrayList<HttpUriRequest>();
- *     ...add HttpUriRequests to the list...
- *     List<String> results = new DaseinParallelRequest(cloudProvider, httpClientBuilder, requestList).execute();
- *     List<Document> resultsAsDocument = new DaseinParallelRequest(cloudProvider, httpClientBuilder, requestList).withDocumentProcessor().execute();
+ *      List&lt;HttpUriRequest&gt; requestList = new ArrayList&lt;HttpUriRequest&gt;();
+ *
+ *      //...add HttpUriRequests to the list...
+ *
+ *      List&lt;String&gt; results = new DaseinParallelRequest(cloudProvider, httpClientBuilder, requestList).execute();
+ *      List&lt;Document&gt; resultsAsDocument = new DaseinParallelRequest(cloudProvider, httpClientBuilder, requestList).withDocumentProcessor().execute();
  * </code>
  * </pre>
  *
@@ -58,11 +60,9 @@ public class DaseinParallelRequest implements CompositeParallelRequester {
     /**
      * Constructs a instance of a DaseinParallelRequestExecutor with a XML stream processor that, once the HTTP requests have been
      * finished, will perform a deserialization of the XML responses into the specified type T and return all results as a List of T.
-     *
      * <pre>
-     *     List<DaseinDriverType> results = new DaseinParallelRequest(cloudProvider, httpClientBuilder, httpUriRequests).withXmlProcessor(DaseinDriverType.class).execute();
+     *     List&lt;DaseinDriverType&gt; results = new DaseinParallelRequest(cloudProvider, httpClientBuilder, httpUriRequests).withXmlProcessor(DaseinDriverType.class).execute();
      * </pre>
-     *
      * @param classType the type of the expected model
      * @return a list of instances of the classType type representing the responses XML
      **/
@@ -82,7 +82,7 @@ public class DaseinParallelRequest implements CompositeParallelRequester {
      * model( V ) to be performed after the response is received.
      *
      * <pre>
-     *     List<DaseinCoreType> results = new DaseinParallelRequest(cloudProvider, httpClientBuilder, httpUriRequests)
+     *     List&lt;DaseinCoreType&gt; results = new DaseinParallelRequest(cloudProvider, httpClientBuilder, httpUriRequests)
      *                  .withXmlProcessor(new DriverToCoreMapper&lt;DaseinDriverType, DaseinCoreType&gt;() {
      *                           &#64;Override
      *                           public DaseinCoreType mapFrom(DaseinDriverType entity) {
@@ -112,7 +112,7 @@ public class DaseinParallelRequest implements CompositeParallelRequester {
      * finished, will perform a deserialization of the JSON responses into the specified type T and return all results as a List of T.
      *
      * <pre>
-     *     List<DaseinDriverType> results = new DaseinParallelRequest(cloudProvider, httpClientBuilder, httpUriRequests).withJsonProcessor(DaseinDriverType.class).execute();
+     *     List&lt;DaseinDriverType&gt; results = new DaseinParallelRequest(cloudProvider, httpClientBuilder, httpUriRequests).withJsonProcessor(DaseinDriverType.class).execute();
      * </pre>
      *
      * @param classType the type of the expected model
@@ -134,7 +134,7 @@ public class DaseinParallelRequest implements CompositeParallelRequester {
      * model( V ) to be performed after the response is received.
      *
      * <pre>
-     *     List<DaseinCoreType> results = new DaseinParallelRequest(cloudProvider, httpClientBuilder, httpUriRequests)
+     *     List&lt;DaseinCoreType&gt; results = new DaseinParallelRequest(cloudProvider, httpClientBuilder, httpUriRequests)
      *                  .withJsonProcessor(new DriverToCoreMapper&lt;DaseinDriverType, DaseinCoreType&gt;() {
      *                           &#64;Override
      *                           public DaseinCoreType mapFrom(DaseinDriverType entity) {
@@ -164,7 +164,7 @@ public class DaseinParallelRequest implements CompositeParallelRequester {
      * finished, will try to parse the response stream into a valid XML Document object and return all results as a List of Document objects.
      *
      * <pre>
-     *     List<Document> documentResults = new DaseinParallelRequest(cloudProvider, httpClientBuilder, httpUriRequests).withDocumentProcessor().execute();
+     *     List&lt;Document&gt; documentResults = new DaseinParallelRequest(cloudProvider, httpClientBuilder, httpUriRequests).withDocumentProcessor().execute();
      * </pre>
      **/
     @Override
@@ -178,7 +178,7 @@ public class DaseinParallelRequest implements CompositeParallelRequester {
      * finished, will try to parse the response stream into a valid JSONObject object and return all results as a List of JSONObject objects.
      *
      * <pre>
-     *     List<JSONObject> jsonResults = new DaseinParallelRequest(cloudProvider, httpClientBuilder, httpUriRequests).withJSONObjectProcessor().execute();
+     *     List&lt;JSONObject&gt; jsonResults = new DaseinParallelRequest(cloudProvider, httpClientBuilder, httpUriRequests).withJSONObjectProcessor().execute();
      * </pre>
      **/
     @Override
@@ -191,7 +191,7 @@ public class DaseinParallelRequest implements CompositeParallelRequester {
      * Executes a HTTP requests using a string processor for the response.
      *
      * <pre>
-     *     List<String> results = new DaseinRequest(cloudProvider, httpClientBuilder, httpUriRequests).execute();
+     *     List&lt;String&gt; results = new DaseinRequest(cloudProvider, httpClientBuilder, httpUriRequests).execute();
      * </pre>
      *
      * @return a string representing the response of the current HTTP call.
