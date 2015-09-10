@@ -144,6 +144,16 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
     @Nullable CloudGroup getGroup(@Nonnull String providerGroupId) throws CloudException, InternalException;
 
     /**
+     * Provides a reference to the specified managed policy.
+     * @param providerPolicyId the unique ID of the target policy
+     * @return the specified policy if it exists
+     * @throws CloudException an error occurred in the cloud provider fetching the specified policy
+     * @throws InternalException an error occurred in the Dasein Cloud implementation while fetching the specified policy
+     */
+    @SuppressWarnings("unused")
+    @Nullable CloudPolicy getPolicy(@Nonnull String providerPolicyId) throws CloudException, InternalException;
+
+    /**
      * Provides a reference to the specified user.
      * @param providerUserId the unique ID of the target user
      * @return the specified user if it exists
@@ -152,7 +162,6 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      */
     @SuppressWarnings("unused")
     @Nullable CloudUser getUser(@Nonnull String providerUserId) throws CloudException, InternalException;
-    
     /**
      * @return true if this cloud supports IdM features in the current region and this account has access to them
      * @throws CloudException an error occurred in the cloud provider determining subscription status
@@ -180,6 +189,15 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      */
     @SuppressWarnings("unused")
     @Nonnull Iterable<CloudGroup> listGroupsForUser(@Nonnull String providerUserId) throws CloudException, InternalException;
+
+    /**
+     * Lists the policies managed by provider.
+     * @return the list of matching policies
+     * @throws CloudException an error occurred with the cloud provider listing the managed policies
+     * @throws InternalException an error occurred within the Dasein Cloud implementation executing the listing
+     */
+    @SuppressWarnings("unused")
+    @Nonnull Iterable<CloudPolicy> listPolicies() throws CloudException, InternalException;
 
     /**
      * Lists the policies attached to a specific group.
