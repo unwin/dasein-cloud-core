@@ -29,40 +29,59 @@ import javax.annotation.Nullable;
  * @version 2012.02
  */
 public class CloudPolicy {
-    static public CloudPolicy getInstance(@Nonnull String policyId, @Nonnull String name, @Nonnull CloudPermission permission, @Nullable ServiceAction action, @Nullable String resourceId) {
+    /**
+     * Constract a new inline or managed cloud policy object
+     * @param providerPolicyId Provider policy ID, required for both types of polices
+     * @param name Policy name, required for both types of policies
+     * @param description Policy description, optional
+     * @param permission Does policy allow or deny an action, required for inline policies and if not set the object is assumed to represent a managed policy
+     * @param action Which action does the policy govern, optional for inline policies
+     * @param resourceId Which resource does the policy govern, for inline policies <code>null</code> for any resource
+     * @return policy object
+     */
+    static public CloudPolicy getInstance(@Nonnull String providerPolicyId,
+                                          @Nonnull String name,
+                                          @Nullable String description,
+                                          @Nullable CloudPermission permission,
+                                          @Nullable ServiceAction action,
+                                          @Nullable String resourceId) {
         CloudPolicy policy = new CloudPolicy();
 
-        policy.providerPolicyId = policyId;
+        policy.providerPolicyId = providerPolicyId;
         policy.name = name;
+        policy.description = description;
         policy.permission = permission;
         policy.action = action;
         policy.resourceId = resourceId;
         return policy;
     }
 
+    /**
+     * Constract a new managed cloud policy object
+     * @param providerPolicyId Provider policy ID, required for both types of polices
+     * @param name Policy name, required for both types of policies
+     * @param description Policy description, optional
+     * @return Object representing a managed policy
+     */
+    static public CloudPolicy getInstance(@Nonnull String providerPolicyId,
+                                          @Nonnull String name,
+                                          @Nullable String description) {
+        CloudPolicy policy = new CloudPolicy();
+
+        policy.providerPolicyId = providerPolicyId;
+        policy.name = name;
+        policy.description = description;
+        return policy;
+    }
+
     private ServiceAction   action;
     private String          name;
+    private String          description;
     private CloudPermission permission;
     private String          providerPolicyId;
     private String          resourceId;
 
     private CloudPolicy() { }
-
-    /**
-     * Constructs a new policy object
-     * @param name the name and ID of the policy
-     * @param permission the permission
-     * @param action the action the policy governs
-     * @param resourceId the resource being governed (or null for any)
-     * @deprecated Use {@link #getInstance(String, String, CloudPermission, ServiceAction, String)}
-     */
-    public CloudPolicy(@Nonnull String name, @Nonnull CloudPermission permission, @Nullable ServiceAction action, @Nullable String resourceId) {
-        this.permission = permission;
-        this.action = action;
-        this.name = name;
-        this.providerPolicyId = name;
-        this.resourceId = resourceId;
-    }
 
     public @Nullable ServiceAction getAction() {
         return action;
@@ -72,7 +91,15 @@ public class CloudPolicy {
         return name;
     }
 
-    public @Nonnull CloudPermission getPermission() {
+    public @Nullable String getDescription() {
+        return description;
+    }
+
+    /**
+     * Permission of an inline policy
+     * @return Type of permission of an inline policy or <code>null</code> if policy is a managed kind
+     */
+    public @Nullable CloudPermission getPermission() {
         return permission;
     }
 
@@ -83,9 +110,13 @@ public class CloudPolicy {
     public @Nullable String getResourceId() {
         return resourceId;
     }
-    
+
+    public boolean isManaged() {
+        return getPermission() == null;
+    }
+
     @Override
     public @Nonnull String toString() {
-        return (permission + "/" + action + "/" + resourceId + " [#" + providerPolicyId + "]");
+        return (isManaged() ? name : (permission + "/" + action + "/" + resourceId)) + " [#" + providerPolicyId + "]";
     }
 }
