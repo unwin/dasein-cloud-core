@@ -44,7 +44,8 @@ public class CloudPolicy {
                                           @Nullable String description,
                                           @Nullable CloudPermission permission,
                                           @Nullable ServiceAction action,
-                                          @Nullable String resourceId) {
+                                          @Nullable String resourceId,
+                                          boolean managed) {
         CloudPolicy policy = new CloudPolicy();
 
         policy.providerPolicyId = providerPolicyId;
@@ -53,24 +54,7 @@ public class CloudPolicy {
         policy.permission = permission;
         policy.action = action;
         policy.resourceId = resourceId;
-        return policy;
-    }
-
-    /**
-     * Constract a new managed cloud policy object
-     * @param providerPolicyId Provider policy ID, required for both types of polices
-     * @param name Policy name, required for both types of policies
-     * @param description Policy description, optional
-     * @return Object representing a managed policy
-     */
-    static public CloudPolicy getInstance(@Nonnull String providerPolicyId,
-                                          @Nonnull String name,
-                                          @Nullable String description) {
-        CloudPolicy policy = new CloudPolicy();
-
-        policy.providerPolicyId = providerPolicyId;
-        policy.name = name;
-        policy.description = description;
+        policy.managed = managed;
         return policy;
     }
 
@@ -80,6 +64,7 @@ public class CloudPolicy {
     private CloudPermission permission;
     private String          providerPolicyId;
     private String          resourceId;
+    private boolean         managed;
 
     private CloudPolicy() { }
 
@@ -99,7 +84,7 @@ public class CloudPolicy {
      * Permission of an inline policy
      * @return Type of permission of an inline policy or <code>null</code> if policy is a managed kind
      */
-    public @Nullable CloudPermission getPermission() {
+    public @Nonnull CloudPermission getPermission() {
         return permission;
     }
 
@@ -112,7 +97,7 @@ public class CloudPolicy {
     }
 
     public boolean isManaged() {
-        return getPermission() == null;
+        return managed;
     }
 
     @Override
