@@ -21,6 +21,7 @@ package org.dasein.cloud.identity;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Arrays;
 
 /**
  * Represents a policy tied to a user or group in the cloud.
@@ -30,46 +31,37 @@ import javax.annotation.Nullable;
  */
 public class CloudPolicy {
     /**
-     * Constract a new inline or managed cloud policy object
-     * @param providerPolicyId Provider policy ID, required for both types of polices
-     * @param name Policy name, required for both types of policies
+     * Construct a new inline or managed cloud policy object
+     * @param providerPolicyId Provider policy ID
+     * @param name Policy name
      * @param description Policy description, optional
-     * @param permission Does policy allow or deny an action, required for inline policies and if not set the object is assumed to represent a managed policy
-     * @param action Which action does the policy govern, optional for inline policies
-     * @param resourceId Which resource does the policy govern, for inline policies <code>null</code> for any resource
      * @return policy object
      */
     static public CloudPolicy getInstance(@Nonnull String providerPolicyId,
                                           @Nonnull String name,
                                           @Nullable String description,
-                                          @Nullable CloudPermission permission,
-                                          @Nullable ServiceAction action,
-                                          @Nullable String resourceId,
+                                          @Nonnull CloudPolicyRule[] rules,
                                           boolean managed) {
         CloudPolicy policy = new CloudPolicy();
 
         policy.providerPolicyId = providerPolicyId;
         policy.name = name;
         policy.description = description;
-        policy.permission = permission;
-        policy.action = action;
-        policy.resourceId = resourceId;
+        policy.rules = rules;
         policy.managed = managed;
         return policy;
     }
 
-    private ServiceAction   action;
+    private CloudPolicyRule [] rules;
     private String          name;
     private String          description;
-    private CloudPermission permission;
     private String          providerPolicyId;
-    private String          resourceId;
     private boolean         managed;
 
     private CloudPolicy() { }
 
-    public @Nullable ServiceAction getAction() {
-        return action;
+    public @Nonnull CloudPolicyRule[] getRules() {
+        return rules;
     }
 
     public @Nonnull String getName() {
@@ -80,20 +72,8 @@ public class CloudPolicy {
         return description;
     }
 
-    /**
-     * Permission of an inline policy
-     * @return Type of permission of an inline policy or <code>null</code> if policy is a managed kind
-     */
-    public @Nonnull CloudPermission getPermission() {
-        return permission;
-    }
-
     public @Nonnull String getProviderPolicyId() {
         return providerPolicyId;
-    }
-
-    public @Nullable String getResourceId() {
-        return resourceId;
     }
 
     public boolean isManaged() {
@@ -102,6 +82,6 @@ public class CloudPolicy {
 
     @Override
     public @Nonnull String toString() {
-        return (isManaged() ? name : (permission + "/" + action + "/" + resourceId)) + " [#" + providerPolicyId + "]";
+        return name + ":" + Arrays.toString(rules) + " [#" + providerPolicyId + "]";
     }
 }
