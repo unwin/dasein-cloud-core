@@ -75,15 +75,11 @@ public class  APITrace {
             MBeanServer server = ManagementFactory.getPlatformMBeanServer();
             ObjectName name = new ObjectName("org.dasein:type=API");
             API api = new API();
-            if (!server.isRegistered(name)) {
-                server.registerMBean(api, name);
-            } else {
-                logger.warn("API MBean already registered! Are you mock testing?");
-            }
+
+            server.registerMBean(api, name);
         }
         catch( Throwable t ) {
             logger.error("Unable to set up API MBean: " + t.getMessage());
-            t.printStackTrace();
         }
     }
 
