@@ -20,5 +20,5 @@
 package org.dasein.cloud.compute;
 
 public enum MachineImageState {
-    PENDING, ACTIVE, DELETED;
+    PENDING, ACTIVE, DELETED, ERROR;
 }
