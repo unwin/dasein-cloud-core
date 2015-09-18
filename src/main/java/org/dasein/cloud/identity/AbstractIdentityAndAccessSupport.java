@@ -41,7 +41,7 @@ public abstract class AbstractIdentityAndAccessSupport<T extends CloudProvider> 
 
     @Nonnull
     @Override
-    public Iterable<CloudPolicy> listPolicies() throws CloudException, InternalException {
+    public Iterable<CloudPolicy> listPolicies(@Nonnull CloudPolicyFilterOptions opts) throws CloudException, InternalException {
         throw new OperationNotSupportedException("Policies cannot be listed in " + getProvider().getCloudName());
     }
 

@@ -192,12 +192,13 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
 
     /**
      * Lists the policies managed by provider.
+     * @param options
      * @return the list of matching policies
      * @throws CloudException an error occurred with the cloud provider listing the managed policies
      * @throws InternalException an error occurred within the Dasein Cloud implementation executing the listing
      */
     @SuppressWarnings("unused")
-    @Nonnull Iterable<CloudPolicy> listPolicies() throws CloudException, InternalException;
+    @Nonnull Iterable<CloudPolicy> listPolicies(@Nonnull CloudPolicyFilterOptions options) throws CloudException, InternalException;
 
     /**
      * Lists the policies attached to a specific group.

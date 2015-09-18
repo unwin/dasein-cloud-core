@@ -26,6 +26,7 @@ import org.dasein.cloud.Requirement;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -62,14 +63,6 @@ public interface IdentityAndAccessCapabilities extends Capabilities {
     boolean supportsApiAccess() throws CloudException, InternalException;
 
     /**
-     * @return true if the cloud API supports managed policies, false if only inline policies are supported
-     * @throws CloudException an error occurred within the cloud provider determining managed policies support
-     * @throws InternalException an error occurred within the Dasein Cloud implementation determining managed policies support
-     */
-    @SuppressWarnings("unused")
-    boolean supportsManagedPolicies() throws CloudException, InternalException;
-
-    /**
      * Provides the cloud console URL where cloud user may sign-in to using their credentials.
      * @see IdentityAndAccessSupport#enableConsoleAccess(String, byte[])
      * @see IdentityAndAccessCapabilities#supportsConsoleAccess()
@@ -103,5 +96,14 @@ public interface IdentityAndAccessCapabilities extends Capabilities {
      */
     @SuppressWarnings("unused")
     @Nonnull String getProviderTermForPolicy(@Nonnull Locale locale);
+
+    /**
+     * Identifies what cloud policy types are supported in this cloud.
+     * @return a list of supported cloud policy types
+     * @throws InternalException an error occurred within the Dasein Cloud implementation
+     * @throws CloudException an error occurred fetching the list of supported cloud policy types from the cloud
+     */
+    @SuppressWarnings("unused")
+    @Nonnull Iterable<CloudPolicyType> listSupportedPolicyTypes();
 
 }
