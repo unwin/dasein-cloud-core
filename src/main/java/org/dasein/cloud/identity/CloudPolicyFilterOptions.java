@@ -38,7 +38,7 @@ public class CloudPolicyFilterOptions {
      * @return this
      */
     public CloudPolicyFilterOptions withProviderUserId(@Nullable String providerUserId) {
-        this.providerUserId = this.providerUserId;
+        this.providerUserId = providerUserId;
         return this;
     }
 
