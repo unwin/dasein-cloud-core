@@ -27,12 +27,6 @@ public abstract class AbstractIdentityAndAccessSupport<T extends CloudProvider> 
         throw new OperationNotSupportedException("Groups cannot be listed for user in " + getProvider().getCloudName());
     }
 
-    @Nonnull
-    @Override
-    public Iterable<CloudPolicy> listPoliciesForGroup(@Nonnull String providerGroupId) throws CloudException, InternalException {
-        throw new OperationNotSupportedException("Policies cannot be listed for group in " + getProvider().getCloudName());
-    }
-
     @Nullable
     @Override
     public CloudPolicy getPolicy(@Nonnull String providerPolicyId) throws CloudException, InternalException {
@@ -43,12 +37,6 @@ public abstract class AbstractIdentityAndAccessSupport<T extends CloudProvider> 
     @Override
     public Iterable<CloudPolicy> listPolicies(@Nonnull CloudPolicyFilterOptions opts) throws CloudException, InternalException {
         throw new OperationNotSupportedException("Policies cannot be listed in " + getProvider().getCloudName());
-    }
-
-    @Nonnull
-    @Override
-    public Iterable<CloudPolicy> listPoliciesForUser(@Nonnull String providerUserId) throws CloudException, InternalException {
-        throw new OperationNotSupportedException("Policies cannot be listed for user in " + getProvider().getCloudName());
     }
 
     @Nonnull

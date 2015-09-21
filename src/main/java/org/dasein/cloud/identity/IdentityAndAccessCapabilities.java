@@ -104,6 +104,6 @@ public interface IdentityAndAccessCapabilities extends Capabilities {
      * @throws CloudException an error occurred fetching the list of supported cloud policy types from the cloud
      */
     @SuppressWarnings("unused")
-    @Nonnull Iterable<CloudPolicyType> listSupportedPolicyTypes();
+    @Nonnull Iterable<CloudPolicyType> listSupportedPolicyTypes() throws CloudException, InternalException;
 
 }

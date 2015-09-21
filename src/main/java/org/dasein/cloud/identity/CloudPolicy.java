@@ -32,23 +32,29 @@ import java.util.Arrays;
 public class CloudPolicy {
     /**
      * Construct a new inline or managed cloud policy object
-     * @param providerPolicyId Provider policy ID
-     * @param name Policy name
-     * @param description Policy description, optional
+     * @param providerPolicyId provider policy ID
+     * @param name policy name
+     * @param description policy description, optional
+     * @param rules policy rules used by this policy
+     * @param type policy type, for {@link CloudPolicyType#INLINE_POLICY} either {@code providerUserId} or {@code providerGroupId} will be provided
+     * @param providerUserId a unique user ID, for inline policies only
+     * @param providerGroupId a unique group ID, for inline policies only
      * @return policy object
      */
     static public CloudPolicy getInstance(@Nonnull String providerPolicyId,
                                           @Nonnull String name,
                                           @Nullable String description,
                                           @Nonnull CloudPolicyRule[] rules,
-                                          boolean managed) {
+                                          @Nonnull CloudPolicyType type,
+                                          @Nullable String providerUserId,
+                                          @Nullable String providerGroupId) {
         CloudPolicy policy = new CloudPolicy();
 
         policy.providerPolicyId = providerPolicyId;
         policy.name = name;
         policy.description = description;
         policy.rules = rules;
-        policy.managed = managed;
+        policy.type = type;
         return policy;
     }
 
@@ -56,7 +62,9 @@ public class CloudPolicy {
     private String          name;
     private String          description;
     private String          providerPolicyId;
-    private boolean         managed;
+    private String          providerUserId;
+    private String          providerGroupId;
+    private CloudPolicyType type;
 
     private CloudPolicy() { }
 
@@ -76,12 +84,20 @@ public class CloudPolicy {
         return providerPolicyId;
     }
 
-    public boolean isManaged() {
-        return managed;
+    public @Nullable String getProviderUserId() {
+        return providerUserId;
+    }
+
+    public @Nullable String getProviderGroupId() {
+        return providerGroupId;
+    }
+
+    public @Nonnull CloudPolicyType getType() {
+        return type;
     }
 
     @Override
     public @Nonnull String toString() {
-        return name + ":" + Arrays.toString(rules) + " [#" + providerPolicyId + "]";
+        return name + ":" + Arrays.toString(rules) + " [#" + providerPolicyId + "] - " + type ;
     }
 }

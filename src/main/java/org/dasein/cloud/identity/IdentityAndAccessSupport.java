@@ -191,34 +191,14 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
     @Nonnull Iterable<CloudGroup> listGroupsForUser(@Nonnull String providerUserId) throws CloudException, InternalException;
 
     /**
-     * Lists the policies managed by provider.
-     * @param options
+     * Lists the policies.
+     * @param options the filter criteria
      * @return the list of matching policies
-     * @throws CloudException an error occurred with the cloud provider listing the managed policies
+     * @throws CloudException an error occurred with the cloud provider listing the policies
      * @throws InternalException an error occurred within the Dasein Cloud implementation executing the listing
      */
     @SuppressWarnings("unused")
     @Nonnull Iterable<CloudPolicy> listPolicies(@Nonnull CloudPolicyFilterOptions options) throws CloudException, InternalException;
-
-    /**
-     * Lists the policies attached to a specific group.
-     * @param providerGroupId the unique ID of the group against which the policy search will be made
-     * @return the list of matching policies
-     * @throws CloudException an error occurred with the cloud provider listing the group policies
-     * @throws InternalException an error occurred within the Dasein Cloud implementation executing the listing
-     */
-    @SuppressWarnings("unused")
-    @Nonnull Iterable<CloudPolicy> listPoliciesForGroup(@Nonnull String providerGroupId) throws CloudException, InternalException;
-
-    /**
-     * Lists the policies attached to a specific user.
-     * @param providerUserId the unique ID of the ser against which the policy search will be made
-     * @return the list of matching policies
-     * @throws CloudException an error occurred with the cloud provider listing the user policies
-     * @throws InternalException an error occurred within the Dasein Cloud implementation executing the listing
-     */
-    @SuppressWarnings("unused")
-    @Nonnull Iterable<CloudPolicy> listPoliciesForUser(@Nonnull String providerUserId) throws CloudException, InternalException;
 
     /**
      * Lists all users belonging to the specified group.
