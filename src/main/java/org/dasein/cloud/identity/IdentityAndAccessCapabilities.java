@@ -24,6 +24,7 @@ import org.dasein.cloud.CloudException;
 import org.dasein.cloud.InternalException;
 import org.dasein.cloud.Requirement;
 
+import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
@@ -106,4 +107,48 @@ public interface IdentityAndAccessCapabilities extends Capabilities {
     @SuppressWarnings("unused")
     @Nonnull Iterable<CloudPolicyType> listSupportedPolicyTypes() throws CloudException, InternalException;
 
+    /**
+     * Provides the maximum number of policies that may be assigned to a user.
+     * @return the maximum number of policies per user or {@link Capabilities#LIMIT_UNLIMITED} for unlimited or {@link Capabilities#LIMIT_UNKNOWN}for unknown
+     * @throws CloudException an error occurred fetching the limits from the cloud provider
+     * @throws InternalException an error occurred within the Dasein Cloud implementation determining the limits
+     */
+    @SuppressWarnings("unused")
+    int getMaximumPoliciesPerUser() throws CloudException, InternalException;
+
+    /**
+     * Provides the maximum number of policies that may be assigned to a group.
+     * @return the maximum number of policies per group or {@link Capabilities#LIMIT_UNLIMITED} for unlimited or {@link Capabilities#LIMIT_UNKNOWN}for unknown
+     * @throws CloudException an error occurred fetching the limits from the cloud provider
+     * @throws InternalException an error occurred within the Dasein Cloud implementation determining the limits
+     */
+    @SuppressWarnings("unused")
+    int getMaximumPoliciesPerGroup() throws CloudException, InternalException;
+
+    /**
+     * Provides the maximum number of groups that user may be assigned to.
+     * @return the maximum number of groups per user or {@link Capabilities#LIMIT_UNLIMITED} for unlimited or {@link Capabilities#LIMIT_UNKNOWN}for unknown
+     * @throws CloudException an error occurred fetching the limits from the cloud provider
+     * @throws InternalException an error occurred within the Dasein Cloud implementation determining the limits
+     */
+    @SuppressWarnings("unused")
+    int getMaximumGroupsPerUser() throws CloudException, InternalException;
+
+    /**
+     * Provides the maximum number of users that may be created.
+     * @return the maximum number of users or {@link Capabilities#LIMIT_UNLIMITED} for unlimited or {@link Capabilities#LIMIT_UNKNOWN}for unknown
+     * @throws CloudException an error occurred fetching the limits from the cloud provider
+     * @throws InternalException an error occurred within the Dasein Cloud implementation determining the limits
+     */
+    @SuppressWarnings("unused")
+    int getMaximumUsers() throws CloudException, InternalException;
+
+    /**
+     * Provides the maximum number of groups that may be created.
+     * @return the maximum number of groups or {@link Capabilities#LIMIT_UNLIMITED} for unlimited or {@link Capabilities#LIMIT_UNKNOWN}for unknown
+     * @throws CloudException an error occurred fetching the limits from the cloud provider
+     * @throws InternalException an error occurred within the Dasein Cloud implementation determining the limits
+     */
+    @SuppressWarnings("unused")
+    int getMaximumGroups() throws CloudException, InternalException;
 }

@@ -304,12 +304,7 @@ public interface VirtualMachineCapabilities extends Capabilities {
      */
     public boolean isUserDefinedPrivateIPSupported() throws CloudException, InternalException;
 
-    /**
-     * Identifies what architectures are supported in this cloud.
-     * @return a list of supported architectures
-     * @throws InternalException an error occurred within the Dasein Cloud implementation calculating supported architectures
-     * @throws CloudException an error occurred fetching the list of supported architectures from the cloud
-     */
+
     public @Nonnull Iterable<Architecture> listSupportedArchitectures() throws InternalException, CloudException;
 
     /**
