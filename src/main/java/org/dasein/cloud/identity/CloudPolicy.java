@@ -55,6 +55,8 @@ public class CloudPolicy {
         policy.description = description;
         policy.rules = rules;
         policy.type = type;
+        policy.providerUserId = providerUserId;
+        policy.providerGroupId = providerGroupId;
         return policy;
     }
 
