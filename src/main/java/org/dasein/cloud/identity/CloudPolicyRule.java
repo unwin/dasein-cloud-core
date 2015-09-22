@@ -36,11 +36,7 @@ public class CloudPolicyRule {
      * @param resourceId Which resource does the policy govern, <code>null</code> for any resource
      * @return new cloud policy rule instance
      */
-    public static CloudPolicyRule getInstance(
-            @Nonnull CloudPermission permission,
-            @Nonnull ServiceAction[] actions,
-            boolean exceptActions,
-            @Nullable String resourceId) {
+    public static CloudPolicyRule getInstance(@Nonnull CloudPermission permission, @Nonnull ServiceAction[] actions, boolean exceptActions, @Nullable String resourceId) {
         return new CloudPolicyRule(permission, actions, exceptActions, resourceId);
     }
 
@@ -78,7 +74,7 @@ public class CloudPolicyRule {
     /**
      * Indicates whether the permission applies to the actions of the rule or all other actions
      * @return {@code true} if the permission applies to all other actions, {@code false} if the permission applies to
-     * actions definied in the rule
+     * actions defined in the rule
      */
     public boolean isExceptActions() {
         return exceptActions;

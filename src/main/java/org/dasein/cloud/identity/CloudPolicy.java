@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
 import java.util.Arrays;
 
 /**
- * Represents a policy tied to a user or group in the cloud.
+ * Represents a policy which may be tied to a user or group in the cloud.
  * @author George Reese (george.reese@imaginary.com)
  * @since 2012.02
  * @version 2012.02
@@ -41,13 +41,7 @@ public class CloudPolicy {
      * @param providerGroupId a unique group ID, for inline policies only
      * @return policy object
      */
-    static public CloudPolicy getInstance(@Nonnull String providerPolicyId,
-                                          @Nonnull String name,
-                                          @Nullable String description,
-                                          @Nonnull CloudPolicyRule[] rules,
-                                          @Nonnull CloudPolicyType type,
-                                          @Nullable String providerUserId,
-                                          @Nullable String providerGroupId) {
+    static public CloudPolicy getInstance(@Nonnull String providerPolicyId, @Nonnull String name, @Nullable String description, @Nonnull CloudPolicyRule[] rules, @Nonnull CloudPolicyType type, @Nullable String providerUserId, @Nullable String providerGroupId) {
         CloudPolicy policy = new CloudPolicy();
 
         policy.providerPolicyId = providerPolicyId;
