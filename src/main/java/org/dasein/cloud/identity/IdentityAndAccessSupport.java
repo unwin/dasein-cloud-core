@@ -341,4 +341,23 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      */
     @SuppressWarnings("unused")
     void modifyUser(@Nonnull String providerUserId, @Nullable String newUserName, @Nullable String newPath) throws CloudException, InternalException;
+
+    /**
+     * List all unique ids for all services available in the cloud, as addressable by IAM policies
+     * @return list of all service ids
+     * @throws CloudException
+     * @throws InternalException
+     */
+    @SuppressWarnings("unused")
+    @Nonnull Iterable<String> listServices() throws CloudException, InternalException;
+
+    /**
+     * List all available actions per service, optionally selected for one individual service
+     * @param forService optional service id for which to list actions
+     * @return list of all available actions per given service, or if {@code forService} is {@code null} - all actions for all services
+     * @throws CloudException
+     * @throws InternalException
+     */
+    @SuppressWarnings("unused")
+    @Nonnull Iterable<ServiceAction> listServiceActions(@Nullable String forService) throws CloudException, InternalException;
 }

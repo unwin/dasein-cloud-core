@@ -108,6 +108,18 @@ public abstract class AbstractIdentityAndAccessSupport<T extends CloudProvider> 
         throw new OperationNotSupportedException("Users cannot be modified in " + getProvider().getCloudName());
     }
 
+    @Nonnull
+    @Override
+    public Iterable<String> listServices() throws CloudException, InternalException {
+        throw new OperationNotSupportedException("Services cannot be listed in " + getProvider().getCloudName());
+    }
+
+    @Nonnull
+    @Override
+    public Iterable<ServiceAction> listServiceActions(@Nullable String forService) throws CloudException, InternalException {
+        throw new OperationNotSupportedException("Service actions cannot be listed in " + getProvider().getCloudName());
+    }
+
     @Override
     public void addUserToGroups(@Nonnull String providerUserId, @Nonnull String... providerGroupIds) throws CloudException, InternalException {
         throw new OperationNotSupportedException("Users cannot be added to groups in " + getProvider().getCloudName());
