@@ -24,8 +24,10 @@ import org.dasein.cloud.CloudException;
 import org.dasein.cloud.InternalException;
 import org.dasein.cloud.Requirement;
 
+import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -42,6 +44,7 @@ public interface IdentityAndAccessCapabilities extends Capabilities {
      * @throws CloudException an error occurred within the cloud provider determining access control support
      * @throws InternalException an error occurred within the Dasein Cloud implementation determining access control support
      */
+    @SuppressWarnings("unused")
     boolean supportsAccessControls() throws CloudException, InternalException;
 
     /**
@@ -49,6 +52,7 @@ public interface IdentityAndAccessCapabilities extends Capabilities {
      * @throws CloudException an error occurred within the cloud provider determining console access support
      * @throws InternalException an error occurred within the Dasein Cloud implementation determining console access support
      */
+    @SuppressWarnings("unused")
     boolean supportsConsoleAccess() throws CloudException, InternalException;
 
     /**
@@ -56,6 +60,7 @@ public interface IdentityAndAccessCapabilities extends Capabilities {
      * @throws CloudException an error occurred within the cloud provider determining API access management support
      * @throws InternalException an error occurred within the Dasein Cloud implementation determining API access management support
      */
+    @SuppressWarnings("unused")
     boolean supportsApiAccess() throws CloudException, InternalException;
 
     /**
@@ -66,6 +71,7 @@ public interface IdentityAndAccessCapabilities extends Capabilities {
      * @throws CloudException an error occurred with the cloud provider in determining support
      * @throws InternalException a local error occurred while determining support
      */
+    @SuppressWarnings("unused")
     @Nullable String getConsoleUrl() throws CloudException, InternalException;
 
     /**
@@ -73,6 +79,7 @@ public interface IdentityAndAccessCapabilities extends Capabilities {
      * @param locale the locale into which the term should be translated
      * @return the provider term for the user entity, ideally translated for the specified locale
      */
+    @SuppressWarnings("unused")
     @Nonnull String getProviderTermForUser(@Nonnull Locale locale);
 
     /**
@@ -80,5 +87,68 @@ public interface IdentityAndAccessCapabilities extends Capabilities {
      * @param locale the locale into which the term should be translated
      * @return the provider term for the group entity, ideally translated for the specified locale
      */
+    @SuppressWarnings("unused")
     @Nonnull String getProviderTermForGroup(@Nonnull Locale locale);
+
+    /**
+     * Provides the provider term for a policy entity.
+     * @param locale the locale into which the term should be translated
+     * @return the provider term for the policy entity, ideally translated for the specified locale
+     */
+    @SuppressWarnings("unused")
+    @Nonnull String getProviderTermForPolicy(@Nonnull Locale locale);
+
+    /**
+     * Identifies what cloud policy types are supported in this cloud.
+     * @return a list of supported cloud policy types
+     * @throws InternalException an error occurred within the Dasein Cloud implementation
+     * @throws CloudException an error occurred fetching the list of supported cloud policy types from the cloud
+     */
+    @SuppressWarnings("unused")
+    @Nonnull Iterable<CloudPolicyType> listSupportedPolicyTypes() throws CloudException, InternalException;
+
+    /**
+     * Provides the maximum number of policies that may be assigned to a user.
+     * @return the maximum number of policies per user or {@link Capabilities#LIMIT_UNLIMITED} for unlimited or {@link Capabilities#LIMIT_UNKNOWN}for unknown
+     * @throws CloudException an error occurred fetching the limits from the cloud provider
+     * @throws InternalException an error occurred within the Dasein Cloud implementation determining the limits
+     */
+    @SuppressWarnings("unused")
+    int getMaximumPoliciesPerUser() throws CloudException, InternalException;
+
+    /**
+     * Provides the maximum number of policies that may be assigned to a group.
+     * @return the maximum number of policies per group or {@link Capabilities#LIMIT_UNLIMITED} for unlimited or {@link Capabilities#LIMIT_UNKNOWN}for unknown
+     * @throws CloudException an error occurred fetching the limits from the cloud provider
+     * @throws InternalException an error occurred within the Dasein Cloud implementation determining the limits
+     */
+    @SuppressWarnings("unused")
+    int getMaximumPoliciesPerGroup() throws CloudException, InternalException;
+
+    /**
+     * Provides the maximum number of groups that user may be assigned to.
+     * @return the maximum number of groups per user or {@link Capabilities#LIMIT_UNLIMITED} for unlimited or {@link Capabilities#LIMIT_UNKNOWN}for unknown
+     * @throws CloudException an error occurred fetching the limits from the cloud provider
+     * @throws InternalException an error occurred within the Dasein Cloud implementation determining the limits
+     */
+    @SuppressWarnings("unused")
+    int getMaximumGroupsPerUser() throws CloudException, InternalException;
+
+    /**
+     * Provides the maximum number of users that may be created.
+     * @return the maximum number of users or {@link Capabilities#LIMIT_UNLIMITED} for unlimited or {@link Capabilities#LIMIT_UNKNOWN}for unknown
+     * @throws CloudException an error occurred fetching the limits from the cloud provider
+     * @throws InternalException an error occurred within the Dasein Cloud implementation determining the limits
+     */
+    @SuppressWarnings("unused")
+    int getMaximumUsers() throws CloudException, InternalException;
+
+    /**
+     * Provides the maximum number of groups that may be created.
+     * @return the maximum number of groups or {@link Capabilities#LIMIT_UNLIMITED} for unlimited or {@link Capabilities#LIMIT_UNKNOWN}for unknown
+     * @throws CloudException an error occurred fetching the limits from the cloud provider
+     * @throws InternalException an error occurred within the Dasein Cloud implementation determining the limits
+     */
+    @SuppressWarnings("unused")
+    int getMaximumGroups() throws CloudException, InternalException;
 }
