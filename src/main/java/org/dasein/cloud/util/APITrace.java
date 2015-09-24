@@ -80,7 +80,6 @@ public class  APITrace {
         }
         catch( Throwable t ) {
             logger.error("Unable to set up API MBean: " + t.getMessage());
-            t.printStackTrace();
         }
     }
 

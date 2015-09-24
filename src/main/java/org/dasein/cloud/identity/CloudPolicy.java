@@ -21,71 +21,79 @@ package org.dasein.cloud.identity;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Arrays;
 
 /**
- * Represents a policy tied to a user or group in the cloud.
+ * Represents a policy which may be tied to a user or group in the cloud.
  * @author George Reese (george.reese@imaginary.com)
  * @since 2012.02
  * @version 2012.02
  */
 public class CloudPolicy {
-    static public CloudPolicy getInstance(@Nonnull String policyId, @Nonnull String name, @Nonnull CloudPermission permission, @Nullable ServiceAction action, @Nullable String resourceId) {
+    /**
+     * Construct a new inline or managed cloud policy object
+     * @param providerPolicyId provider policy ID
+     * @param name policy name
+     * @param description policy description, optional
+     * @param rules policy rules used by this policy
+     * @param type policy type, for {@link CloudPolicyType#INLINE_POLICY} either {@code providerUserId} or {@code providerGroupId} will be provided
+     * @param providerUserId a unique user ID, for inline policies only
+     * @param providerGroupId a unique group ID, for inline policies only
+     * @return policy object
+     */
+    static public CloudPolicy getInstance(@Nonnull String providerPolicyId, @Nonnull String name, @Nullable String description, @Nonnull CloudPolicyRule[] rules, @Nonnull CloudPolicyType type, @Nullable String providerUserId, @Nullable String providerGroupId) {
         CloudPolicy policy = new CloudPolicy();
 
-        policy.providerPolicyId = policyId;
+        policy.providerPolicyId = providerPolicyId;
         policy.name = name;
-        policy.permission = permission;
-        policy.action = action;
-        policy.resourceId = resourceId;
+        policy.description = description;
+        policy.rules = rules;
+        policy.type = type;
+        policy.providerUserId = providerUserId;
+        policy.providerGroupId = providerGroupId;
         return policy;
     }
 
-    private ServiceAction   action;
+    private CloudPolicyRule [] rules;
     private String          name;
-    private CloudPermission permission;
+    private String          description;
     private String          providerPolicyId;
-    private String          resourceId;
+    private String          providerUserId;
+    private String          providerGroupId;
+    private CloudPolicyType type;
 
     private CloudPolicy() { }
 
-    /**
-     * Constructs a new policy object
-     * @param name the name and ID of the policy
-     * @param permission the permission
-     * @param action the action the policy governs
-     * @param resourceId the resource being governed (or null for any)
-     * @deprecated Use {@link #getInstance(String, String, CloudPermission, ServiceAction, String)}
-     */
-    public CloudPolicy(@Nonnull String name, @Nonnull CloudPermission permission, @Nullable ServiceAction action, @Nullable String resourceId) {
-        this.permission = permission;
-        this.action = action;
-        this.name = name;
-        this.providerPolicyId = name;
-        this.resourceId = resourceId;
-    }
-
-    public @Nullable ServiceAction getAction() {
-        return action;
+    public @Nonnull CloudPolicyRule[] getRules() {
+        return rules;
     }
 
     public @Nonnull String getName() {
         return name;
     }
 
-    public @Nonnull CloudPermission getPermission() {
-        return permission;
+    public @Nullable String getDescription() {
+        return description;
     }
 
     public @Nonnull String getProviderPolicyId() {
         return providerPolicyId;
     }
 
-    public @Nullable String getResourceId() {
-        return resourceId;
+    public @Nullable String getProviderUserId() {
+        return providerUserId;
     }
-    
+
+    public @Nullable String getProviderGroupId() {
+        return providerGroupId;
+    }
+
+    public @Nonnull CloudPolicyType getType() {
+        return type;
+    }
+
     @Override
     public @Nonnull String toString() {
-        return (permission + "/" + action + "/" + resourceId + " [#" + providerPolicyId + "]");
+        return name + ":" + Arrays.toString(rules) + " [#" + providerPolicyId + "] - " + type ;
     }
 }

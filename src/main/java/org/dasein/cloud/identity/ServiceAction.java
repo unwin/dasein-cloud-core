@@ -24,6 +24,7 @@ import org.dasein.cloud.CloudProvider;
 import org.dasein.cloud.network.NetworkServices;
 
 import javax.annotation.Nonnull;
+import java.util.Comparator;
 
 /**
  * Represents a mechanism for identifying service actions in a cloud provider using a generic label. Each Dasein
@@ -34,7 +35,7 @@ import javax.annotation.Nonnull;
  * @since 2012.02
  * @version 2012.02
  */
-public class ServiceAction {
+public class ServiceAction implements Comparable<ServiceAction> {
     private String actionId;
     private String serviceId;
 
@@ -106,5 +107,13 @@ public class ServiceAction {
     
     public String toString() {
         return actionId;
+    }
+
+    @Override
+    public int compareTo(ServiceAction o) {
+        if( equals(o) ) {
+            return 0;
+        }
+        return actionId.compareTo(o.actionId);
     }
 }
