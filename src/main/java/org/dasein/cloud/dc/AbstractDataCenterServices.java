@@ -87,7 +87,7 @@ public abstract class AbstractDataCenterServices<T extends CloudProvider> extend
     }
 
     @Override
-    public @Nonnull Iterable<ResourcePool> listResourcePools(@Nonnull String providerDataCenterId) throws InternalException, CloudException {
+    public @Nonnull Iterable<ResourcePool> listResourcePools(@Nullable String providerDataCenterId) throws InternalException, CloudException {
         throw new OperationNotSupportedException("Listing resource pools by data center id is not currently implemented for " + getProvider().getCloudName());
     }
 
