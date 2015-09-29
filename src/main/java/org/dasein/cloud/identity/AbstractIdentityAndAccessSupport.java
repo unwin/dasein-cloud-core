@@ -120,6 +120,42 @@ public abstract class AbstractIdentityAndAccessSupport<T extends CloudProvider> 
         throw new OperationNotSupportedException("Service actions cannot be listed in " + getProvider().getCloudName());
     }
 
+    @Nonnull
+    @Override
+    public String createPolicy(@Nonnull CloudPolicyOptions options) throws CloudException, InternalException {
+        throw new OperationNotSupportedException("Policies cannot be created in " + getProvider().getCloudName());
+    }
+
+    @Override
+    public void modifyPolicy(@Nonnull String providerPolicyId, @Nonnull CloudPolicyOptions options) throws CloudException, InternalException {
+        throw new OperationNotSupportedException("Policies cannot be modified in " + getProvider().getCloudName());
+    }
+
+    @Override
+    public void removePolicy(@Nonnull String providerPolicyId) throws CloudException, InternalException {
+        throw new OperationNotSupportedException("Policies cannot be removed in " + getProvider().getCloudName());
+    }
+
+    @Override
+    public void attachPolicyToUser(@Nonnull String providerPolicyId, @Nonnull String providerUserId) throws CloudException, InternalException {
+        throw new OperationNotSupportedException("Policies cannot be attached to a user in " + getProvider().getCloudName());
+    }
+
+    @Override
+    public void detachPolicyFromUser(@Nonnull String providerPolicyId, @Nonnull String providerUserId) throws CloudException, InternalException {
+        throw new OperationNotSupportedException("Policies cannot be detached from a user in " + getProvider().getCloudName());
+    }
+
+    @Override
+    public void attachPolicyToGroup(@Nonnull String providerPolicyId, @Nonnull String providerGroupId) throws CloudException, InternalException {
+        throw new OperationNotSupportedException("Policies cannot be attached to a group in " + getProvider().getCloudName());
+    }
+
+    @Override
+    public void detachPolicyFromGroup(@Nonnull String providerPolicyId, @Nonnull String providerGroupId) throws CloudException, InternalException {
+        throw new OperationNotSupportedException("Policies cannot be detached from a group in " + getProvider().getCloudName());
+    }
+
     @Override
     public void addUserToGroups(@Nonnull String providerUserId, @Nonnull String... providerGroupIds) throws CloudException, InternalException {
         throw new OperationNotSupportedException("Users cannot be added to groups in " + getProvider().getCloudName());
@@ -146,6 +182,11 @@ public abstract class AbstractIdentityAndAccessSupport<T extends CloudProvider> 
     @Override
     public void enableConsoleAccess(@Nonnull String providerUserId, @Nonnull byte[] password) throws CloudException, InternalException {
         throw new OperationNotSupportedException("Console access cannot be enabled in " + getProvider().getCloudName());
+    }
+
+    @Override
+    public void updateConsoleAccess(@Nonnull String providerUserId, @Nonnull byte[] oldPassword, @Nonnull byte[] newPassword) throws CloudException, InternalException {
+        throw new OperationNotSupportedException("Console access cannot be updated in " + getProvider().getCloudName());
     }
 
     @Override

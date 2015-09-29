@@ -124,6 +124,17 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
     void enableConsoleAccess(@Nonnull String providerUserId, @Nonnull byte[] password) throws CloudException, InternalException;
 
     /**
+     * Updates the password used for console access for the specified user
+     * @param providerUserId the cloud provider ID of the user to add console access for
+     * @param oldPassword the old password used for access to the console
+     * @param newPassword the new password to be used for access to the console
+     * @throws CloudException an error occurred in the cloud provider enabling console access
+     * @throws InternalException an error occurred within the Dasein Cloud implementation while enabling console access
+     */
+    @SuppressWarnings("unused")
+    void updateConsoleAccess(@Nonnull String providerUserId, @Nonnull byte[] oldPassword, @Nonnull byte[] newPassword) throws CloudException, InternalException;
+
+    /**
      * Provides the cloud console URL where cloud user may sign-in to using their credentials.
      * @see IdentityAndAccessSupport#enableConsoleAccess(String, byte[])
      * @see IdentityAndAccessCapabilities#supportsConsoleAccess()
@@ -298,6 +309,20 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
     @SuppressWarnings("unused")
     void modifyGroup(@Nonnull String providerGroupId, @Nullable String newGroupName, @Nullable String newPath) throws CloudException, InternalException;
 
+    @Nonnull String createPolicy(@Nonnull CloudPolicyOptions options) throws CloudException, InternalException;
+
+    void modifyPolicy(@Nonnull String providerPolicyId, @Nonnull CloudPolicyOptions options) throws CloudException, InternalException;
+
+    void removePolicy(@Nonnull String providerPolicyId) throws CloudException, InternalException;
+
+    void attachPolicyToUser(@Nonnull String providerPolicyId, @Nonnull String providerUserId) throws CloudException, InternalException;
+
+    void detachPolicyFromUser(@Nonnull String providerPolicyId, @Nonnull String providerUserId) throws CloudException, InternalException;
+
+    void attachPolicyToGroup(@Nonnull String providerPolicyId, @Nonnull String providerGroupId) throws CloudException, InternalException;
+
+    void detachPolicyFromGroup(@Nonnull String providerPolicyId, @Nonnull String providerGroupId) throws CloudException, InternalException;
+
     /**
      * Saves the specified permission for the specified group to the access control system of the cloud. For any
      * nullable parameter, <code>null</code> means that global application of the permission. For example,
@@ -314,6 +339,7 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
     @SuppressWarnings("unused")
     @Nonnull String[] modifyGroupPolicy(@Nonnull String providerGroupId, @Nonnull String name, @Nonnull CloudPermission permission, @Nullable ServiceAction action, @Nullable String resourceId) throws CloudException, InternalException;
 
+
     /**
      * Saves the specified permission for the specified user to the access control system of the cloud. For any
      * nullable parameter, <code>null</code> means that global application of the permission. For example,
@@ -329,6 +355,7 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      */
     @SuppressWarnings("unused")
     @Nonnull String[] modifyUserPolicy(@Nonnull String providerUserId, @Nonnull String name, @Nonnull CloudPermission permission, @Nullable ServiceAction action, @Nullable String resourceId) throws CloudException, InternalException;
+
 
     /**
      * Updates the specified user with new path or user name values. If <code>null</code> is specified for any value,
