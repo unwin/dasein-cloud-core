@@ -21,6 +21,7 @@ package org.dasein.cloud.identity;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Arrays;
 
 /**
  * API access keys for a cloud account that may or may not be associated with a specific user.
@@ -28,13 +29,23 @@ import javax.annotation.Nullable;
  * @since 2012.02
  * @version 2012.02
  */
+@SuppressWarnings("unused")
 public class AccessKey {
     private String providerOwnerId;
     private String providerUserId;
     private byte[] secretPart;
     private String sharedPart;
+    private boolean enabled;
 
-    public AccessKey() { }
+    public static AccessKey getInstance(@Nonnull String sharedPart, @Nonnull byte[] secretPart, boolean enabled) {
+        return new AccessKey(sharedPart, secretPart, enabled);
+    }
+
+    private AccessKey(String sharedPart, byte[] secretPart, boolean enabled) {
+        this.sharedPart = sharedPart;
+        this.secretPart = Arrays.copyOf(secretPart, secretPart.length);
+        this.enabled = enabled;
+    }
 
     @Override
     public boolean equals(@Nullable Object ob) {
@@ -54,34 +65,32 @@ public class AccessKey {
         return providerOwnerId;
     }
 
-    public void setProviderOwnerId(@Nullable String providerOwnerId) {
+    public @Nonnull AccessKey withProviderOwnerId(@Nullable String providerOwnerId) {
         this.providerOwnerId = providerOwnerId;
+        return this;
     }
     
     public @Nullable String getProviderUserId() {
         return providerUserId;
     }
     
-    public void setProviderUserId(@Nonnull String uid) {
-        providerUserId = uid;
+    public @Nonnull AccessKey withProviderUserId(@Nullable String uid) {
+        this.providerUserId = uid;
+        return this;
     }
 
-    public @Nullable byte[] getSecretPart() {
+    public @Nonnull byte[] getSecretPart() {
         return secretPart;
     }
-    
-    public void setSecretPart(@Nonnull byte[] secret) {
-        secretPart = secret;
-    }
-    
-    public @Nullable String getSharedPart() {
+
+    public @Nonnull String getSharedPart() {
         return sharedPart;
     }
-    
-    public void setSharedPart(@Nonnull String shared) {
-        sharedPart = shared;
+
+    public boolean isEnabled() {
+        return enabled;
     }
-        
+
     @Override
     public @Nonnull String toString() {
         return sharedPart;
