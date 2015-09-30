@@ -57,6 +57,28 @@ public abstract class AbstractIdentityAndAccessSupport<T extends CloudProvider> 
     }
 
     @Override
+    public void enableAccessKey(@Nonnull String sharedKeyPart, @Nullable String providerUserId) throws CloudException, InternalException {
+        throw new OperationNotSupportedException("Access keys cannot be enabled in " + getProvider().getCloudName());
+    }
+
+    @Override
+    public void disableAccessKey(@Nonnull String sharedKeyPart, @Nullable String providerUserId) throws CloudException, InternalException {
+        throw new OperationNotSupportedException("Access keys cannot be disabled in " + getProvider().getCloudName());
+    }
+
+    @Nonnull
+    @Override
+    public Iterable<AccessKey> listAccessKeys(@Nullable String providerUserId) throws CloudException, InternalException {
+        throw new OperationNotSupportedException("Access keys cannot be listed in " + getProvider().getCloudName());
+    }
+
+    @Nonnull
+    @Override
+    public AccessKey createAccessKey(@Nonnull String providerUserId) throws CloudException, InternalException {
+        throw new OperationNotSupportedException("Access keys cannot be created in " + getProvider().getCloudName());
+    }
+
+    @Override
     public void removeConsoleAccess(@Nonnull String providerUserId) throws CloudException, InternalException {
         throw new OperationNotSupportedException("Console access cannot be removed in " + getProvider().getCloudName());
     }
@@ -171,12 +193,6 @@ public abstract class AbstractIdentityAndAccessSupport<T extends CloudProvider> 
     @Override
     public CloudUser createUser(@Nonnull String userName, @Nullable String path, @Nullable String... autoJoinGroupIds) throws CloudException, InternalException {
         throw new OperationNotSupportedException("Users cannot be created in " + getProvider().getCloudName());
-    }
-
-    @Nonnull
-    @Override
-    public AccessKey enableApiAccess(@Nonnull String providerUserId) throws CloudException, InternalException {
-        throw new OperationNotSupportedException("API access cannot be enabled in " + getProvider().getCloudName());
     }
 
     @Override

@@ -49,4 +49,12 @@ public class CloudPolicyOptions {
     public CloudPolicyRule[] getRules() {
         return rules;
     }
+
+    public String getProviderUserId() {
+        return providerUserId;
+    }
+
+    public String getProviderGroupId() {
+        return providerGroupId;
+    }
 }
