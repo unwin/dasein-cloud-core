@@ -33,33 +33,33 @@ import javax.annotation.Nullable;
  * @version 2012.02
  * @version 2013.04 added methods to remove policies
  */
+@SuppressWarnings("unused")
 public interface IdentityAndAccessSupport extends AccessControlledService {
-    @SuppressWarnings("unused") static final ServiceAction ANY                 = new ServiceAction("IAM:ANY");
-
-    @SuppressWarnings("unused") static final ServiceAction ADD_GROUP_ACCESS    = new ServiceAction("IAM:ADD_GROUP_ACCESS");
-    @SuppressWarnings("unused") static final ServiceAction ADD_USER_ACCESS     = new ServiceAction("IAM:ADD_USER_ACCESS");
-    @SuppressWarnings("unused") static final ServiceAction CREATE_USER         = new ServiceAction("IAM:CREATE_USER");
-    @SuppressWarnings("unused") static final ServiceAction CREATE_GROUP        = new ServiceAction("IAM:CREATE_GROUP");
-    @SuppressWarnings("unused") static final ServiceAction DISABLE_API         = new ServiceAction("IAM:DISABLE_API");
-    @SuppressWarnings("unused") static final ServiceAction DISABLE_CONSOLE     = new ServiceAction("IAM:DISABLE_CONSOLE");
-    @SuppressWarnings("unused") static final ServiceAction DROP_FROM_GROUP     = new ServiceAction("IAM:DROP_FROM_GROUP");
-    @SuppressWarnings("unused") static final ServiceAction ENABLE_API          = new ServiceAction("IAM:ENABLE_API");
-    @SuppressWarnings("unused") static final ServiceAction ENABLE_CONSOLE      = new ServiceAction("IAM:ENABLE_CONSOLE");
-    @SuppressWarnings("unused") static final ServiceAction GET_ACCESS_KEY      = new ServiceAction("IAM:GET_ACCESS_KEY");
-    @SuppressWarnings("unused") static final ServiceAction GET_GROUP           = new ServiceAction("IAM:GET_GROUP");
-    @SuppressWarnings("unused") static final ServiceAction GET_GROUP_POLICY    = new ServiceAction("IAM:GET_GROUP_POLICY");
-    @SuppressWarnings("unused") static final ServiceAction GET_USER            = new ServiceAction("IAM:GET_USER");
-    @SuppressWarnings("unused") static final ServiceAction GET_USER_POLICY     = new ServiceAction("IAM:GET_USER_POLICY");
-    @SuppressWarnings("unused") static final ServiceAction JOIN_GROUP          = new ServiceAction("IAM:JOIN_GROUP");
-    @SuppressWarnings("unused") static final ServiceAction LIST_ACCESS_KEY     = new ServiceAction("IAM:LIST_ACCESS_KEY");
-    @SuppressWarnings("unused") static final ServiceAction LIST_GROUP          = new ServiceAction("IAM:LIST_GROUP");
-    @SuppressWarnings("unused") static final ServiceAction LIST_USER           = new ServiceAction("IAM:LIST_USER");
-    @SuppressWarnings("unused") static final ServiceAction REMOVE_GROUP        = new ServiceAction("IAM:REMOVE_GROUP");
-    @SuppressWarnings("unused") static final ServiceAction REMOVE_GROUP_ACCESS = new ServiceAction("IAM:REMOVE_GROUP_ACCESS");
-    @SuppressWarnings("unused") static final ServiceAction REMOVE_USER         = new ServiceAction("IAM:REMOVE_USER");
-    @SuppressWarnings("unused") static final ServiceAction REMOVE_USER_ACCESS  = new ServiceAction("IAM:REMOVE_USER_ACCESS");
-    @SuppressWarnings("unused") static final ServiceAction UPDATE_GROUP        = new ServiceAction("IAM:UPDATE_GROUP");
-    @SuppressWarnings("unused") static final ServiceAction UPDATE_USER         = new ServiceAction("IAM:UPDATE_USER");
+    ServiceAction ANY                 = new ServiceAction("IAM:ANY");
+    ServiceAction ADD_GROUP_ACCESS    = new ServiceAction("IAM:ADD_GROUP_ACCESS");
+    ServiceAction ADD_USER_ACCESS     = new ServiceAction("IAM:ADD_USER_ACCESS");
+    ServiceAction CREATE_USER         = new ServiceAction("IAM:CREATE_USER");
+    ServiceAction CREATE_GROUP        = new ServiceAction("IAM:CREATE_GROUP");
+    ServiceAction DISABLE_API         = new ServiceAction("IAM:DISABLE_API");
+    ServiceAction DISABLE_CONSOLE     = new ServiceAction("IAM:DISABLE_CONSOLE");
+    ServiceAction DROP_FROM_GROUP     = new ServiceAction("IAM:DROP_FROM_GROUP");
+    ServiceAction ENABLE_API          = new ServiceAction("IAM:ENABLE_API");
+    ServiceAction ENABLE_CONSOLE      = new ServiceAction("IAM:ENABLE_CONSOLE");
+    ServiceAction GET_ACCESS_KEY      = new ServiceAction("IAM:GET_ACCESS_KEY");
+    ServiceAction GET_GROUP           = new ServiceAction("IAM:GET_GROUP");
+    ServiceAction GET_GROUP_POLICY    = new ServiceAction("IAM:GET_GROUP_POLICY");
+    ServiceAction GET_USER            = new ServiceAction("IAM:GET_USER");
+    ServiceAction GET_USER_POLICY     = new ServiceAction("IAM:GET_USER_POLICY");
+    ServiceAction JOIN_GROUP          = new ServiceAction("IAM:JOIN_GROUP");
+    ServiceAction LIST_ACCESS_KEY     = new ServiceAction("IAM:LIST_ACCESS_KEY");
+    ServiceAction LIST_GROUP          = new ServiceAction("IAM:LIST_GROUP");
+    ServiceAction LIST_USER           = new ServiceAction("IAM:LIST_USER");
+    ServiceAction REMOVE_GROUP        = new ServiceAction("IAM:REMOVE_GROUP");
+    ServiceAction REMOVE_GROUP_ACCESS = new ServiceAction("IAM:REMOVE_GROUP_ACCESS");
+    ServiceAction REMOVE_USER         = new ServiceAction("IAM:REMOVE_USER");
+    ServiceAction REMOVE_USER_ACCESS  = new ServiceAction("IAM:REMOVE_USER_ACCESS");
+    ServiceAction UPDATE_GROUP        = new ServiceAction("IAM:UPDATE_GROUP");
+    ServiceAction UPDATE_USER         = new ServiceAction("IAM:UPDATE_USER");
 
     /**
      * Provides access to meta-data about identity and access capabilities in the current region of this cloud.
@@ -76,7 +76,6 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      * @throws CloudException an error occurred with the cloud provider adding the user
      * @throws InternalException an error occurred within the Dasein Cloud implementation while adding the user
      */
-    @SuppressWarnings("unused")
     void addUserToGroups(@Nonnull String providerUserId, @Nonnull String ... providerGroupIds) throws CloudException, InternalException;
 
     /**
@@ -88,7 +87,6 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      * @throws CloudException an error occurred with the cloud provider while creating the group
      * @throws InternalException an error occurred within the Dasein Cloud implementation while creating the group
      */
-    @SuppressWarnings("unused")
     @Nonnull CloudGroup createGroup(@Nonnull String groupName, @Nullable String path, boolean asAdminGroup) throws CloudException, InternalException;
 
     /**
@@ -100,7 +98,6 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      * @throws CloudException an error occurred creating the user with the cloud provider
      * @throws InternalException an error occurred within the Dasein Cloud implementation while creating the user
      */
-    @SuppressWarnings("unused")
     @Nonnull CloudUser createUser(@Nonnull String userName, @Nullable String path, @Nullable String ... autoJoinGroupIds) throws CloudException, InternalException;
 
     /**
@@ -110,8 +107,7 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      * @throws CloudException an error occurred within the cloud provider enabling API access
      * @throws InternalException an error occurred within the Dasein Cloud implementation while enabling access
      */
-    @SuppressWarnings("unused")
-    @Nonnull AccessKey enableApiAccess(@Nonnull String providerUserId) throws CloudException, InternalException;
+    @Nonnull AccessKey createAccessKey(@Nonnull String providerUserId) throws CloudException, InternalException;
 
     /**
      * Enables console access for the specified user with the specified password.
@@ -120,8 +116,17 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      * @throws CloudException an error occurred in the cloud provider enabling console access
      * @throws InternalException an error occurred within the Dasein Cloud implementation while enabling console access
      */
-    @SuppressWarnings("unused")
     void enableConsoleAccess(@Nonnull String providerUserId, @Nonnull byte[] password) throws CloudException, InternalException;
+
+    /**
+     * Updates the password used for console access for the specified user
+     * @param providerUserId the cloud provider ID of the user to add console access for
+     * @param oldPassword the old password used for access to the console
+     * @param newPassword the new password to be used for access to the console
+     * @throws CloudException an error occurred in the cloud provider enabling console access
+     * @throws InternalException an error occurred within the Dasein Cloud implementation while enabling console access
+     */
+    void updateConsoleAccess(@Nonnull String providerUserId, @Nonnull byte[] oldPassword, @Nonnull byte[] newPassword) throws CloudException, InternalException;
 
     /**
      * Provides the cloud console URL where cloud user may sign-in to using their credentials.
@@ -140,7 +145,6 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      * @throws CloudException an error occurred in the cloud provider fetching the specified group
      * @throws InternalException an error occurred in the Dasein Cloud implementation while fetching the specified group
      */
-    @SuppressWarnings("unused")
     @Nullable CloudGroup getGroup(@Nonnull String providerGroupId) throws CloudException, InternalException;
 
     /**
@@ -150,7 +154,6 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      * @throws CloudException an error occurred in the cloud provider fetching the specified policy
      * @throws InternalException an error occurred in the Dasein Cloud implementation while fetching the specified policy
      */
-    @SuppressWarnings("unused")
     @Nullable CloudPolicy getPolicy(@Nonnull String providerPolicyId) throws CloudException, InternalException;
 
     /**
@@ -160,15 +163,22 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      * @throws CloudException an error occurred in the cloud provider fetching the specified user
      * @throws InternalException an error occurred in the Dasein Cloud implementation while fetching the specified user
      */
-    @SuppressWarnings("unused")
     @Nullable CloudUser getUser(@Nonnull String providerUserId) throws CloudException, InternalException;
     /**
      * @return true if this cloud supports IdM features in the current region and this account has access to them
      * @throws CloudException an error occurred in the cloud provider determining subscription status
      * @throws InternalException an error occurred within the Dasein Cloud implementation while determining subscription status
      */
-    @SuppressWarnings("unused")
     boolean isSubscribed() throws CloudException, InternalException;
+
+    /**
+     * List all API access keys either for a specified user or for a current user, which may include root credentials
+     * @param providerUserId the user ID for which the access keys are listed, if specified
+     * @return all matching access keys
+     * @throws CloudException an error occurred with the cloud provider while listing access keys
+     * @throws InternalException an error occurred  within the Dasein Cloud implementation while processing the request
+     */
+    @Nonnull Iterable<AccessKey> listAccessKeys(@Nullable String providerUserId) throws CloudException, InternalException;
 
     /**
      * Lists all groups or all groups with the specified path base
@@ -177,7 +187,6 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      * @throws CloudException an error occurred listing groups from the cloud provider
      * @throws InternalException an error occurred within the Dasein Cloud implementation processing the request
      */
-    @SuppressWarnings("unused")
     @Nonnull Iterable<CloudGroup> listGroups(@Nullable String pathBase) throws CloudException, InternalException;
 
     /**
@@ -187,7 +196,6 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      * @throws CloudException an error occurred with the cloud provider searching for the specified user's groups
      * @throws InternalException an error occurred within the Dasein Cloud implementation executing the search
      */
-    @SuppressWarnings("unused")
     @Nonnull Iterable<CloudGroup> listGroupsForUser(@Nonnull String providerUserId) throws CloudException, InternalException;
 
     /**
@@ -197,7 +205,6 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      * @throws CloudException an error occurred with the cloud provider listing the policies
      * @throws InternalException an error occurred within the Dasein Cloud implementation executing the listing
      */
-    @SuppressWarnings("unused")
     @Nonnull Iterable<CloudPolicy> listPolicies(@Nonnull CloudPolicyFilterOptions options) throws CloudException, InternalException;
 
     /**
@@ -207,7 +214,6 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      * @throws CloudException an error occurred with the cloud provider while performing the search
      * @throws InternalException an error occurred within the Dasein Cloud implementation while performing the search
      */
-    @SuppressWarnings("unused")
     @Nonnull Iterable<CloudUser> listUsersInGroup(@Nonnull String inProviderGroupId) throws CloudException, InternalException;
 
     /**
@@ -217,7 +223,6 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      * @throws CloudException an error occurred with the cloud provider while performing the search
      * @throws InternalException an error occurred within the Dasein Cloud implementation while performing the search
      */
-    @SuppressWarnings("unused")
     @Nonnull Iterable<CloudUser> listUsersInPath(@Nullable String pathBase) throws CloudException, InternalException;
 
     /**
@@ -227,7 +232,6 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      * @throws CloudException an error occurred in the cloud provider while removing the access key
      * @throws InternalException an error occurred within the Dasein Cloud implementation while removing the access key
      */
-    @SuppressWarnings("unused")
     void removeAccessKey(@Nonnull String sharedKeyPart, @Nullable String providerUserId) throws CloudException, InternalException;
 
     /**
@@ -236,7 +240,6 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      * @throws CloudException an error occurred within the cloud provider while removing the access
      * @throws InternalException an error occurred within the Dasein Cloud implementation while removing the console access
      */
-    @SuppressWarnings("unused")
     void removeConsoleAccess(@Nonnull String providerUserId) throws CloudException, InternalException;
 
     /**
@@ -246,7 +249,6 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      * @throws CloudException an error occurred in the cloud provider (did you empty the group?) removing the group
      * @throws InternalException an error occurred within the Dasein Cloud implementation removing the group
      */
-    @SuppressWarnings("unused")
     void removeGroup(@Nonnull String providerGroupId) throws CloudException, InternalException;
 
     /**
@@ -264,7 +266,6 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      * @throws CloudException an error occurred in the cloud provider removing the user
      * @throws InternalException an error occurred in the Dasein Cloud implementation removing the group
      */
-    @SuppressWarnings("unused")
     void removeUser(@Nonnull String providerUserId) throws CloudException, InternalException;
 
     /**
@@ -274,7 +275,6 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      * @throws CloudException an error occurred in the cloud provider (did the user belong to the group?) removing the user from the group
      * @throws InternalException an error occurred within the Dasein Cloud implementation removing the user
      */
-    @SuppressWarnings("unused")
     void removeUserFromGroup(@Nonnull String providerUserId, @Nonnull String providerGroupId) throws CloudException, InternalException;
 
     /**
@@ -295,8 +295,89 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      * @throws CloudException an error occurred with the cloud provider (does the group exist?) updating the group
      * @throws InternalException an error occurred within the Dasein Cloud implementation updating the group
      */
-    @SuppressWarnings("unused")
     void modifyGroup(@Nonnull String providerGroupId, @Nullable String newGroupName, @Nullable String newPath) throws CloudException, InternalException;
+
+    /**
+     * Create a policy according to the supplied options
+     * @param options description of the policy
+     * @return a unique policy identifier
+     * @throws CloudException an error occurred with the cloud provider while creating policy
+     * @throws InternalException an error occurred within the Dasein Cloud implementation
+     */
+    @Nonnull String createPolicy(@Nonnull CloudPolicyOptions options) throws CloudException, InternalException;
+
+    /**
+     * Modify specified policy according to the supplied options
+     * @param options description of the policy changes
+     * @throws CloudException an error occurred with the cloud provider while modifying policy
+     * @throws InternalException an error occurred within the Dasein Cloud implementation
+     */
+    void modifyPolicy(@Nonnull String providerPolicyId, @Nonnull CloudPolicyOptions options) throws CloudException, InternalException;
+
+    /**
+     * Remove a cloud policy with the specified policy identifier
+     * @throws CloudException an error occurred with the cloud provider while removing policy
+     * @throws InternalException an error occurred within the Dasein Cloud implementation
+     */
+    void removePolicy(@Nonnull String providerPolicyId) throws CloudException, InternalException;
+
+    /**
+     * Associate specified policy with the specified cloud user
+     * @param providerPolicyId unique policy identifier
+     * @param providerUserId unique cloud user identifier
+     * @throws CloudException an error occurred with the cloud provider while associating policy with the user
+     * @throws InternalException an error occurred within the Dasein Cloud implementation
+     * @see IdentityAndAccessCapabilities#getMaximumPoliciesPerUser()
+     */
+    void attachPolicyToUser(@Nonnull String providerPolicyId, @Nonnull String providerUserId) throws CloudException, InternalException;
+
+    /**
+     * De-associate specified policy from the specified cloud user
+     * @param providerPolicyId unique policy identifier
+     * @param providerUserId unique cloud user identifier
+     * @throws CloudException an error occurred with the cloud provider while de-associating policy from the user
+     * @throws InternalException an error occurred within the Dasein Cloud implementation
+     * @see IdentityAndAccessCapabilities#getMaximumPoliciesPerUser()
+     */
+    void detachPolicyFromUser(@Nonnull String providerPolicyId, @Nonnull String providerUserId) throws CloudException, InternalException;
+
+    /**
+     * Associate specified policy with the specified cloud group
+     * @param providerPolicyId unique policy identifier
+     * @param providerGroupId unique cloud group identifier
+     * @throws CloudException an error occurred with the cloud provider while associating policy with the group
+     * @throws InternalException an error occurred within the Dasein Cloud implementation
+     * @see IdentityAndAccessCapabilities#getMaximumPoliciesPerGroup()
+     */
+    void attachPolicyToGroup(@Nonnull String providerPolicyId, @Nonnull String providerGroupId) throws CloudException, InternalException;
+
+    /**
+     * De-associate specified policy from the specified cloud group
+     * @param providerPolicyId unique policy identifier
+     * @param providerGroupId unique cloud group identifier
+     * @throws CloudException an error occurred with the cloud provider while de-associating policy from the group
+     * @throws InternalException an error occurred within the Dasein Cloud implementation
+     * @see IdentityAndAccessCapabilities#getMaximumPoliciesPerGroup()
+     */
+    void detachPolicyFromGroup(@Nonnull String providerPolicyId, @Nonnull String providerGroupId) throws CloudException, InternalException;
+
+    /**
+     * Enable the specifed API access key either for a specified user or for a current user, which may include root credentials
+     * @param sharedKeyPart the access key's shared part
+     * @param providerUserId the user ID for which the access key needs to be enabled, if specified
+     * @throws CloudException an error occurred with the cloud provider while enabling the access key
+     * @throws InternalException an error occurred  within the Dasein Cloud implementation while processing the request
+     */
+    void enableAccessKey(@Nonnull String sharedKeyPart, @Nullable String providerUserId) throws CloudException, InternalException;
+
+    /**
+     * Disable the specifed API access key either for a specified user or for a current user, which may include root credentials
+     * @param sharedKeyPart the access key's shared part
+     * @param providerUserId the user ID for which the access key needs to be disabled, if specified
+     * @throws CloudException an error occurred with the cloud provider while disabling the access key
+     * @throws InternalException an error occurred  within the Dasein Cloud implementation while processing the request
+     */
+    void disableAccessKey(@Nonnull String sharedKeyPart, @Nullable String providerUserId) throws CloudException, InternalException;
 
     /**
      * Saves the specified permission for the specified group to the access control system of the cloud. For any
@@ -311,8 +392,9 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      * @throws CloudException an error occurred with the cloud provider applying the permission
      * @throws InternalException an error occurred within Dasein Cloud processing the request
      */
-    @SuppressWarnings("unused")
+    
     @Nonnull String[] modifyGroupPolicy(@Nonnull String providerGroupId, @Nonnull String name, @Nonnull CloudPermission permission, @Nullable ServiceAction action, @Nullable String resourceId) throws CloudException, InternalException;
+
 
     /**
      * Saves the specified permission for the specified user to the access control system of the cloud. For any
@@ -327,8 +409,9 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      * @throws CloudException an error occurred with the cloud provider applying the permission
      * @throws InternalException an error occurred within Dasein Cloud processing the request
      */
-    @SuppressWarnings("unused")
+    
     @Nonnull String[] modifyUserPolicy(@Nonnull String providerUserId, @Nonnull String name, @Nonnull CloudPermission permission, @Nullable ServiceAction action, @Nullable String resourceId) throws CloudException, InternalException;
+
 
     /**
      * Updates the specified user with new path or user name values. If <code>null</code> is specified for any value,
@@ -339,7 +422,7 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      * @throws CloudException an error occurred with the cloud provider (does the user exist?) updating the user
      * @throws InternalException an error occurred within the Dasein Cloud implementation updating the user
      */
-    @SuppressWarnings("unused")
+    
     void modifyUser(@Nonnull String providerUserId, @Nullable String newUserName, @Nullable String newPath) throws CloudException, InternalException;
 
     /**
@@ -348,7 +431,7 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      * @throws CloudException
      * @throws InternalException
      */
-    @SuppressWarnings("unused")
+    
     @Nonnull Iterable<String> listServices() throws CloudException, InternalException;
 
     /**
@@ -358,6 +441,6 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      * @throws CloudException
      * @throws InternalException
      */
-    @SuppressWarnings("unused")
+    
     @Nonnull Iterable<ServiceAction> listServiceActions(@Nullable String forService) throws CloudException, InternalException;
 }

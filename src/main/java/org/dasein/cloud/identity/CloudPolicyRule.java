@@ -8,6 +8,7 @@ import java.util.Arrays;
  * @author Stas Maksimov (stas.maksimov@software.dell.com)
  * @since 2015.09
  */
+@SuppressWarnings("unused")
 public class CloudPolicyRule {
     private CloudPermission permission;
     private String          resourceId;
@@ -18,7 +19,7 @@ public class CloudPolicyRule {
      * Construct a new cloud policy rule instance
      * @param permission Does policy allow or deny the actions
      * @param actions Which actions does the policy govern, all if empty
-     * @param resourceId Which resource does the policy govern, <code>null</code> for any resource
+     * @param resourceId Which resource does the policy govern, any resource if {@code null}
      * @return new cloud policy rule instance
      */
     public static CloudPolicyRule getInstance(
@@ -33,7 +34,7 @@ public class CloudPolicyRule {
      * @param permission Does policy allow or deny the actions
      * @param actions Which actions does the policy govern, all if empty
      * @param exceptActions Indicates if the permission will apply to all actions except the ones defined in this rule
-     * @param resourceId Which resource does the policy govern, <code>null</code> for any resource
+     * @param resourceId Which resources does the policy govern, <code>null</code> for any resource
      * @return new cloud policy rule instance
      */
     public static CloudPolicyRule getInstance(@Nonnull CloudPermission permission, @Nonnull ServiceAction[] actions, boolean exceptActions, @Nullable String resourceId) {
@@ -57,17 +58,17 @@ public class CloudPolicyRule {
 
     /**
      * Resource ID to which the cloud police rule applies
-     * @return
+     * @return resource identifier to which the policy rule applies, {@code null} for any resource
      */
-    public String getResourceId() {
+    public @Nullable String getResourceId() {
         return resourceId;
     }
 
     /**
      * Actions that are allowed or denied on the defined resource
-     * @return
+     * @return actions
      */
-    public ServiceAction[] getActions() {
+    public @Nonnull ServiceAction[] getActions() {
         return actions;
     }
 
@@ -85,9 +86,9 @@ public class CloudPolicyRule {
         return permission
                 + ": "
                 + (exceptActions ? "NOT " : "")
-                + (actions.length == 0 ? "*" : Arrays.toString(actions))
+                + (actions.length == 0 ? "ANY" : Arrays.toString(actions))
                 + "/"
-                + ( resourceId != null ? resourceId : "*");
+                + (resourceId == null ? "ANY" : resourceId);
     }
 
 }
