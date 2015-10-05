@@ -51,7 +51,7 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
     ServiceAction GET_USER            = new ServiceAction("IAM:GET_USER");
     ServiceAction GET_USER_POLICY     = new ServiceAction("IAM:GET_USER_POLICY");
     ServiceAction JOIN_GROUP          = new ServiceAction("IAM:JOIN_GROUP");
-    ServiceAction LIST_ACCESS_KEY     = new ServiceAction("IAM:LIST_ACCESS_KEY");
+    ServiceAction LIST_ACCESS_KEYS    = new ServiceAction("IAM:LIST_ACCESS_KEYS");
     ServiceAction LIST_GROUP          = new ServiceAction("IAM:LIST_GROUP");
     ServiceAction LIST_USER           = new ServiceAction("IAM:LIST_USER");
     ServiceAction REMOVE_GROUP        = new ServiceAction("IAM:REMOVE_GROUP");
@@ -102,12 +102,12 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
 
     /**
      * Enables the specified user to access the cloud API via their own API keys.
-     * @param providerUserId the user to grant API access to
-     * @return the access keys for the user
+     * @param providerUserId the user to grant API access to, create a root credential if {@code null}
+     * @return the access keys for the user if any, otherwise the root credentials
      * @throws CloudException an error occurred within the cloud provider enabling API access
      * @throws InternalException an error occurred within the Dasein Cloud implementation while enabling access
      */
-    @Nonnull AccessKey createAccessKey(@Nonnull String providerUserId) throws CloudException, InternalException;
+    @Nonnull AccessKey createAccessKey(@Nullable String providerUserId) throws CloudException, InternalException;
 
     /**
      * Enables console access for the specified user with the specified password.
@@ -226,7 +226,7 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
     @Nonnull Iterable<CloudUser> listUsersInPath(@Nullable String pathBase) throws CloudException, InternalException;
 
     /**
-     * Removes a previously created API access key associated with a user.
+     * Removes a previously created API access key associated with a user, if any - otherwise remove root API access key
      * @param sharedKeyPart the shared part of the key to remove
      * @param providerUserId the user whose access should be removed, if any
      * @throws CloudException an error occurred in the cloud provider while removing the access key
@@ -382,7 +382,7 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
     /**
      * Saves the specified permission for the specified group to the access control system of the cloud. For any
      * nullable parameter, <code>null</code> means that global application of the permission. For example,
-     * a <code>null</code> action means the prmission applies to all actions against that service and resource.
+     * a <code>null</code> action means the permission applies to all actions against that service and resource.
      * @param providerGroupId the group ID of the group to which this policy should apply
      * @param name the name of the policy                        
      * @param permission the permission being granted or denied
@@ -399,7 +399,7 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
     /**
      * Saves the specified permission for the specified user to the access control system of the cloud. For any
      * nullable parameter, <code>null</code> means that global application of the permission. For example,
-     * a <code>null</code> action means the prmission applies to all actions against that service and resource.
+     * a <code>null</code> action means the permission applies to all actions against that service and resource.
      * @param providerUserId the group ID of the user to which this policy should apply
      * @param name the name of the policy                      
      * @param permission the permission being granted or denied
