@@ -33,6 +33,11 @@ public abstract class AbstractIdentityAndAccessSupport<T extends CloudProvider> 
         throw new OperationNotSupportedException("Policies cannot be retrieved in " + getProvider().getCloudName());
     }
 
+    @Override
+    public @Nonnull CloudPolicyRule[] getPolicyRules(@Nonnull String providerPolicyId) throws CloudException, InternalException {
+        throw new OperationNotSupportedException("Policy rules cannot be retrieved in " + getProvider().getCloudName());
+    }
+
     @Nonnull
     @Override
     public Iterable<CloudPolicy> listPolicies(@Nonnull CloudPolicyFilterOptions opts) throws CloudException, InternalException {

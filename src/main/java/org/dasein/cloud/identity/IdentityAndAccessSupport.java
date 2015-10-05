@@ -157,6 +157,15 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
     @Nullable CloudPolicy getPolicy(@Nonnull String providerPolicyId) throws CloudException, InternalException;
 
     /**
+     * Provides a list of policy rules for a specific policy.
+     * @param providerPolicyId the unique ID of the target policy
+     * @return the list of policy rules
+     * @throws CloudException an error occurred in the cloud provider fetching the specified policy
+     * @throws InternalException an error occurred in the Dasein Cloud implementation while fetching the specified policy
+     */
+    @Nonnull CloudPolicyRule[] getPolicyRules(@Nonnull String providerPolicyId) throws CloudException, InternalException;
+
+    /**
      * Provides a reference to the specified user.
      * @param providerUserId the unique ID of the target user
      * @return the specified user if it exists
