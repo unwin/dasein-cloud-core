@@ -15,8 +15,8 @@ public class CloudPolicyFilterOptions {
     /**
      * Create an instance of policy filtering options, when {@code policyTypes} includes {@link CloudPolicyType#INLINE_POLICY}
      * the {@link CloudPolicyFilterOptions#providerUserId} or {@link CloudPolicyFilterOptions#providerGroupId} are required.
-     * @param policyTypes
-     * @return
+     * @param policyTypes which policy types to include
+     * @return an instance of policy filtering options
      */
     public static CloudPolicyFilterOptions getInstance(@Nonnull CloudPolicyType ... policyTypes) {
         CloudPolicyFilterOptions opts = new CloudPolicyFilterOptions();

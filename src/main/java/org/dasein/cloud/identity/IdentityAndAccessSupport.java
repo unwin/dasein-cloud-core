@@ -148,22 +148,24 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
     @Nullable CloudGroup getGroup(@Nonnull String providerGroupId) throws CloudException, InternalException;
 
     /**
-     * Provides a reference to the specified managed policy.
+     * Provides a reference to the specified managed or inline policy.
      * @param providerPolicyId the unique ID of the target policy
+     * @param options policy is assumed to be managed if {@code null}, must not be {@code null} for inline policies and should contain either a user ID or group ID which the policy is associated with.
      * @return the specified policy if it exists
      * @throws CloudException an error occurred in the cloud provider fetching the specified policy
      * @throws InternalException an error occurred in the Dasein Cloud implementation while fetching the specified policy
      */
-    @Nullable CloudPolicy getPolicy(@Nonnull String providerPolicyId) throws CloudException, InternalException;
+    @Nullable CloudPolicy getPolicy(@Nonnull String providerPolicyId, @Nullable CloudPolicyFilterOptions options) throws CloudException, InternalException;
 
     /**
-     * Provides a list of policy rules for a specific policy.
+     * Provides a list of policy rules for a specific managed or inline policy.
      * @param providerPolicyId the unique ID of the target policy
+     * @param options policy is assumed to be managed if {@code null}, must not be {@code null} for inline policies and should contain either a user ID or group ID which the policy is associated with.
      * @return the list of policy rules
      * @throws CloudException an error occurred in the cloud provider fetching the specified policy
      * @throws InternalException an error occurred in the Dasein Cloud implementation while fetching the specified policy
      */
-    @Nonnull CloudPolicyRule[] getPolicyRules(@Nonnull String providerPolicyId) throws CloudException, InternalException;
+    @Nonnull CloudPolicyRule[] getPolicyRules(@Nonnull String providerPolicyId, @Nullable CloudPolicyFilterOptions options) throws CloudException, InternalException;
 
     /**
      * Provides a reference to the specified user.
@@ -260,14 +262,14 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      */
     void removeGroup(@Nonnull String providerGroupId) throws CloudException, InternalException;
 
-    /**
-     * Removes the specified group policy from the list of policies associated with this group
-     * @param providerGroupId the group from which the policy is being removed
-     * @param providerPolicyId the policy to be removed
-     * @throws CloudException an error occurred in the cloud provider
-     * @throws InternalException an error occurred within the Dasein Cloud implementation
-     */
-    void removeGroupPolicy(@Nonnull String providerGroupId, @Nonnull String providerPolicyId) throws CloudException, InternalException;
+//    /**
+//     * Removes the specified group policy from the list of policies associated with this group
+//     * @param providerGroupId the group from which the policy is being removed
+//     * @param providerPolicyId the policy to be removed
+//     * @throws CloudException an error occurred in the cloud provider
+//     * @throws InternalException an error occurred within the Dasein Cloud implementation
+//     */
+//    void removeGroupPolicy(@Nonnull String providerGroupId, @Nonnull String providerPolicyId) throws CloudException, InternalException;
 
     /**
      * Removes the specified user from the cloud provider.
@@ -286,14 +288,14 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      */
     void removeUserFromGroup(@Nonnull String providerUserId, @Nonnull String providerGroupId) throws CloudException, InternalException;
 
-    /**
-     * Removes the specified user policy from the list of policies associated with this user
-     * @param providerUserId the user from whom the policy is being removed
-     * @param providerPolicyId the policy to be removed
-     * @throws CloudException an error occurred in the cloud provider
-     * @throws InternalException an error occurred within the Dasein Cloud implementation
-     */
-    void removeUserPolicy(@Nonnull String providerUserId, @Nonnull String providerPolicyId) throws CloudException, InternalException;
+//    /**
+//     * Removes the specified user policy from the list of policies associated with this user
+//     * @param providerUserId the user from whom the policy is being removed
+//     * @param providerPolicyId the policy to be removed
+//     * @throws CloudException an error occurred in the cloud provider
+//     * @throws InternalException an error occurred within the Dasein Cloud implementation
+//     */
+//    void removeUserPolicy(@Nonnull String providerUserId, @Nonnull String providerPolicyId) throws CloudException, InternalException;
 
     /**
      * Updates the specified group with new path or name values. If <code>null</code> is specified for any value, it
@@ -317,18 +319,23 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
 
     /**
      * Modify specified policy according to the supplied options
-     * @param options description of the policy changes
+     * @param providerPolicyId target policy that is being modified
+     * @param options Description of the policy changes. User/group ID which may be passed in are used for inline policy association. For managed policy attachment use {@link #attachPolicyToUser(String, String) attachPolicyToUser} and {@link #attachPolicyToGroup(String, String) attachPolicyToGroup}.
      * @throws CloudException an error occurred with the cloud provider while modifying policy
      * @throws InternalException an error occurred within the Dasein Cloud implementation
      */
     void modifyPolicy(@Nonnull String providerPolicyId, @Nonnull CloudPolicyOptions options) throws CloudException, InternalException;
 
     /**
-     * Remove a cloud policy with the specified policy identifier
+     * Remove a cloud policy with the specified policy identifier and optionally with an options object which may
+     * be used to address a specific inline user or group policy
+     * @param providerPolicyId unique policy ID
+     * @param options policy is assumed to be managed if {@code null}, otherwise may contain a user ID or group ID for
+     *                an inline policy
      * @throws CloudException an error occurred with the cloud provider while removing policy
      * @throws InternalException an error occurred within the Dasein Cloud implementation
      */
-    void removePolicy(@Nonnull String providerPolicyId) throws CloudException, InternalException;
+    void removePolicy(@Nonnull String providerPolicyId, @Nullable CloudPolicyFilterOptions options) throws CloudException, InternalException;
 
     /**
      * Associate specified policy with the specified cloud user
@@ -388,38 +395,38 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
      */
     void disableAccessKey(@Nonnull String sharedKeyPart, @Nullable String providerUserId) throws CloudException, InternalException;
 
-    /**
-     * Saves the specified permission for the specified group to the access control system of the cloud. For any
-     * nullable parameter, <code>null</code> means that global application of the permission. For example,
-     * a <code>null</code> action means the permission applies to all actions against that service and resource.
-     * @param providerGroupId the group ID of the group to which this policy should apply
-     * @param name the name of the policy                        
-     * @param permission the permission being granted or denied
-     * @param action the action against which the permission applies
-     * @param resourceId the resource ID against which the permission applies
-     * @return the ID or IDs of the newly created policy (can result in multiple policies)
-     * @throws CloudException an error occurred with the cloud provider applying the permission
-     * @throws InternalException an error occurred within Dasein Cloud processing the request
-     */
-    
-    @Nonnull String[] modifyGroupPolicy(@Nonnull String providerGroupId, @Nonnull String name, @Nonnull CloudPermission permission, @Nullable ServiceAction action, @Nullable String resourceId) throws CloudException, InternalException;
+//    /**
+//     * Saves the specified permission for the specified group to the access control system of the cloud. For any
+//     * nullable parameter, <code>null</code> means that global application of the permission. For example,
+//     * a <code>null</code> action means the permission applies to all actions against that service and resource.
+//     * @param providerGroupId the group ID of the group to which this policy should apply
+//     * @param name the name of the policy
+//     * @param permission the permission being granted or denied
+//     * @param action the action against which the permission applies
+//     * @param resourceId the resource ID against which the permission applies
+//     * @return the ID or IDs of the newly created policy (can result in multiple policies)
+//     * @throws CloudException an error occurred with the cloud provider applying the permission
+//     * @throws InternalException an error occurred within Dasein Cloud processing the request
+//     */
+//
+//    @Nonnull String[] modifyGroupPolicy(@Nonnull String providerGroupId, @Nonnull String name, @Nonnull CloudPermission permission, @Nullable ServiceAction action, @Nullable String resourceId) throws CloudException, InternalException;
 
 
-    /**
-     * Saves the specified permission for the specified user to the access control system of the cloud. For any
-     * nullable parameter, <code>null</code> means that global application of the permission. For example,
-     * a <code>null</code> action means the permission applies to all actions against that service and resource.
-     * @param providerUserId the group ID of the user to which this policy should apply
-     * @param name the name of the policy                      
-     * @param permission the permission being granted or denied
-     * @param action the action against which the permission applies
-     * @param resourceId the resource ID against which the permission applies
-     * @return the ID or IDs of the newly created policy (can result in multiple policies)
-     * @throws CloudException an error occurred with the cloud provider applying the permission
-     * @throws InternalException an error occurred within Dasein Cloud processing the request
-     */
-    
-    @Nonnull String[] modifyUserPolicy(@Nonnull String providerUserId, @Nonnull String name, @Nonnull CloudPermission permission, @Nullable ServiceAction action, @Nullable String resourceId) throws CloudException, InternalException;
+//    /**
+//     * Saves the specified permission for the specified user to the access control system of the cloud. For any
+//     * nullable parameter, <code>null</code> means that global application of the permission. For example,
+//     * a <code>null</code> action means the permission applies to all actions against that service and resource.
+//     * @param providerUserId the group ID of the user to which this policy should apply
+//     * @param name the name of the policy
+//     * @param permission the permission being granted or denied
+//     * @param action the action against which the permission applies
+//     * @param resourceId the resource ID against which the permission applies
+//     * @return the ID or IDs of the newly created policy (can result in multiple policies)
+//     * @throws CloudException an error occurred with the cloud provider applying the permission
+//     * @throws InternalException an error occurred within Dasein Cloud processing the request
+//     */
+//
+//    @Nonnull String[] modifyUserPolicy(@Nonnull String providerUserId, @Nonnull String name, @Nonnull CloudPermission permission, @Nullable ServiceAction action, @Nullable String resourceId) throws CloudException, InternalException;
 
 
     /**
@@ -437,19 +444,17 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
     /**
      * List all unique ids for all services available in the cloud, as addressable by IAM policies
      * @return list of all service ids
-     * @throws CloudException
-     * @throws InternalException
+     * @throws CloudException an error occurred with the cloud provider while listing services
+     * @throws InternalException an error occurred within the Dasein Cloud implementation
      */
-    
     @Nonnull Iterable<String> listServices() throws CloudException, InternalException;
 
     /**
      * List all available actions per service, optionally selected for one individual service
      * @param forService optional service id for which to list actions
      * @return list of all available actions per given service, or if {@code forService} is {@code null} - all actions for all services
-     * @throws CloudException
-     * @throws InternalException
+     * @throws CloudException an error occurred with the cloud provider while listing service action
+     * @throws InternalException an error occurred within the Dasein Cloud implementation
      */
-    
     @Nonnull Iterable<ServiceAction> listServiceActions(@Nullable String forService) throws CloudException, InternalException;
 }

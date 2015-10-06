@@ -27,32 +27,28 @@ public abstract class AbstractIdentityAndAccessSupport<T extends CloudProvider> 
         throw new OperationNotSupportedException("Groups cannot be listed for user in " + getProvider().getCloudName());
     }
 
-    @Nullable
     @Override
-    public CloudPolicy getPolicy(@Nonnull String providerPolicyId) throws CloudException, InternalException {
+    public @Nullable CloudPolicy getPolicy(@Nonnull String providerPolicyId, @Nullable CloudPolicyFilterOptions options) throws CloudException, InternalException {
         throw new OperationNotSupportedException("Policies cannot be retrieved in " + getProvider().getCloudName());
     }
 
     @Override
-    public @Nonnull CloudPolicyRule[] getPolicyRules(@Nonnull String providerPolicyId) throws CloudException, InternalException {
+    public @Nonnull CloudPolicyRule[] getPolicyRules(@Nonnull String providerPolicyId, @Nullable CloudPolicyFilterOptions options) throws CloudException, InternalException {
         throw new OperationNotSupportedException("Policy rules cannot be retrieved in " + getProvider().getCloudName());
     }
 
-    @Nonnull
     @Override
-    public Iterable<CloudPolicy> listPolicies(@Nonnull CloudPolicyFilterOptions opts) throws CloudException, InternalException {
+    public @Nonnull Iterable<CloudPolicy> listPolicies(@Nonnull CloudPolicyFilterOptions opts) throws CloudException, InternalException {
         throw new OperationNotSupportedException("Policies cannot be listed in " + getProvider().getCloudName());
     }
 
-    @Nonnull
     @Override
-    public Iterable<CloudUser> listUsersInGroup(@Nonnull String inProviderGroupId) throws CloudException, InternalException {
+    public @Nonnull Iterable<CloudUser> listUsersInGroup(@Nonnull String inProviderGroupId) throws CloudException, InternalException {
         throw new OperationNotSupportedException("Users cannot be listed for group in " + getProvider().getCloudName());
     }
 
-    @Nonnull
     @Override
-    public Iterable<CloudUser> listUsersInPath(@Nullable String pathBase) throws CloudException, InternalException {
+    public @Nonnull Iterable<CloudUser> listUsersInPath(@Nullable String pathBase) throws CloudException, InternalException {
         throw new OperationNotSupportedException("Users cannot be listed in path in " + getProvider().getCloudName());
     }
 
@@ -71,9 +67,8 @@ public abstract class AbstractIdentityAndAccessSupport<T extends CloudProvider> 
         throw new OperationNotSupportedException("Access keys cannot be disabled in " + getProvider().getCloudName());
     }
 
-    @Nonnull
     @Override
-    public Iterable<AccessKey> listAccessKeys(@Nullable String providerUserId) throws CloudException, InternalException {
+    public @Nonnull Iterable<AccessKey> listAccessKeys(@Nullable String providerUserId) throws CloudException, InternalException {
         throw new OperationNotSupportedException("Access keys cannot be listed in " + getProvider().getCloudName());
     }
 
@@ -93,10 +88,10 @@ public abstract class AbstractIdentityAndAccessSupport<T extends CloudProvider> 
         throw new OperationNotSupportedException("Groups cannot be removed in " + getProvider().getCloudName());
     }
 
-    @Override
-    public void removeGroupPolicy(@Nonnull String providerGroupId, @Nonnull String providerPolicyId) throws CloudException, InternalException {
-        throw new OperationNotSupportedException("Group policies cannot be removed in " + getProvider().getCloudName());
-    }
+//    @Override
+//    public void removeGroupPolicy(@Nonnull String providerGroupId, @Nonnull String providerPolicyId) throws CloudException, InternalException {
+//        throw new OperationNotSupportedException("Group policies cannot be removed in " + getProvider().getCloudName());
+//    }
 
     @Override
     public void removeUser(@Nonnull String providerUserId) throws CloudException, InternalException {
@@ -108,27 +103,27 @@ public abstract class AbstractIdentityAndAccessSupport<T extends CloudProvider> 
         throw new OperationNotSupportedException("Users cannot be removed from groups in " + getProvider().getCloudName());
     }
 
-    @Override
-    public void removeUserPolicy(@Nonnull String providerUserId, @Nonnull String providerPolicyId) throws CloudException, InternalException {
-        throw new OperationNotSupportedException("User policies cannot be removed in " + getProvider().getCloudName());
-    }
+//    @Override
+//    public void removeUserPolicy(@Nonnull String providerUserId, @Nonnull String providerPolicyId) throws CloudException, InternalException {
+//        throw new OperationNotSupportedException("User policies cannot be removed in " + getProvider().getCloudName());
+//    }
 
     @Override
     public void modifyGroup(@Nonnull String providerGroupId, @Nullable String newGroupName, @Nullable String newPath) throws CloudException, InternalException {
         throw new OperationNotSupportedException("Groups cannot be modified in " + getProvider().getCloudName());
     }
 
-    @Nonnull
-    @Override
-    public String[] modifyGroupPolicy(@Nonnull String providerGroupId, @Nonnull String name, @Nonnull CloudPermission permission, @Nullable ServiceAction action, @Nullable String resourceId) throws CloudException, InternalException {
-        throw new OperationNotSupportedException("Groups policies cannot be modified in " + getProvider().getCloudName());
-    }
-
-    @Nonnull
-    @Override
-    public String[] modifyUserPolicy(@Nonnull String providerUserId, @Nonnull String name, @Nonnull CloudPermission permission, @Nullable ServiceAction action, @Nullable String resourceId) throws CloudException, InternalException {
-        throw new OperationNotSupportedException("User policies cannot be modified in " + getProvider().getCloudName());
-    }
+//    @Nonnull
+//    @Override
+//    public String[] modifyGroupPolicy(@Nonnull String providerGroupId, @Nonnull String name, @Nonnull CloudPermission permission, @Nullable ServiceAction action, @Nullable String resourceId) throws CloudException, InternalException {
+//        throw new OperationNotSupportedException("Groups policies cannot be modified in " + getProvider().getCloudName());
+//    }
+//
+//    @Nonnull
+//    @Override
+//    public String[] modifyUserPolicy(@Nonnull String providerUserId, @Nonnull String name, @Nonnull CloudPermission permission, @Nullable ServiceAction action, @Nullable String resourceId) throws CloudException, InternalException {
+//        throw new OperationNotSupportedException("User policies cannot be modified in " + getProvider().getCloudName());
+//    }
 
     @Override
     public void modifyUser(@Nonnull String providerUserId, @Nullable String newUserName, @Nullable String newPath) throws CloudException, InternalException {
@@ -159,7 +154,7 @@ public abstract class AbstractIdentityAndAccessSupport<T extends CloudProvider> 
     }
 
     @Override
-    public void removePolicy(@Nonnull String providerPolicyId) throws CloudException, InternalException {
+    public void removePolicy(@Nonnull String providerPolicyId, @Nullable CloudPolicyFilterOptions options) throws CloudException, InternalException {
         throw new OperationNotSupportedException("Policies cannot be removed in " + getProvider().getCloudName());
     }
 
