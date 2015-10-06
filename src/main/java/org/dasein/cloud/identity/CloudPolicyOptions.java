@@ -14,7 +14,7 @@ public class CloudPolicyOptions {
     private String providerUserId;
     private String providerGroupId;
 
-    public static CloudPolicyOptions getInstance(@Nonnull String name, @Nonnull CloudPolicyRule[] rules) {
+    public static CloudPolicyOptions getInstance(@Nonnull String name, @Nonnull CloudPolicyRule ... rules) {
         return new CloudPolicyOptions(name, rules);
     }
 
