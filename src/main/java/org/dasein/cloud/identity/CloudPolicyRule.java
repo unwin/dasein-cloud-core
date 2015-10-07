@@ -89,7 +89,7 @@ public class CloudPolicyRule {
         return permission
                 + ": "
                 + (exceptActions ? "NOT " : "")
-                + (actions.length == 0 ? "ANY" : Arrays.toString(actions))
+                + (getActions().length == 0 ? "ANY" : Arrays.toString(getActions()))
                 + "/"
                 + (resourceId == null ? "ANY" : resourceId);
     }
