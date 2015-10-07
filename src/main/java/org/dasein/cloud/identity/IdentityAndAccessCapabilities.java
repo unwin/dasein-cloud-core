@@ -102,8 +102,8 @@ public interface IdentityAndAccessCapabilities extends Capabilities {
     /**
      * Provides the password constraints set up for the cloud account
      * @return password policy constraints
-     * @throws CloudException
-     * @throws InternalException
+     * @throws CloudException an error occurred while fetching the password constraints
+     * @throws InternalException an error occurred within Dasein Cloud implementation
      */
     @SuppressWarnings("unused")
     @Nonnull NamingConstraints getPasswordConstraints() throws CloudException, InternalException;
