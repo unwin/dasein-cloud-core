@@ -35,26 +35,22 @@ public class CloudPolicy {
      * @param providerPolicyId provider policy ID
      * @param name policy name
      * @param description policy description, optional
-     * @param rules policy rules used by this policy
      * @param type policy type, for {@link CloudPolicyType#INLINE_POLICY} either {@code providerUserId} or {@code providerGroupId} will be provided
      * @param providerUserId a unique user ID, for inline policies only
      * @param providerGroupId a unique group ID, for inline policies only
      * @return policy object
      */
-    static public CloudPolicy getInstance(@Nonnull String providerPolicyId, @Nonnull String name, @Nullable String description, @Nonnull CloudPolicyRule[] rules, @Nonnull CloudPolicyType type, @Nullable String providerUserId, @Nullable String providerGroupId) {
+    static public CloudPolicy getInstance(@Nonnull String providerPolicyId, @Nonnull String name, @Nullable String description, @Nonnull CloudPolicyType type, @Nullable String providerUserId, @Nullable String providerGroupId) {
         CloudPolicy policy = new CloudPolicy();
-
         policy.providerPolicyId = providerPolicyId;
         policy.name = name;
         policy.description = description;
-        policy.rules = rules;
         policy.type = type;
         policy.providerUserId = providerUserId;
         policy.providerGroupId = providerGroupId;
         return policy;
     }
 
-    private CloudPolicyRule [] rules;
     private String          name;
     private String          description;
     private String          providerPolicyId;
@@ -63,10 +59,6 @@ public class CloudPolicy {
     private CloudPolicyType type;
 
     private CloudPolicy() { }
-
-    public @Nonnull CloudPolicyRule[] getRules() {
-        return rules;
-    }
 
     public @Nonnull String getName() {
         return name;
@@ -94,6 +86,6 @@ public class CloudPolicy {
 
     @Override
     public @Nonnull String toString() {
-        return name + ":" + Arrays.toString(rules) + " [#" + providerPolicyId + "] - " + type ;
+        return name + ": [#" + providerPolicyId + "] - " + type ;
     }
 }

@@ -23,6 +23,7 @@ import org.dasein.cloud.Capabilities;
 import org.dasein.cloud.CloudException;
 import org.dasein.cloud.InternalException;
 import org.dasein.cloud.Requirement;
+import org.dasein.cloud.util.NamingConstraints;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
@@ -99,6 +100,15 @@ public interface IdentityAndAccessCapabilities extends Capabilities {
     @Nonnull String getProviderTermForPolicy(@Nonnull Locale locale);
 
     /**
+     * Provides the password constraints set up for the cloud account
+     * @return password policy constraints
+     * @throws CloudException an error occurred while fetching the password constraints
+     * @throws InternalException an error occurred within Dasein Cloud implementation
+     */
+    @SuppressWarnings("unused")
+    @Nonnull NamingConstraints getPasswordConstraints() throws CloudException, InternalException;
+
+    /**
      * Identifies what cloud policy types are supported in this cloud.
      * @return a list of supported cloud policy types
      * @throws InternalException an error occurred within the Dasein Cloud implementation
@@ -133,6 +143,15 @@ public interface IdentityAndAccessCapabilities extends Capabilities {
      */
     @SuppressWarnings("unused")
     int getMaximumGroupsPerUser() throws CloudException, InternalException;
+
+    /**
+     * Provides the maximum access keys that may be assigned to a user
+     * @return the maximum number of groups per user or {@link Capabilities#LIMIT_UNLIMITED} for unlimited or {@link Capabilities#LIMIT_UNKNOWN}for unknown
+     * @throws CloudException an error occurred fetching the limits from the cloud provider
+     * @throws InternalException an error occurred within the Dasein Cloud implementation determining the limits
+     */
+    @SuppressWarnings("unused")
+    int getMaximumAccessKeysPerUser() throws CloudException, InternalException;
 
     /**
      * Provides the maximum number of users that may be created.

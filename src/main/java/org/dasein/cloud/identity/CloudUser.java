@@ -29,32 +29,31 @@ import java.io.Serializable;
  * @since 2012.02
  * @version 2012.02
  */
+@SuppressWarnings("unused")
 public class CloudUser implements Serializable {
     private String path;
     private String providerUserId;
     private String providerOwnerId;
     private String userName;
-    
+    private long creationTimestamp;
+    private long passwordLastUsedTimestamp;
+
     public CloudUser() { }
 
     @Override
     public boolean equals(@Nullable Object ob) {
-        if( ob == null ) {
+        if (ob == null) {
             return false;
         }
-        if( ob == this ) {
+        if (ob == this) {
             return true;
         }
-        if( !getClass().getName().equals(ob.getClass().getName()) ) {
+        if (!getClass().getName().equals(ob.getClass().getName())) {
             return false;
         }
-        CloudUser user = (CloudUser)ob;
+        CloudUser user = (CloudUser) ob;
 
-        //noinspection SimplifiableIfStatement
-        if( (providerOwnerId == null && user.providerOwnerId == null) || (providerOwnerId != null && providerOwnerId.equals(user.providerOwnerId)) ) {
-            return providerUserId.equals(user.providerUserId);
-        }
-        return false;
+        return (((providerOwnerId == null) && (user.providerOwnerId == null)) || ((providerOwnerId != null) && providerOwnerId.equals(user.providerOwnerId))) && providerUserId.equals(user.providerUserId);
     }
     
     public @Nullable String getPath() {
@@ -88,7 +87,23 @@ public class CloudUser implements Serializable {
     public void setUserName(@Nonnull String userName) {
         this.userName = userName;
     }
-    
+
+    public long getCreationTimestamp() {
+        return creationTimestamp;
+    }
+
+    public void setCreationTimestamp(long creationTimestamp) {
+        this.creationTimestamp = creationTimestamp;
+    }
+
+    public long getPasswordLastUsedTimestamp() {
+        return passwordLastUsedTimestamp;
+    }
+
+    public void setPasswordLastUsedTimestamp(long passwordLastUsedTimestamp) {
+        this.passwordLastUsedTimestamp = passwordLastUsedTimestamp;
+    }
+
     @Override
     public @Nonnull String toString() {
         if( path == null ) {
