@@ -2,6 +2,7 @@ package org.dasein.cloud.identity;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Arrays;
 
 /**
  * @author Stas Maksimov (stas.maksimov@software.dell.com)
@@ -56,5 +57,16 @@ public class CloudPolicyOptions {
 
     public String getProviderGroupId() {
         return providerGroupId;
+    }
+
+    @Override
+    public String toString() {
+        return "CloudPolicyOptions{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", rules=" + Arrays.toString(rules) +
+                ", providerUserId='" + providerUserId + '\'' +
+                ", providerGroupId='" + providerGroupId + '\'' +
+                '}';
     }
 }
