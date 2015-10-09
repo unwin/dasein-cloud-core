@@ -372,7 +372,7 @@ public interface IpAddressSupport extends AccessControlledService {
     public @Nonnull String request(@Nonnull AddressType typeOfAddress) throws InternalException, CloudException;
 
     /**
-     * Requests an IP address of the specified version for the flat (non-VLAN) network space.
+     * requests an IP address of the specified version for the flat (non-VLAN) network space.
      * @param version the IP version of the address to be requested
      * @return the unique ID of the newly provisioned static IP address
      * @throws InternalException a local error occurred while preparing the request
@@ -381,7 +381,7 @@ public interface IpAddressSupport extends AccessControlledService {
     public @Nonnull String request(@Nonnull IPVersion version) throws InternalException, CloudException;
 
     /**
-     * Requests a public IP address that may be used with a VLAN. This version may be used only when
+     * requests a public IP address that may be used with a VLAN. This version may be used only when
      * {@link #identifyVlanForVlanIPRequirement()} is not {@link Requirement#REQUIRED}.
      * @param version the IP version of the address to be requested
      * @return the unique ID of a newly provisioned public IP address
@@ -392,7 +392,7 @@ public interface IpAddressSupport extends AccessControlledService {
     public @Nonnull String requestForVLAN(@Nonnull IPVersion version) throws InternalException, CloudException;
 
     /**
-     * Requests a public IP address that must be used with a specific VLAN. This version may be used only when
+     * requests a public IP address that must be used with a specific VLAN. This version may be used only when
      * {@link #identifyVlanForVlanIPRequirement()} is not {@link Requirement#NONE}.
      * @param version the IP version of the address to be requested
      * @param vlanId the unique ID of the VLAN to which the IP address will be assigned

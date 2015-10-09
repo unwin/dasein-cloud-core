@@ -86,6 +86,14 @@ public interface RelationalDatabaseCapabilities extends Capabilities{
     public boolean supportsMaintenanceWindows() throws CloudException, InternalException;
 
     /**
+     * Indicates whether the cloud supports the changing of the root user password after the rds instance is created
+     * @return true if the password can be changed
+     * @throws CloudException an error occurred in the cloud provider
+     * @throws InternalException an error occurred within the Dasein Cloud implementation
+     */
+    public boolean supportsRootPasswordChange() throws CloudException, InternalException;
+
+    /**
      * Indicates whether the provider allows the modification of running databases
      * @return true if modification is allowed
      * @throws CloudException an error occurred in the cloud provider

@@ -59,6 +59,14 @@ public class VMScalingCapabilities {
     private boolean     supportsProductChanges;
     private boolean     supportsProductSizeChanges;
 
+    private int         maxAllowedCPU;
+    private int         minAllowedCPU;
+    private int         cpuChangeIncrement;
+
+    private int         maxAllowedRAM;
+    private int         minAllowedRAM;
+    private int         ramChangeIncrement;
+
     private VMScalingCapabilities() { }
 
     /**
@@ -109,8 +117,68 @@ public class VMScalingCapabilities {
         return supportsProductSizeChanges;
     }
 
+    /**
+     * @return the maximum allowed CPU count for clouds with contiguous products (-1 for unlimited, -2 for unknown)
+     */
+    public int getMaxAllowedCPU() { return maxAllowedCPU; }
+
+    /**
+     * @return the minimum allowed CPU count for clouds with contiguous products (-1 for unlimited, -2 for unknown)
+     */
+    public int getMinAllowedCPU() { return minAllowedCPU; }
+
+    /**
+     * @return the size of the operand for incrementing or decrementing CPU counts for clouds with contiguous products
+     */
+    public int getCPUChangeIncrement() { return cpuChangeIncrement; }
+
+    /**
+     * @return the maximum allowed RAM size for clouds with contiguous products (-1 for unlimited, -2 for unknown)
+     */
+    public int getMaxAllowedRAM() { return maxAllowedRAM; }
+
+    /**
+     * @return the minimum allowed RAM size for clouds with contiguous products (-1 for unlimited, -2 for unknown)
+     */
+    public int getMinAllowedRAM() { return minAllowedRAM; }
+
+    /**
+     * @return the size of the operand for incrementing or decrementing RAM size for clouds with contiguous products
+     */
+    public int getRAMChangeIncrement() { return ramChangeIncrement; }
+
     public @Nonnull VMScalingCapabilities withSupportsProductSizeScaling(boolean supportsProductSizeChanges){
         this.supportsProductSizeChanges = supportsProductSizeChanges;
+        return this;
+    }
+
+    /**
+     * Sets values for describing CPU scaling for clouds with contiguous products (should only be used for product size scaling
+     * and not for distinct product scaling)
+     * @param minAllowedCPU minimum allowed CPU count (-1 for unlimited, -2 for unknown)
+     * @param maxAllowedCPU maximum allowed CPU count (-1 for unlimited, -2 for unknown)
+     * @param cpuChangeIncrement the operand size for any CPU change operation
+     * @return this
+     */
+    public @Nonnull VMScalingCapabilities withCPUScaling(int minAllowedCPU, int maxAllowedCPU, int cpuChangeIncrement){
+        this.minAllowedCPU = minAllowedCPU;
+        this.maxAllowedCPU = maxAllowedCPU;
+        this.cpuChangeIncrement = cpuChangeIncrement;
+        return this;
+    }
+
+    /**
+     * Sets values for describing RAM scaling for clouds with contiguous products (should only be used for product size scaling
+     * and not for distinct product scaling)
+     * @param minAllowedRAM minimum allowed RAM count (-1 for unlimited, -2 for unknown)
+     * @param maxAllowedRAM maximum allowed RAM count (-1 for unlimited, -2 for unknown)
+     * @param ramChangeIncrement the operand size for any RAM change operation
+     * @return this
+     */
+    public @Nonnull VMScalingCapabilities withRAMScaling(int minAllowedRAM, int maxAllowedRAM, int ramChangeIncrement){
+        this.minAllowedRAM = minAllowedRAM;
+        this.maxAllowedRAM = maxAllowedRAM;
+        this.ramChangeIncrement = ramChangeIncrement;
         return this;
     }
 }

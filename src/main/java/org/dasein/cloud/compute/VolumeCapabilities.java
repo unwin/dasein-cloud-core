@@ -154,6 +154,14 @@ public interface VolumeCapabilities extends Capabilities{
     public @Nonnull Requirement getDeviceIdOnAttachRequirement() throws InternalException, CloudException;
 
     /**
+     * Indicates whether the cloud supports IOPS specifications for volumes
+     * @return true if IOPS are supported
+     * @throws InternalException an error occurred in the Dasein Cloud implementation determining the support level
+     * @throws CloudException an error occurred with the cloud provider determining the support level
+     */
+    public boolean getSupportsIOPSVolumes() throws InternalException, CloudException;
+
+    /**
      * Indicates that a volume size is not necessary (and ultimately ignored) during the volume creation process
      * because the volume size is determined by the selected volume product.
      * @return true if the volume size is determined by the product choice
@@ -187,4 +195,16 @@ public interface VolumeCapabilities extends Capabilities{
      * @throws CloudException an error occurred fetching a list from the cloud provider
      */
     public @Nonnull Requirement requiresVMOnCreate() throws InternalException, CloudException;
+
+    /**
+     * Indicates whether the cloud supports the separate attachment of volumes to a VM in general.
+     * @return true if volume attaching is supported
+     */
+    public boolean supportsAttach();
+
+    /**
+     * Indicates whether the cloud supports the separate detachment of volumes from a VM in general.
+     * @return true if volume detaching is supported
+     */
+    public boolean supportsDetach();
 }
