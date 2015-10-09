@@ -11,40 +11,44 @@ import java.util.Arrays;
 @SuppressWarnings("unused")
 public class CloudPolicyRule {
     private CloudPermission permission;
-    private String          resourceId;
+    private String[]        resources;
     private ServiceAction[] actions;
     private boolean         exceptActions;
 
     /**
      * Construct a new cloud policy rule instance
      * @param permission Does policy allow or deny the actions
-     * @param resourceId Which resource does the policy govern, any resource if {@code null}
      * @param actions Which action does the policy govern, all if empty
      * @return new cloud policy rule instance
      */
-    public static CloudPolicyRule getInstance(
+    public static @Nonnull CloudPolicyRule getInstance(
             @Nonnull CloudPermission permission,
-            @Nullable String resourceId,
             @Nullable ServiceAction ... actions) {
-        return CloudPolicyRule.getInstance(permission, resourceId, false, actions);
+        return CloudPolicyRule.getInstance(permission, false, actions);
     }
 
     /**
+     * @param resources Which resource(s) does the policy govern, any resource if not set
+     * @return this
+     */
+    public @Nonnull CloudPolicyRule withResources(@Nullable String ... resources) {
+        this.resources = resources;
+        return this;
+    }
+    /**
      * Construct a new cloud policy rule instance
      * @param permission Does policy allow or deny the actions
-     * @param resourceId Which resources does the policy govern, <code>null</code> for any resource
      * @param exceptActions Indicates if the permission will apply to all actions except the ones defined in this rule
      * @param actions Which actions does the policy govern, all if empty
      * @return new cloud policy rule instance
      */
-    public static CloudPolicyRule getInstance(@Nonnull CloudPermission permission, @Nullable String resourceId, boolean exceptActions, @Nullable ServiceAction ... actions) {
-        return new CloudPolicyRule(permission, resourceId, exceptActions, actions);
+    public static @Nonnull CloudPolicyRule getInstance(@Nonnull CloudPermission permission, boolean exceptActions, @Nullable ServiceAction ... actions) {
+        return new CloudPolicyRule(permission, exceptActions, actions);
     }
 
-    private CloudPolicyRule(CloudPermission permission, String resourceId, boolean exceptActions, ServiceAction[] actions) {
+    private CloudPolicyRule(CloudPermission permission, boolean exceptActions, ServiceAction[] actions) {
         this.actions = actions;
         this.permission = permission;
-        this.resourceId = resourceId;
         this.exceptActions = exceptActions;
     }
 
@@ -52,16 +56,19 @@ public class CloudPolicyRule {
      * Permission of a cloud policy rule: allow or deny
      * @return Type of permission of a cloud policy rule
      */
-    public CloudPermission getPermission() {
+    public @Nonnull CloudPermission getPermission() {
         return permission;
     }
 
     /**
-     * Resource ID to which the cloud police rule applies
-     * @return resource identifier to which the policy rule applies, {@code null} for any resource
+     * Resource(s) to which the cloud police rule applies
+     * @return resource identifier to which the policy rule applies, empty for any resource
      */
-    public @Nullable String getResourceId() {
-        return resourceId;
+    public @Nonnull String[] getResources() {
+        if( resources == null ) {
+            resources = new String[0];
+        }
+        return resources;
     }
 
     /**
@@ -89,9 +96,9 @@ public class CloudPolicyRule {
         return permission
                 + ": "
                 + (exceptActions ? "NOT " : "")
-                + (actions.length == 0 ? "ANY" : Arrays.toString(actions))
+                + (getActions().length == 0 ? "ANY" : Arrays.toString(getActions()))
                 + "/"
-                + (resourceId == null ? "ANY" : resourceId);
+                + (getResources().length == 0 ? "ANY" : Arrays.toString(getResources()));
     }
 
 }
