@@ -193,6 +193,12 @@ public interface VirtualMachineCapabilities extends Capabilities {
     public @Nullable VisibleScope getVirtualMachineProductVisibleScope();
 
     /**
+     * Returns an array of words that are reserved from use in usernames
+     * @return an array of reserved usernames
+     */
+    public @Nullable String[] getVirtualMachineReservedUsernames();
+
+    /**
      * Indicates whether the VM requires a Data Center to be specified upon launch
      * @return the requirements for data centers upon VM launch
      * @throws CloudException an error occurred in the cloud identifying this requirement
@@ -303,6 +309,14 @@ public interface VirtualMachineCapabilities extends Capabilities {
      * @throws InternalException an error inside the Dasein Cloud implementation occurred determining support
      */
     public boolean isUserDefinedPrivateIPSupported() throws CloudException, InternalException;
+
+    /**
+     * Indicates whether the VM root password (or administrator password in Windows) is returned encrypted with the provided ssh key
+     * @return true if the password is encrypted
+     * @throws CloudException an error occurred querying the cloud for this kind of support
+     * @throws InternalException an error inside the Dasein Cloud implementation occurred determining support
+     */
+    public boolean isRootPasswordSSHKeyEncrypted() throws CloudException, InternalException;
 
 
     public @Nonnull Iterable<Architecture> listSupportedArchitectures() throws InternalException, CloudException;

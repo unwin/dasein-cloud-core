@@ -86,12 +86,18 @@ public interface LoadBalancerCapabilities extends Capabilities{
     /**
      * Indicates whether a name is required when creating a health check
      * @return Requirement for health check name
-     * @throws InternalException
-     *             an error occurred within the Dasein Cloud API implementation
-     * @throws CloudException
-     *             an error occurred within the cloud provider
+     * @throws CloudException an error occurred while communicating with the cloud provider
+     * @throws InternalException an error occurred within the Dasein Cloud implementation
      */
-    Requirement healthCheckRequiresName() throws CloudException, InternalException;
+    @Nonnull Requirement healthCheckRequiresName() throws CloudException, InternalException;
+
+    /**
+     * Indicates whether specifying a port (or port range) is required when creating a health check
+     * @return Requirement for port specification
+     * @throws CloudException an error occurred while communicating with the cloud provider
+     * @throws InternalException an error occurred within the Dasein Cloud implementation
+     */
+    @Nonnull Requirement healthCheckRequiresPort() throws CloudException, InternalException;
 
     /**
      * @return the degree to which endpoints should or must be part of the load balancer creation process

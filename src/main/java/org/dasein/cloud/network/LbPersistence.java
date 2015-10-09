@@ -33,7 +33,7 @@ public enum LbPersistence {
      */
     NONE,
     /**
-     * Requests coming from the same subnet will be routed to the same virtual machine/address
+     * requests coming from the same subnet will be routed to the same virtual machine/address
      */
     SUBNET,
     /**

@@ -29,7 +29,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
- * Options for creating Spot VM Requests.
+ * Options for creating Spot VM requests.
  *
  * @author Drew Lyall
  * @author Stas Maksimov

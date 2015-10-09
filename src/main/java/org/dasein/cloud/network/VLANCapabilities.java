@@ -84,6 +84,14 @@ public interface VLANCapabilities extends Capabilities{
     public boolean allowsMultipleTrafficTypesOverVlan() throws CloudException, InternalException;
 
     /**
+     * Indicates whether the cloud allows the removal of certain reserved subnets (such as default or final in a VLAN).
+     * @return true if reserved subnet deletion is allowed
+     * @throws CloudException    an error occurred checking with the cloud for support
+     * @throws InternalException an error occurred in the Dasein Cloud implementation determining support
+     */
+    public boolean allowsDeletionOfReservedSubnets() throws CloudException, InternalException;
+
+    /**
      * Specifies the maximum number of network interfaces that may be provisioned.
      * @return the maximum number of network interfaces that may be provisioned or -1 for no limit or -2 for unknown
      * @throws CloudException    an error occurred requesting the limit from the cloud provider
