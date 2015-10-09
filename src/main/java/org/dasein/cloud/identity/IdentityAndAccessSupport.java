@@ -237,6 +237,22 @@ public interface IdentityAndAccessSupport extends AccessControlledService {
     @Nonnull Iterable<CloudUser> listUsersInPath(@Nullable String pathBase) throws CloudException, InternalException;
 
     /**
+     * Lists all users assigned to a managed policy
+     * @param providerPolicyId the ID of the managed policy for which associated users are returned
+     * @throws CloudException an error occurred with the cloud provider while performing the search
+     * @throws InternalException an error occurred within the Dasein Cloud implementation while performing the search
+     */
+    @Nonnull Iterable<CloudUser> listUsersForPolicy(@Nonnull String providerPolicyId) throws CloudException, InternalException;
+
+    /**
+     * Lists all groups assigned to a managed policy
+     * @param providerPolicyId the ID of the managed policy for which associated groups are returned
+     * @throws CloudException an error occurred with the cloud provider while performing the search
+     * @throws InternalException an error occurred within the Dasein Cloud implementation while performing the search
+     */
+    @Nonnull Iterable<CloudGroup> listGroupsForPolicy(@Nonnull String providerPolicyId) throws CloudException, InternalException;
+
+    /**
      * Removes a previously created API access key associated with a user, if any - otherwise remove root API access key
      * @param sharedKeyPart the shared part of the key to remove
      * @param providerUserId the user whose access should be removed, if any
