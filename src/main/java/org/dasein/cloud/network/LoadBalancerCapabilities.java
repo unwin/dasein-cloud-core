@@ -53,6 +53,34 @@ public interface LoadBalancerCapabilities extends Capabilities{
     @Nonnegative int getMaxPublicPorts() throws CloudException, InternalException;
 
     /**
+     * @return the maximum allowed health check timeout; should be lesser than interval, see {@link #getMaxHealthCheckInterval}
+     * @throws CloudException    an error occurred while communicating with the cloud provider
+     * @throws InternalException an error occurred within the Dasein Cloud implementation
+     */
+    @Nonnegative int getMaxHealthCheckTimeout() throws CloudException, InternalException;
+
+    /**
+     * @return the minimum allowed health check timeout
+     * @throws CloudException    an error occurred while communicating with the cloud provider
+     * @throws InternalException an error occurred within the Dasein Cloud implementation
+     */
+    @Nonnegative int getMinHealthCheckTimeout() throws CloudException, InternalException;
+
+    /**
+     * @return the maximum allowed health check interval; should be greater than timeout, see {@link #getMaxHealthCheckTimeout}
+     * @throws CloudException    an error occurred while communicating with the cloud provider
+     * @throws InternalException an error occurred within the Dasein Cloud implementation
+     */
+    @Nonnegative int getMaxHealthCheckInterval() throws CloudException, InternalException;
+
+    /**
+     * @return the minimum allowed health check interval
+     * @throws CloudException    an error occurred while communicating with the cloud provider
+     * @throws InternalException an error occurred within the Dasein Cloud implementation
+     */
+    @Nonnegative int getMinHealthCheckInterval() throws CloudException, InternalException;
+
+    /**
      * Gives the cloud provider's term for a load balancer (for example, "ELB" in AWS).
      * @param locale the locale for which the term should be translated
      * @return the provider term for a load balancer

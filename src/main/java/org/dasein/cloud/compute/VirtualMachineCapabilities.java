@@ -196,7 +196,7 @@ public interface VirtualMachineCapabilities extends Capabilities {
      * Returns an array of words that are reserved from use in usernames
      * @return an array of reserved usernames
      */
-    public @Nullable String[] getVirtualMachineReservedUsernames();
+    public @Nonnull String[] getVirtualMachineReservedUserNames();
 
     /**
      * Indicates whether the VM requires a Data Center to be specified upon launch
