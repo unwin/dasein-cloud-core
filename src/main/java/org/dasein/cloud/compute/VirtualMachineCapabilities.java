@@ -217,9 +217,17 @@ public interface VirtualMachineCapabilities extends Capabilities {
     public @Nonnull Requirement identifyImageRequirement(@Nonnull ImageClass cls) throws CloudException, InternalException;
 
     /**
-     * Indicates the degree to which specifying a user name and password at launch is required.
+     * Indicates the degree with which specifying a username (whether using a password or sshkey) is required.
+     * @return the requirements level for specifying a username at launch
+     * @throws CloudException an error occurred in the cloud identifying this requirement
+     * @throws InternalException an error occurred within the Dasein Cloud implementation identifying this requirement
+     */
+    public @Nonnull Requirement identifyUsernameRequirement() throws CloudException, InternalException;
+
+    /**
+     * Indicates the degree to which specifying a password at launch is required.
      * @param platform the platform for which password requirements are being sought
-     * @return the requirements level for specifying a user name and password at launch
+     * @return the requirements level for specifying a password at launch
      * @throws CloudException an error occurred in the cloud identifying this requirement
      * @throws InternalException an error occurred within the Dasein Cloud implementation identifying this requirement
      */

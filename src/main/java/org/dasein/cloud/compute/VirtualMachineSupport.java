@@ -405,6 +405,15 @@ public interface VirtualMachineSupport extends AccessControlledService {
     public @Nonnull Iterable<VirtualMachineProduct> listProducts(@Nonnull String machineImageId, @Nonnull VirtualMachineProductFilterOptions options) throws InternalException, CloudException;
 
     /**
+     * Provides a list of every product available to the cloud regardless of any filters or dependent machine images.
+     * Should not in any case be used to provide a product ID for use in a VM launch as they may not be compatible with the selected machine image
+     * @return list of products available to the cloud
+     * @throws InternalException an error occurred within the Dasein Cloud API implementation
+     * @throws CloudException    an error occurred within the cloud provider
+     */
+    public @Nonnull Iterable<VirtualMachineProduct> listAllProducts() throws InternalException, CloudException;
+
+    /**
      * Provides a list of price history records for Spot VMs
      *
      * @param options filter options
