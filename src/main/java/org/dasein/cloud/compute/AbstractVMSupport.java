@@ -524,6 +524,11 @@ public abstract class AbstractVMSupport<T extends CloudProvider> extends Abstrac
     }
 
     @Override
+    public @Nonnull Iterable<VirtualMachineProduct> listAllProducts() throws InternalException, CloudException{
+        return Collections.emptyList();
+    }
+
+    @Override
     public Iterable<SpotPriceHistory> listSpotPriceHistories( SpotPriceHistoryFilterOptions options ) throws CloudException, InternalException {
         throw new OperationNotSupportedException("Spot Instances are not supported for " + getProvider().getCloudName());
     }
