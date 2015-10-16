@@ -65,6 +65,14 @@ public interface IdentityAndAccessCapabilities extends Capabilities {
     boolean supportsApiAccess() throws CloudException, InternalException;
 
     /**
+     * @return true if the cloud API supports policies
+     * @throws CloudException an error occurred within the cloud provider determining policy support
+     * @throws InternalException an error occurred within the Dasein Cloud implementation determining policy support
+     */
+    @SuppressWarnings("unused")
+    boolean supportsPolicies() throws CloudException, InternalException;
+
+    /**
      * Provides the cloud console URL where cloud user may sign-in to using their credentials.
      * @see IdentityAndAccessSupport#enableConsoleAccess(String, byte[])
      * @see IdentityAndAccessCapabilities#supportsConsoleAccess()
