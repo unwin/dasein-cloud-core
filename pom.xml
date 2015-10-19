@@ -22,7 +22,7 @@
 
     <groupId>org.dasein</groupId>
     <artifactId>dasein-cloud-core</artifactId>
-    <version>2015.10.1</version>
+    <version>2015.10.2-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>dasein-cloud-core</name>
@@ -56,7 +56,7 @@
         <connection>scm:git:git://github.com/dasein-cloud/dasein-cloud-core.git</connection>
         <developerConnection>scm:git:git@github.com:dasein-cloud/dasein-cloud-core.git</developerConnection>
         <url>http://github.com/dasein-cloud/dasein-cloud-core</url>
-      <tag>dasein-cloud-core-2015.10.1</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <parent>
